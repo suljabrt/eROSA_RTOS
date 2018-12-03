@@ -30,6 +30,9 @@
 #include <avr32/io.h>
 #include "drivers/debug.h"
 
+//Maximum number of priorities
+#define MAXNPRIO 12
+
 //Maximum number of chars in the task id (the task name)
 #define NAMESIZE 4
 

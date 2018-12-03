@@ -53,6 +53,9 @@ typedef struct tcb_record_t {
 	int savesr;				//The current status register
 	int retaddr;			//The return address
 	int savereg[15];		//The CPU registers
+	uint8_t priority;		//The priority of a task
+	uint64_t delay;			//Delay of a task
+	uint8_t counter;		//Number of semaphores currently locked by this task
 } tcb;
 
 #endif /* rosa_def_H_ */
