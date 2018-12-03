@@ -28,6 +28,7 @@
 #define rosa_def_H_
 
 #include "rosa_config.h"
+#include <stdint.h>
 
 #ifndef NULL
 #define NULL 0
@@ -57,5 +58,7 @@ typedef struct tcb_record_t {
 	uint64_t delay;			//Delay of a task
 	uint8_t counter;		//Number of semaphores currently locked by this task
 } tcb;
+
+typedef tcb ROSA_taskHandle_t;
 
 #endif /* rosa_def_H_ */
