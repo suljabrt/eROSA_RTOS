@@ -34,6 +34,9 @@
  ***********************************************************/
 extern tcb * TCBLIST;
 extern tcb * EXECTASK;
+extern tcb * PREEMPTASK;
+
+extern ROSA_taskHandle_t * PA[MAXNPRIO];
 
 
 /***********************************************************
@@ -65,6 +68,8 @@ __attribute__((__interrupt__)) extern void timerISR(void);
 //Initialize the kernel
 void ROSA_init(void);
 void ROSA_tcbCreate(tcb * tcbTask, char tcbName[NAMESIZE], void *tcbFunction, int * tcbStack, int tcbStackSize);
+int16_t ROSA_taskCreate(ROSA_taskHandle_t ** th, char * id, void* taskFunction, uint32_t stackSize, uint8_t priority);
+int16_t ROSA_taskDelete(ROSA_taskHandle_t ** th);
 
 //Install a new task TCB into ROSA
 extern void ROSA_tcbInstall(tcb *task);
@@ -72,5 +77,5 @@ extern void ROSA_tcbInstall(tcb *task);
 //Start running the ROSA kernel
 //This start running the created and installed tasks.
 extern void ROSA_start(void);
-
+extern void ROSA_startScheduler(void);
 #endif /* _ROSA_KER_H_ */

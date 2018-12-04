@@ -39,13 +39,18 @@
 #include "rosa_config.h"
 
 //Data blocks for the tasks
-#define T1_STACK_SIZE 0x40
-static int t1_stack[T1_STACK_SIZE];
-static tcb t1_tcb;
+#define T1_STACK_SIZE 32
+//static int t1_stack[T1_STACK_SIZE];
+//static tcb t1_tcb;
+ROSA_taskHandle_t * t1_tcb;
 
-#define T2_STACK_SIZE 0x40
-static int t2_stack[T2_STACK_SIZE];
-static tcb t2_tcb;
+#define T2_STACK_SIZE 32
+#define T3_STACK_SIZE 32
+//static int t2_stack[T2_STACK_SIZE];
+//static tcb t2_tcb;
+ROSA_taskHandle_t * t2_tcb;
+ROSA_taskHandle_t * t3_tcb;
+ROSA_taskHandle_t * t4_tcb;
 
 /*************************************************************
  * Task1
@@ -56,8 +61,36 @@ void task1(void)
 {
 	while(1) {
 		ledOn(LED0_GPIO);
-		ledOff(LED1_GPIO);
 		delay_ms(350);
+		ledOff(LED0_GPIO);
+		delay_ms(350);
+		//ledOff(LED1_GPIO);
+		//delay_ms(350);
+		ROSA_yield();
+	}
+}
+
+void task4(void)
+{
+	while(1) {
+		ledOn(LED4_GPIO);
+		delay_ms(350);
+		ledOff(LED4_GPIO);
+		//ledOff(LED1_GPIO);
+		delay_ms(350);
+		ROSA_yield();
+	}
+}
+
+void task3(void)
+{
+	while(1) {
+		ledOn(LED2_GPIO);
+		delay_ms(350);
+		ledOff(LED2_GPIO);
+		//ledOff(LED1_GPIO);
+		delay_ms(350);
+		ROSA_taskDelete(&t3_tcb);
 		ROSA_yield();
 	}
 }
@@ -70,12 +103,22 @@ void task1(void)
 void task2(void)
 {
 	while(1) {
-		ledOff(LED0_GPIO);
 		ledOn(LED1_GPIO);
-		delay_ms(150);
+		delay_ms(350);
+		ledOff(LED1_GPIO);
+		delay_ms(350);
+		ROSA_taskCreate(&t3_tcb, "tsk3", task3, T3_STACK_SIZE, 5);
+		ledOn(LED1_GPIO);
+		ROSA_taskDelete(&t2_tcb);
+	//	ledOn(LED1_GPIO);
+	//	delay_ms(350);
+		ledOff(LED1_GPIO);
+		//ledOff(LED1_GPIO);
+		delay_ms(350);
 		ROSA_yield();
 	}
 }
+
 
 /*************************************************************
  * Main function
@@ -86,13 +129,19 @@ int main(void)
 	ROSA_init();
 
 	//Create tasks and install them into the ROSA kernel
-	ROSA_tcbCreate(&t1_tcb, "tsk1", task1, t1_stack, T1_STACK_SIZE);
+	ROSA_taskCreate(&t1_tcb, "tsk1", task1, T1_STACK_SIZE, 4);
+	ROSA_taskCreate(&t2_tcb, "tsk2", task2, T2_STACK_SIZE, 4);
+	//ledOn(LED1_GPIO);
+/*	ROSA_tcbCreate(&t1_tcb, "tsk1", task1, t1_stack, T1_STACK_SIZE);
 	ROSA_tcbInstall(&t1_tcb);
 	ROSA_tcbCreate(&t2_tcb, "tsk2", task2, t2_stack, T2_STACK_SIZE);
-	ROSA_tcbInstall(&t2_tcb);
+	ROSA_tcbInstall(&t2_tcb);*/
 
 	//Start the ROSA kernel
-	ROSA_start();
+	//TCBLIST = PA[2]->nexttcb;
+	//ROSA_start();
+	ROSA_startScheduler();
+	//ledOn(LED1_GPIO);
 	/* Execution will never return here */
 	while(1);
 }

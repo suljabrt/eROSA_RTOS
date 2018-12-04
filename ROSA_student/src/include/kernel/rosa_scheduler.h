@@ -37,5 +37,5 @@
  * 	at the nexttcb of the current running task.
  **********************************************************/
 void scheduler(void);
-
+void ROSA_startScheduler(void);
 #endif /* _scheduler_H_ */

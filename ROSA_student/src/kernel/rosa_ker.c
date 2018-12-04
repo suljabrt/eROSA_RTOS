@@ -24,6 +24,9 @@
 *****************************************************************************/
 /* Tab size: 4 */
 
+#include <stdint.h>
+#include <stdlib.h>
+
 //Kernel includes
 #include "kernel/rosa_def.h"
 #include "kernel/rosa_ext.h"
@@ -53,6 +56,67 @@ tcb * TCBLIST;
  * 	Global variables that contain the current running TCB.
  **********************************************************/
 tcb * EXECTASK;
+tcb * PREEMPTASK;
+
+
+ROSA_taskHandle_t * PA[MAXNPRIO];
+
+int rqi(ROSA_taskHandle_t ** th);  // Insert task th into queue pQ
+int rqe(ROSA_taskHandle_t ** th); // Extract task th from queue pQ
+
+int rqsearch(void) {
+	int i = MAXNPRIO;
+	
+	while (PA[--i] == NULL) {
+		;
+	}
+	
+	return i;
+}
+
+int rqi(ROSA_taskHandle_t ** pth)
+{
+	uint8_t priority;
+	
+	priority = (*pth)->priority;
+	
+	if (PA[priority] == NULL) {
+		PA[priority] = *pth;
+		PA[priority]->nexttcb = *pth;
+		return 0;
+	}
+	else {
+		(*pth)->nexttcb = PA[priority]->nexttcb;
+		PA[priority]->nexttcb = *pth;
+		PA[priority] = *pth;
+		return 0;
+	}
+}
+
+int rqe(ROSA_taskHandle_t ** pth)
+{
+	ROSA_taskHandle_t * thTmp;
+	
+	uint8_t priority;
+	
+	priority = (*pth)->priority;
+	thTmp = PA[priority];
+	
+	if ((*pth)->nexttcb == *pth) {
+		PA[priority] = NULL;
+		return 1;
+	}
+	else {
+		while (thTmp->nexttcb != (*pth)) {
+			thTmp = thTmp->nexttcb;
+		}
+		if (PA[priority] == *pth) {
+			PA[priority] = thTmp;
+		}
+		thTmp->nexttcb = (*pth)->nexttcb;
+		return 0;
+	}
+}
 
 /***********************************************************
  * ROSA_init
@@ -63,6 +127,8 @@ tcb * EXECTASK;
  **********************************************************/
 void ROSA_init(void)
 {
+	int i = 0;
+	
 	//Do initialization of I/O drivers
 	ledInit();									//LEDs
 	buttonInit();								//Buttons
@@ -73,7 +139,12 @@ void ROSA_init(void)
 	//Start with empty TCBLIST and no EXECTASK.
 	TCBLIST = NULL;
 	EXECTASK = NULL;
-
+	PREEMPTASK = NULL;
+	
+	for (i = 0; i < MAXNPRIO; i++) {
+		PA[i] = NULL;
+	}
+	
 	//Initialize the timer to 100 ms period.
 	//...
 	//timerInit(100);
@@ -142,4 +213,61 @@ void ROSA_tcbInstall(tcb * tcbTask)
 		tcbTmp->nexttcb = tcbTask;			//Install tcb last in the list
 		tcbTask->nexttcb = TCBLIST;			//Make the list circular
 	}
+}
+
+int16_t ROSA_taskCreate(ROSA_taskHandle_t ** pth, char * id, void* taskFunction, uint32_t stackSize, uint8_t priority)
+{
+	int * tcbStack;
+	
+	tcbStack = (int *) calloc(stackSize, sizeof(uint32_t)); 
+	
+	*pth = (ROSA_taskHandle_t *) malloc(sizeof(ROSA_taskHandle_t));			
+	(*pth)->priority = priority;
+	(*pth)->delay = 0;
+	(*pth)->counter = 0;
+	
+	ROSA_tcbCreate(*pth, id, taskFunction, tcbStack, stackSize);
+	
+	rqi(pth);
+	
+	if (EXECTASK != NULL) {
+		if (EXECTASK->priority < priority) {
+			PREEMPTASK = PA[priority];
+			ROSA_yield();
+		}	
+	}
+	
+	return 0;
+}
+
+int16_t ROSA_taskDelete(ROSA_taskHandle_t ** pth)
+{	
+	rqe(pth);
+	uint8_t priority;
+	
+	priority = (*pth)->priority;
+	
+	if (EXECTASK == (*pth)) {
+		if (PA[priority] == NULL) {
+			priority = rqsearch();
+			PREEMPTASK = PA[priority];
+			free( (*pth)->dataarea - (*pth)->datasize);
+			free(*pth);
+			*pth = NULL;
+			ROSA_yield();
+		}		
+		else {
+			PREEMPTASK = EXECTASK->nexttcb;
+			free( (*pth)->dataarea - (*pth)->datasize);
+			free(*pth);
+			*pth = NULL;
+			ROSA_yield();
+		}
+	}
+	
+	free( (*pth)->dataarea - (*pth)->datasize);
+	free(*pth);
+	*pth = NULL;
+	
+	return 0;
 }

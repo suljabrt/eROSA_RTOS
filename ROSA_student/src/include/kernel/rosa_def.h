@@ -23,9 +23,15 @@
     along with ROSA.  If not, see <http://www.gnu.org/licenses/>.
 *****************************************************************************/
 /* Tab size: 4 */
-
 #ifndef rosa_def_H_
 #define rosa_def_H_
+
+#ifndef stdint_def_H_
+#define stdint_def_H_
+
+#include <stdint.h>
+
+#endif
 
 #include "rosa_config.h"
 
@@ -58,4 +64,8 @@ typedef struct tcb_record_t {
 	uint8_t counter;		//Number of semaphores currently locked by this task
 } tcb;
 
+typedef tcb ROSA_taskHandle_t;
+
 #endif /* rosa_def_H_ */
+
+

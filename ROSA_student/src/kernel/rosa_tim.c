@@ -42,8 +42,8 @@ void timerISR(void)
 
 	//Read the timer status register to determine if this is a valid interrupt
 	sr = tc->channel[0].sr;
-	if(sr & AVR32_TC_CPCS_MASK)
-		ROSA_yieldFromISR();
+	//if(sr & AVR32_TC_CPCS_MASK)
+		//ROSA_yieldFromISR();
 }
 
 
