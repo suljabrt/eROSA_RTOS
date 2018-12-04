@@ -25,6 +25,7 @@
 /* Tab size: 4 */
 
 #include <stdint.h>
+#include <stdbool.h>
 #include "rosa_config.h"
 #include "drivers/delay.h"
 #include "kernel/rosa_int.h"
@@ -53,13 +54,19 @@ void timerISR(void)
 	//Read the timer status register to determine if this is a valid interrupt
 	sr = tc->channel[0].sr;
 	
-	while (DELAYQUEUE->delay >= systemTick)
+	bool interruptTask = false;
+	
+	while (DELAYQUEUE->delay <= systemTick)
 	{
 		ROSA_taskHandle_t * tmptsk = DELAYQUEUE;
 		removeDelayQueue(&DELAYQUEUE);
 		rqi(&tmptsk);
 		int priority = rqsearch();
 		PREEMPTASK = PA[priority];
+		interruptTask = true;
+	}
+	if (interruptTask)
+	{
 		ROSA_yieldFromISR();
 	}
 
@@ -133,7 +140,7 @@ int insertDelayQueue(ROSA_taskHandle_t ** pth, uint64_t deadline)
 			prev = next;
 			next = next->nexttcb;
 		}
-		while (next->priority >= (*pth)->priority)
+		while (next->priority >= (*pth)->priority && next->delay == (*pth)->delay)
 		{
 			prev = next;
 			next = next->nexttcb;
