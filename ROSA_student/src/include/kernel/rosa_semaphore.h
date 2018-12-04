@@ -12,7 +12,7 @@
 
 //this should be imported from antons part
 
-#include "kernel/rosa_def.h";
+#include "kernel/rosa_def.h"
 
 //all the way until here
 
@@ -27,11 +27,11 @@ typedef struct ROSA_semaphoreHandle_record_t {
 extern ROSA_semaphoreHandle_t * LOCKEDSEMAPHORELIST;
 
 
-int16_t ROSA_semaphoreCreate(ROSA_semaphoreHandle_t* handle, uint8_t ceiling);
-int16_t ROSA_semaphoreDelete(ROSA_semaphoreHandle_t* handle);
-int16_t ROSA_semaphorePeek(ROSA_semaphoreHandle_t* handle);
-int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t* handle);
-int16_t ROSA_semaphoreUnlock(ROSA_semaphoreHandle_t* handle);
+int16_t ROSA_semaphoreCreate(ROSA_semaphoreHandle_t ** handle, uint8_t ceiling);
+int16_t ROSA_semaphoreDelete(ROSA_semaphoreHandle_t ** handle);
+int16_t ROSA_semaphorePeek(ROSA_semaphoreHandle_t ** handle);
+int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t ** handle);
+int16_t ROSA_semaphoreUnlock(ROSA_semaphoreHandle_t ** handle);
 
 
 #endif /* ROSA_SEMAPHORE_H_ */

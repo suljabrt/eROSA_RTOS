@@ -5,6 +5,9 @@
  *  Author: haris
  */ 
 
+#include <stdlib.h>
+#include <stdint.h>
+
 //Kernel includes
 #include "kernel/rosa_def.h"
 #include "kernel/rosa_ext.h"
@@ -32,10 +35,10 @@ ROSA_semaphoreHandle_t * LOCKEDSEMAPHORELIST;
  * 	Create a semaphore
  *
  **********************************************************/
-int16_t ROSA_semaphoreCreate(ROSA_semaphoreHandle_t * mutex, uint8_t ceiling) {
-	mutex=malloc(sizeof(ROSA_semaphoreHandle_t*));
-	mutex->holder = NULL;
-	mutex->ceiling = ceiling;
+int16_t ROSA_semaphoreCreate(ROSA_semaphoreHandle_t ** mutex, uint8_t ceiling) {
+	*mutex = (ROSA_semaphoreHandle_t*) malloc(sizeof(ROSA_semaphoreHandle_t*));
+	(*mutex)->holder = NULL;
+	(*mutex)->ceiling = ceiling;
 	
 	return 0;
 }
@@ -46,13 +49,14 @@ int16_t ROSA_semaphoreCreate(ROSA_semaphoreHandle_t * mutex, uint8_t ceiling) {
  * 	Delete a semaphore, if deletion is successful return 0, otherwise -1
  *
  **********************************************************/
-int16_t ROSA_semaphoreDelete(ROSA_semaphoreHandle_t* mutex) {
-	if (mutex == NULL) {
-		free(mutex);
+int16_t ROSA_semaphoreDelete(ROSA_semaphoreHandle_t ** mutex) {
+	if ((*mutex)->holder == NULL) {
+		free(*mutex);
 		return 0;
 	}
-	else
-	return - 1;
+	else {
+		return - 1;
+	}
 }
 /***********************************************************
  * ROSA_semaphorePeek
@@ -61,8 +65,8 @@ int16_t ROSA_semaphoreDelete(ROSA_semaphoreHandle_t* mutex) {
  * 	Check if semaphore is locked, return 1 if its unlocked, 0 otherwise
  *
  **********************************************************/
-int16_t ROSA_semaphorePeek(ROSA_semaphoreHandle_t * mutex) {
-	return (mutex == NULL) ? 1 : 0;
+int16_t ROSA_semaphorePeek(ROSA_semaphoreHandle_t ** mutex) {
+	return ((*mutex)->holder == NULL) ? 1 : 0;
 }
 /***********************************************************
  * ROSA_semaphoreLock
@@ -71,11 +75,12 @@ int16_t ROSA_semaphorePeek(ROSA_semaphoreHandle_t * mutex) {
  * 	Lock the semaphore, return nonnegative value if successful, otherwise return negative value
  *
  **********************************************************/
-int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t * mutex) {
-	while (mutex->holder != NULL)
-	ROSA_yield();
+int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t ** mutex) {
+	while ((*mutex)->holder != NULL) {
+		ROSA_yield();	
+	}
 	
-	mutex->holder = EXECTASK;
+	(*mutex)->holder = EXECTASK;
 	//EXECTASK->priority=mutex->ceiling;
 	//*PA[EXECTASK->priority]->nexttcb=mutex->holder;
 	// ... raise priority of E
@@ -90,8 +95,10 @@ int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t * mutex) {
  * 	Unlock the semaphore, return nonnegative value if successful, otherwise return negative value
  *
  **********************************************************/
-int16_t ROSA_semaphoreUnlock(ROSA_semaphoreHandle_t * mutex) {
-	mutex->holder = NULL;
-		
+int16_t ROSA_semaphoreUnlock(ROSA_semaphoreHandle_t ** mutex) {
+	if ((*mutex)->holder == EXECTASK) {
+		(*mutex)->holder = NULL;	
+	}
+	
 	return 0;
 }
