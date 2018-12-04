@@ -33,7 +33,7 @@ ROSA_semaphoreHandle_t * LOCKEDSEMAPHORELIST;
  *
  **********************************************************/
 int16_t ROSA_semaphoreCreate(ROSA_semaphoreHandle_t * mutex, uint8_t ceiling) {
-	mutex=malloc(sizeof(ROSA_semaphoreHandle_t*));
+	mutex=calloc(1,sizeof(ROSA_semaphoreHandle_t*));
 	mutex->holder = NULL;
 	mutex->ceiling = ceiling;
 	
@@ -47,7 +47,7 @@ int16_t ROSA_semaphoreCreate(ROSA_semaphoreHandle_t * mutex, uint8_t ceiling) {
  *
  **********************************************************/
 int16_t ROSA_semaphoreDelete(ROSA_semaphoreHandle_t* mutex) {
-	if (mutex == NULL) {
+	if (mutex->holder == NULL) {
 		free(mutex);
 		return 0;
 	}
@@ -62,7 +62,7 @@ int16_t ROSA_semaphoreDelete(ROSA_semaphoreHandle_t* mutex) {
  *
  **********************************************************/
 int16_t ROSA_semaphorePeek(ROSA_semaphoreHandle_t * mutex) {
-	return (mutex == NULL) ? 1 : 0;
+	return (mutex->holder == NULL) ? 1 : 0;
 }
 /***********************************************************
  * ROSA_semaphoreLock
@@ -72,14 +72,18 @@ int16_t ROSA_semaphorePeek(ROSA_semaphoreHandle_t * mutex) {
  *
  **********************************************************/
 int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t * mutex) {
+	
 	while (mutex->holder != NULL)
-	ROSA_yield();
+		ROSA_yield();
 	
 	mutex->holder = EXECTASK;
-	//EXECTASK->priority=mutex->ceiling;
-	//*PA[EXECTASK->priority]->nexttcb=mutex->holder;
-	// ... raise priority of E
-	// ... move it to the corresponded rQi by using priority array.
+	if (EXECTASK->priority < mutex->ceiling)
+	{
+		EXECTASK->priority=mutex->ceiling; //IPCP priority inheritance
+		PA[EXECTASK->priority]=EXECTASK;//move this task to the proper ready queue
+	}
+	
+	
 	
 	return 0;
 }
@@ -92,6 +96,7 @@ int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t * mutex) {
  **********************************************************/
 int16_t ROSA_semaphoreUnlock(ROSA_semaphoreHandle_t * mutex) {
 	mutex->holder = NULL;
+	
 		
 	return 0;
 }

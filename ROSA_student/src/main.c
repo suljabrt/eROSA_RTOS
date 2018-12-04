@@ -131,6 +131,7 @@ int main(void)
 	//Create tasks and install them into the ROSA kernel
 	ROSA_taskCreate(&t1_tcb, "tsk1", task1, T1_STACK_SIZE, 4);
 	ROSA_taskCreate(&t2_tcb, "tsk2", task2, T2_STACK_SIZE, 4);
+	timerInit(5);
 	//ledOn(LED1_GPIO);
 /*	ROSA_tcbCreate(&t1_tcb, "tsk1", task1, t1_stack, T1_STACK_SIZE);
 	ROSA_tcbInstall(&t1_tcb);

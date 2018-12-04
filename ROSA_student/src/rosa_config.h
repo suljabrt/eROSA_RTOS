@@ -41,14 +41,16 @@
 #define DEBUGLEVEL DEBUGLEVEL1
 
 //USART configures
-#define USART				(&AVR32_USART0)
-#define USART_BAUDRATE 		57600
-#define USART_CHARLEN		8
-#define USART_RX_PIN		AVR32_USART0_RXD_0_0_PIN
-#define USART_RX_FUNCTION	AVR32_USART0_RXD_0_0_FUNCTION
-#define USART_TX_PIN		AVR32_USART0_TXD_0_0_PIN
-#define USART_TX_FUNCTION	AVR32_USART0_TXD_0_0_FUNCTION
+#define USART					(&AVR32_USART0)
+#define USART_BAUDRATE 			57600
+#define USART_CHARLEN			8
+#define USART_RX_PIN			AVR32_USART0_RXD_0_0_PIN
+#define USART_RX_FUNCTION		AVR32_USART0_RXD_0_0_FUNCTION
+#define USART_TX_PIN			AVR32_USART0_TXD_0_0_PIN
+#define USART_TX_FUNCTION		AVR32_USART0_TXD_0_0_FUNCTION
 
-#define FOSC0 12000000		//CPU clock frequencey
+#define FOSC0 12000000			//CPU clock frequency
+#define CLKTK 1000				//System tick frequency
+#define CLKPERIOD FOSC0 / CLKTK //Period of the system tick, expressed in CPU clock cycles
 
 #endif /* _ROSA_CONFIG_H_ */

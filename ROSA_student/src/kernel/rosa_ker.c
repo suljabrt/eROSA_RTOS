@@ -225,6 +225,7 @@ int16_t ROSA_taskCreate(ROSA_taskHandle_t ** pth, char * id, void* taskFunction,
 	(*pth)->priority = priority;
 	(*pth)->delay = 0;
 	(*pth)->counter = 0;
+	(*pth)->originalPriority = priority;
 	
 	ROSA_tcbCreate(*pth, id, taskFunction, tcbStack, stackSize);
 	

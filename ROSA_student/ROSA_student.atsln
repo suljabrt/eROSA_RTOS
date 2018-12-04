@@ -1,7 +1,14 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
+Microsoft Visual Studio Solution File, Format Version 12.00
 # Atmel Studio Solution File, Format Version 11.00
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{54F91283-7BC4-4236-8FF9-10F437C3AD48}") = "ROSA_student", "ROSA_student.cproj", "{8511294F-51E3-499C-B671-F9FB7C4BFB77}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E920382D-BB6F-47FE-8AC3-4B089E17C2D8}"
+	ProjectSection(SolutionItems) = preProject
+		src\include\kernel\rosa_semaphore.h = src\include\kernel\rosa_semaphore.h
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
