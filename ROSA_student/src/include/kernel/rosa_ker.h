@@ -59,7 +59,7 @@ extern void ROSA_yield(void);
  *
  **********************************************************/
 
-//Define the initial value of the satus register
+//Define the initial value of the status register
 #define ROSA_INITIALSR 0x1c0000
 
 //Timer interrupt service routine
@@ -70,6 +70,11 @@ void ROSA_init(void);
 void ROSA_tcbCreate(tcb * tcbTask, char tcbName[NAMESIZE], void *tcbFunction, int * tcbStack, int tcbStackSize);
 int16_t ROSA_taskCreate(ROSA_taskHandle_t ** th, char * id, void* taskFunction, uint32_t stackSize, uint8_t priority);
 int16_t ROSA_taskDelete(ROSA_taskHandle_t ** th);
+
+//Assisting functions for handling the ready queue
+int rqsearch(void);
+int rqi(ROSA_taskHandle_t ** pth);
+int rqe(ROSA_taskHandle_t ** pth);
 
 //Install a new task TCB into ROSA
 extern void ROSA_tcbInstall(tcb *task);

@@ -64,7 +64,8 @@ ROSA_taskHandle_t * PA[MAXNPRIO];
 int rqi(ROSA_taskHandle_t ** th);  // Insert task th into queue pQ
 int rqe(ROSA_taskHandle_t ** th); // Extract task th from queue pQ
 
-int rqsearch(void) {
+int rqsearch(void)
+{
 	int i = MAXNPRIO;
 	
 	while (PA[--i] == NULL) {
@@ -128,6 +129,7 @@ int rqe(ROSA_taskHandle_t ** pth)
 void ROSA_init(void)
 {
 	int i = 0;
+	systemTick = 0;
 	
 	//Do initialization of I/O drivers
 	ledInit();									//LEDs
