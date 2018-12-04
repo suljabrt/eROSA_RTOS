@@ -28,6 +28,8 @@
 #define _ROSA_TIMER_H_
 
 #include <avr32/io.h>
+#include <stdint.h>
+#include "kernel/rosa_ker.h"
 
 /***********************************************************
  * Kernel timer functions
@@ -46,8 +48,18 @@ int timerPeriodSet(unsigned int ms);
 extern void timerPrescaleSet(int);
 extern void timerRCSet(int);
 
+//Functionality added by ROSA's extension
+uint64_t ROSA_getTickCount();
+int16_t ROSA_delay(uint64_t ticks);
+int insertDelayQueue(ROSA_taskHandle_t ** pth, uint64_t deadline);
+int removeDelayQueue(ROSA_taskHandle_t ** pth);
+
 //Timer period variables
 extern int timerPrescale;
 extern int timerRC;
+
+//The list storing all delayed tasks
+extern ROSA_taskHandle_t * DELAYQUEUE;
+extern uint64_t systemTick;
 
 #endif /* _ROSA_TIMER_H_ */
