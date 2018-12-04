@@ -34,6 +34,7 @@
 #endif
 
 #include "rosa_config.h"
+#include <stdint.h>
 
 #ifndef NULL
 #define NULL 0
