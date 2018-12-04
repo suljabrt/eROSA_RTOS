@@ -33,6 +33,7 @@
 #include "kernel/rosa_ker.h"
 #include "kernel/rosa_tim.h"
 #include "kernel/rosa_scheduler.h"
+#include "kernel/rosa_semaphore.h"
 
 //Driver includes
 #include "drivers/button.h"
@@ -140,6 +141,7 @@ void ROSA_init(void)
 	TCBLIST = NULL;
 	EXECTASK = NULL;
 	PREEMPTASK = NULL;
+	CREATEDSEMAPHORELIST=NULL;
 	
 	for (i = 0; i < MAXNPRIO; i++) {
 		PA[i] = NULL;
