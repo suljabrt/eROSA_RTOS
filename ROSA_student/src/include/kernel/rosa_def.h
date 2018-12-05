@@ -61,7 +61,7 @@ typedef struct tcb_record_t {
 	int retaddr;			//The return address
 	int savereg[15];		//The CPU registers
 	uint8_t priority;		//The priority of a task
-	uint64_t delay;			//Delay of a task
+	uint64_t delay;			//Time until which a task is delayed
 	uint8_t counter;		//Number of semaphores currently locked by this task
 	uint8_t originalPriority; //Tasks priority
 } tcb;

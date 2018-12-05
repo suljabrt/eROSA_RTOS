@@ -54,6 +54,7 @@ ROSA_taskHandle_t * t2_tcb;
 ROSA_taskHandle_t * t3_tcb;
 ROSA_taskHandle_t * t4_tcb;
 
+
 ROSA_semaphoreHandle_t * mutex1;
 ROSA_semaphoreHandle_t * mutex2;
 
@@ -85,6 +86,7 @@ void task1(void)
 void task2(void)
 {
 	while(1) {
+
 		ROSA_semaphoreLock(&mutex1);
 		ledOn(LED1_GPIO);
 		delay_ms(350);
@@ -96,7 +98,6 @@ void task2(void)
 }
 
 
-//ROSA_semaphoreHandle_t * mutex;
 
 /*************************************************************
  * Main function
@@ -107,7 +108,7 @@ int main(void)
 	ROSA_init();
 	
 	//Create tasks and install them into the ROSA kernel
-	ROSA_taskCreate(&t1_tcb, "tsk1", task1, T1_STACK_SIZE, 4);
+	ROSA_taskCreate(&t1_tcb, "tsk1", task1, T1_STACK_SIZE, 0);
 	ROSA_taskCreate(&t2_tcb, "tsk2", task2, T2_STACK_SIZE, 4);
 	ROSA_semaphoreCreate(&mutex1, 4);
 	ROSA_semaphoreCreate(&mutex2, 4);

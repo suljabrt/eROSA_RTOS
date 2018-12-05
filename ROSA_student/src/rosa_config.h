@@ -50,7 +50,6 @@
 #define USART_TX_FUNCTION		AVR32_USART0_TXD_0_0_FUNCTION
 
 #define FOSC0 12000000			//CPU clock frequency
-#define CLKTK 1000				//System tick frequency
-#define CLKPERIOD FOSC0 / CLKTK //Period of the system tick, expressed in CPU clock cycles
+
 
 #endif /* _ROSA_CONFIG_H_ */

@@ -12,8 +12,6 @@
 #include "kernel/rosa_def.h";
 
 
-
-
 typedef struct ROSA_semaphoreHandle_record_t {
 	ROSA_taskHandle_t *holder; 
 	uint8_t ceiling;

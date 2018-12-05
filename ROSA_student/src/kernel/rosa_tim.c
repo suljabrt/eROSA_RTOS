@@ -24,9 +24,20 @@
 *****************************************************************************/
 /* Tab size: 4 */
 
+#include <stdint.h>
+#include <stdbool.h>
 #include "rosa_config.h"
 #include "drivers/delay.h"
 #include "kernel/rosa_int.h"
+#include "kernel/rosa_ker.h"
+#include "kernel/rosa_tim.h"
+#include "drivers/led.h"
+
+
+ROSA_taskHandle_t * DELAYQUEUE;
+
+uint64_t systemTick;
+
 
 /***********************************************************
  * timerInterruptHandler
@@ -39,11 +50,53 @@ void timerISR(void)
 {
 	int sr;
 	volatile avr32_tc_t * tc = &AVR32_TC;
+	systemTick++;
 
 	//Read the timer status register to determine if this is a valid interrupt
 	sr = tc->channel[0].sr;
-	//if(sr & AVR32_TC_CPCS_MASK)
-		//ROSA_yieldFromISR();
+	
+	bool interruptTask = false;
+	
+	while (DELAYQUEUE->delay <= systemTick)
+	{
+		ROSA_taskHandle_t * tmptsk = DELAYQUEUE;
+		removeDelayQueue(&DELAYQUEUE);
+		rqi(&tmptsk);
+		int priority = rqsearch();
+		PREEMPTASK = PA[priority];
+		interruptTask = true;
+	}
+	if (interruptTask)
+	{
+		ROSA_yieldFromISR();
+	}
+
+}
+
+/************************************************************************/
+/* ROSA_getTickCount()													*/
+/*																		*/
+/* Returns the current number of system ticks, relative to start		*/
+/* of the system.                                                       */
+/************************************************************************/
+uint64_t ROSA_getTickCount()
+{
+	return systemTick;
+}
+
+/************************************************************************/
+/* ROSA_delay()															*/
+/*																		*/
+/* Suspends the calling task for the given number of ticks				*/
+/************************************************************************/
+int16_t ROSA_delay(uint64_t ticks)
+{
+	rqe(&EXECTASK);
+	insertDelayQueue(&EXECTASK, ROSA_getTickCount() + ticks);
+	int priority = rqsearch();
+	PREEMPTASK = PA[priority];
+	ROSA_yield();
+	return 0;
 }
 
 
@@ -65,4 +118,57 @@ int timerPeriodSet(unsigned int ms)
 	timerPrescaleSet(prescale);
 	timerRCSet(rc);
 	return rc * prescale / FOSC0;
+}
+
+/************************************************************************/
+/* insertDelayQueue()													*/
+/*																		*/
+/* Inserts the given task into the delay queue, before any tasks with	*/
+/* a later deadline or lower priority									*/
+/************************************************************************/
+int insertDelayQueue(ROSA_taskHandle_t ** pth, uint64_t deadline)
+{
+	if (DELAYQUEUE == NULL) {
+		DELAYQUEUE = *pth;
+		DELAYQUEUE->nexttcb = NULL;
+		return 0;
+	}
+	else {
+		ROSA_taskHandle_t * next = DELAYQUEUE;
+		ROSA_taskHandle_t * prev;
+		while (next->delay > (*pth)->delay)
+		{
+			prev = next;
+			next = next->nexttcb;
+		}
+		while (next->priority >= (*pth)->priority && next->delay == (*pth)->delay)
+		{
+			prev = next;
+			next = next->nexttcb;
+		}
+		(*pth)->nexttcb = next;
+		prev->nexttcb = *pth;
+		return 0;
+	}
+}
+
+/************************************************************************/
+/* removeDelayQueue()													*/
+/*																		*/
+/* Removes the given task from the delay queue							*/
+/************************************************************************/
+int removeDelayQueue(ROSA_taskHandle_t ** pth)
+{
+	if (*pth == DELAYQUEUE)
+	{
+		DELAYQUEUE = NULL;
+		return 0;
+	}
+	ROSA_taskHandle_t * pt = DELAYQUEUE;
+	while (pt->nexttcb != *pth)
+	{
+		pt = pt->nexttcb;
+	}
+	pt->nexttcb = (*pth)->nexttcb;
+	return 0;
 }

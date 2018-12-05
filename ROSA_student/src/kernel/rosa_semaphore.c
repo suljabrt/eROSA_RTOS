@@ -5,6 +5,9 @@
  *  Author: haris
  */ 
 
+#include <stdlib.h>
+#include <stdint.h>
+
 //Kernel includes
 #include "kernel/rosa_def.h"
 #include "kernel/rosa_ext.h"
@@ -78,13 +81,15 @@ int16_t ROSA_semaphoreCreate(ROSA_semaphoreHandle_t ** mutex, uint8_t ceiling) {
  *
  **********************************************************/
 int16_t ROSA_semaphoreDelete(ROSA_semaphoreHandle_t ** mutex) {
+
 	if ((*mutex)->holder == NULL) {					
 		free((*mutex));
 		(*mutex)=NULL;
 		return 0;
 	}
-	else
-	return - 1;
+	else {
+		return - 1;
+	}
 }
 /***********************************************************
  * ROSA_semaphorePeek
