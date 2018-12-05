@@ -108,7 +108,7 @@ int main(void)
 	ROSA_init();
 	
 	//Create tasks and install them into the ROSA kernel
-	ROSA_taskCreate(&t1_tcb, "tsk1", task1, T1_STACK_SIZE, 0);
+	ROSA_taskCreate(&t1_tcb, "tsk1", task1, T1_STACK_SIZE, 4);
 	ROSA_taskCreate(&t2_tcb, "tsk2", task2, T2_STACK_SIZE, 4);
 	ROSA_semaphoreCreate(&mutex1, 4);
 	ROSA_semaphoreCreate(&mutex2, 4);
