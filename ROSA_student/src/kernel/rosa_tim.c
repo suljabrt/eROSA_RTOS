@@ -31,6 +31,7 @@
 #include "kernel/rosa_int.h"
 #include "kernel/rosa_ker.h"
 #include "kernel/rosa_tim.h"
+#include "drivers/led.h"
 
 
 ROSA_taskHandle_t * DELAYQUEUE;

@@ -64,14 +64,13 @@ ROSA_semaphoreHandle_t * mutex;
 void task1(void)
 {
 	while(1) {
-		ROSA_semaphoreLock(&mutex);
+//		ROSA_semaphoreLock(&mutex);
 		ledOn(LED0_GPIO);
 		delay_ms(350);
 		ledOff(LED0_GPIO);
 		delay_ms(350);
-		ROSA_semaphoreUnlock(&mutex);
+	//	ROSA_semaphoreUnlock(&mutex);
 		ROSA_yield();
-		
 	}
 }
 
@@ -83,12 +82,13 @@ void task1(void)
 void task2(void)
 {
 	while(1) {
-		ROSA_semaphoreLock(&mutex);
+		//ROSA_semaphoreLock(&mutex);
 		ledOn(LED1_GPIO);
-		delay_ms(350);
+		ROSA_delay(350);
+		ledOn(LED2_GPIO);
 		ledOff(LED1_GPIO);
-		delay_ms(350);
-		ROSA_semaphoreUnlock(&mutex);
+		ROSA_delay(350);
+		//ROSA_semaphoreUnlock(&mutex);
 		ROSA_yield();
 	}
 }
@@ -105,7 +105,7 @@ int main(void)
 	ROSA_init();
 	
 	//Create tasks and install them into the ROSA kernel
-	ROSA_taskCreate(&t1_tcb, "tsk1", task1, T1_STACK_SIZE, 4);
+	ROSA_taskCreate(&t1_tcb, "tsk1", task1, T1_STACK_SIZE, 0);
 	ROSA_taskCreate(&t2_tcb, "tsk2", task2, T2_STACK_SIZE, 4);
 	ROSA_semaphoreCreate(&mutex, 1);
 	//ledOn(LED1_GPIO);
