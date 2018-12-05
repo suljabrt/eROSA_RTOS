@@ -17,13 +17,13 @@
 typedef struct ROSA_semaphoreHandle_record_t {
 	ROSA_taskHandle_t *holder; 
 	uint8_t ceiling;
-	struct ROSA_semaphoreHandle_record_t * nextSemaphore;
+	struct ROSA_semaphoreHandle_record_t * nextLockedSemaphore;
 } ROSA_semaphoreHandle_t;
 
 /***********************************************************
  * Global variable (doesnt have to be because only LOCK uses it)
  ***********************************************************/
-extern ROSA_semaphoreHandle_t * CREATEDSEMAPHORELIST;
+extern ROSA_semaphoreHandle_t * LOCKEDSEMAPHORELIST;
 
 
 int16_t ROSA_semaphoreCreate(ROSA_semaphoreHandle_t ** handle, uint8_t ceiling);

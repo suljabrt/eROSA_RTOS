@@ -23,7 +23,37 @@
  * Global variable that contain the list of Semaphores that
  * 	that are currently locked
  ***********************************************************/
-ROSA_semaphoreHandle_t * CREATEDSEMAPHORELIST; //list of pointers to the created semaphores
+ROSA_semaphoreHandle_t * LOCKEDSEMAPHORELIST; //list of pointers to the locked semaphores
+
+/***********************************************************
+ * MaxLockedCeiling
+ *
+ * Comment:
+ * 	Returns a maximum ceiling of all currently locked semaphores
+ *
+ **********************************************************/
+static uint8_t MaxLockedCeiling(void)
+{
+	if (LOCKEDSEMAPHORELIST==NULL)
+	{
+		return 0;
+	}
+	else
+	{
+	uint8_t maxCeil=LOCKEDSEMAPHORELIST->ceiling;
+	ROSA_semaphoreHandle_t *it=LOCKEDSEMAPHORELIST;
+	while (it->nextLockedSemaphore!=NULL)
+	{
+		if (it->ceiling>maxCeil)
+		{
+			maxCeil=it->ceiling;
+		}
+		it=it->nextLockedSemaphore;
+	}
+	
+	return maxCeil;
+	}
+}
 
 /***********************************************************
  * ROSA_semaphoreCreate
@@ -36,20 +66,7 @@ int16_t ROSA_semaphoreCreate(ROSA_semaphoreHandle_t ** mutex, uint8_t ceiling) {
 	*mutex = (ROSA_semaphoreHandle_t *) calloc(1,sizeof(ROSA_semaphoreHandle_t));
 	(*mutex)->holder = NULL;
 	(*mutex)->ceiling = ceiling;
-	(*mutex)->nextSemaphore=NULL;
-	if (CREATEDSEMAPHORELIST=NULL)
-	{
-		CREATEDSEMAPHORELIST=(*mutex);
-	}
-	else
-	{
-		ROSA_semaphoreHandle_t * it; //finding the last semaphore in the list and changing its nextSemaphore field to point to the just created semaphore
-		while(it->nextSemaphore!=NULL)
-		{
-			it=it->nextSemaphore;
-		}
-		it->nextSemaphore=(*mutex);
-	}
+	(*mutex)->nextLockedSemaphore=NULL;	
 	
 	return 0;
 }
@@ -61,15 +78,9 @@ int16_t ROSA_semaphoreCreate(ROSA_semaphoreHandle_t ** mutex, uint8_t ceiling) {
  *
  **********************************************************/
 int16_t ROSA_semaphoreDelete(ROSA_semaphoreHandle_t ** mutex) {
-	if ((*mutex)->holder == NULL) {		
-		ROSA_semaphoreHandle_t * it; //find the previous semaphore and chande its nextSemaphore field properly
-		it=CREATEDSEMAPHORELIST;
-		while (it->nextSemaphore!=(*mutex))
-		{
-			it=it->nextSemaphore;
-		}
-		it->nextSemaphore=(*mutex)->nextSemaphore;		
+	if ((*mutex)->holder == NULL) {					
 		free((*mutex));
+		(*mutex)=NULL;
 		return 0;
 	}
 	else
@@ -94,15 +105,36 @@ int16_t ROSA_semaphorePeek(ROSA_semaphoreHandle_t ** mutex) {
  **********************************************************/
 int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t ** mutex) {
 	
-	while ((*mutex)->holder != NULL)
-		ROSA_yield();
+	if ((*mutex)==NULL)
+	{
+		return -1; // if the passed pointer to the semaphore handle is non-existent
+	}
+	
+	while ((*mutex)->holder != NULL || EXECTASK->priority<=MaxLockedCeiling()) //if the semaphore is already locked or IPCP condition P(task)>maxLockedCeil
+		ROSA_yield();		
+	
 	
 	(*mutex)->holder = EXECTASK;
 	if (EXECTASK->priority < (*mutex)->ceiling)
 	{
 		EXECTASK->priority=(*mutex)->ceiling; //IPCP priority inheritance
 		PA[EXECTASK->priority]=EXECTASK;//move this task to the proper ready queue
-	}	
+	}
+		
+	if (LOCKEDSEMAPHORELIST==NULL)
+	{
+		LOCKEDSEMAPHORELIST=(*mutex);
+	}
+	else
+	{
+		ROSA_semaphoreHandle_t * it; //finding the last semaphore in the list and changing its nextLockedSemaphore field to point to the just locked semaphore
+		it=LOCKEDSEMAPHORELIST;
+		while(it->nextLockedSemaphore!=NULL)
+		{
+			it=it->nextLockedSemaphore;
+		}
+		it->nextLockedSemaphore=(*mutex);
+	}
 	
 	return 0;
 }
@@ -115,7 +147,19 @@ int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t ** mutex) {
  **********************************************************/
 int16_t ROSA_semaphoreUnlock(ROSA_semaphoreHandle_t ** mutex) {
 	(*mutex)->holder = NULL;
-	
-		
+	if ((*mutex)==LOCKEDSEMAPHORELIST)
+	{
+		LOCKEDSEMAPHORELIST=(*mutex)->nextLockedSemaphore; //if first locked semaphore needs to be unlocked
+	}
+	else
+	{
+		ROSA_semaphoreHandle_t * it;
+		it=LOCKEDSEMAPHORELIST;
+		while (it->nextLockedSemaphore!=(*mutex)) //find the locked semaphore before the one that needs to be unlocked
+		{
+			it=it->nextLockedSemaphore;
+		}
+		it->nextLockedSemaphore=(*mutex)->nextLockedSemaphore;
+	}
 	return 0;
 }
