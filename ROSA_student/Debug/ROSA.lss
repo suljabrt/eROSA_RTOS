@@ -43,13 +43,13 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
  19 .debug_loc    000018bf  00000000  00000000  00018faf  2**0
                   CONTENTS, READONLY, DEBUGGING
- 20 .debug_macinfo 0053442d  00000000  00000000  0001a86e  2**0
+ 20 .debug_macinfo 005343c7  00000000  00000000  0001a86e  2**0
                   CONTENTS, READONLY, DEBUGGING
  21 .appstack     00001000  0000e000  0000e000  00000000  2**0
                   ALLOC
  22 .stack        00001000  0000f000  0000f000  00000000  2**0
                   ALLOC
- 23 .debug_ranges 00000508  00000000  00000000  0054ec9b  2**0
+ 23 .debug_ranges 00000508  00000000  00000000  0054ec35  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .reset:

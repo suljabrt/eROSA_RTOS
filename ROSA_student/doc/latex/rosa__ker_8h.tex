@@ -28,9 +28,9 @@ void \mbox{\hyperlink{group__rosa__kernel__sm_gaa7bf5f9ee0c2f711b8adeec7c816f44a
 \begin{DoxyCompactList}\small\item\em Start running the R\+O\+SA kernel for F\+P\+PS. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{group__rosa__kernel__tm_ga88a553c195e2f549835cbbf4e36a71ff}{R\+O\+S\+A\+\_\+tcb\+Create}} (\mbox{\hyperlink{structtcb__record__t}{tcb}} $\ast$tcb\+Task, char tcb\+Name\mbox{[}N\+A\+M\+E\+S\+I\+ZE\mbox{]}, void $\ast$tcb\+Function, int $\ast$tcb\+Stack, int tcb\+Stack\+Size)
 \begin{DoxyCompactList}\small\item\em Create the T\+CB with correct values. \end{DoxyCompactList}\item 
-int16\+\_\+t \mbox{\hyperlink{group__rosa__kernel__tm_ga7b9542dcdbdadbfc94f42f85536a83b0}{R\+O\+S\+A\+\_\+task\+Create}} (\mbox{\hyperlink{structtcb__record__t}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$$\ast$th, char $\ast$id, void $\ast$task\+Function, uint32\+\_\+t stack\+Size, uint8\+\_\+t priority)
+int16\+\_\+t \mbox{\hyperlink{group__rosa__kernel__tm_ga7b9542dcdbdadbfc94f42f85536a83b0}{R\+O\+S\+A\+\_\+task\+Create}} (\mbox{\hyperlink{rosa__def_8h_a82d32f422c2987044e833843e7620aa6}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$$\ast$th, char $\ast$id, void $\ast$task\+Function, uint32\+\_\+t stack\+Size, uint8\+\_\+t priority)
 \begin{DoxyCompactList}\small\item\em Create the F\+P\+PS task with correct values. \end{DoxyCompactList}\item 
-int16\+\_\+t \mbox{\hyperlink{group__rosa__kernel__tm_gad0845723ed20c9e51a81a7b388dbc555}{R\+O\+S\+A\+\_\+task\+Delete}} (\mbox{\hyperlink{structtcb__record__t}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$$\ast$th)
+int16\+\_\+t \mbox{\hyperlink{group__rosa__kernel__tm_gad0845723ed20c9e51a81a7b388dbc555}{R\+O\+S\+A\+\_\+task\+Delete}} (\mbox{\hyperlink{rosa__def_8h_a82d32f422c2987044e833843e7620aa6}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$$\ast$th)
 \begin{DoxyCompactList}\small\item\em Create the F\+P\+PS task with correct values. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{group__rosa__kernel__tm_ga9a7bde19bc8609de66353d1f51d09eda}{R\+O\+S\+A\+\_\+tcb\+Install}} (\mbox{\hyperlink{structtcb__record__t}{tcb}} $\ast$task)
 \begin{DoxyCompactList}\small\item\em Install a new task T\+CB into R\+O\+SA. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -46,7 +46,7 @@ void \mbox{\hyperlink{group__rosa__kernel__tm_ga9a7bde19bc8609de66353d1f51d09eda
 \mbox{\hyperlink{structtcb__record__t}{tcb}} $\ast$ {\bfseries P\+R\+E\+E\+M\+P\+T\+A\+SK}
 \item 
 \mbox{\Hypertarget{rosa__ker_8h_abecd3b82b7b71a14a0e0add9282adc3b}\label{rosa__ker_8h_abecd3b82b7b71a14a0e0add9282adc3b}} 
-\mbox{\hyperlink{structtcb__record__t}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$ \mbox{\hyperlink{rosa__ker_8h_abecd3b82b7b71a14a0e0add9282adc3b}{PA}} \mbox{[}M\+A\+X\+N\+P\+R\+IO\mbox{]}
+\mbox{\hyperlink{rosa__def_8h_a82d32f422c2987044e833843e7620aa6}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$ \mbox{\hyperlink{rosa__ker_8h_abecd3b82b7b71a14a0e0add9282adc3b}{PA}} \mbox{[}M\+A\+X\+N\+P\+R\+IO\mbox{]}
 \begin{DoxyCompactList}\small\item\em Global array of pointers to the priority queue of the running tasks. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 

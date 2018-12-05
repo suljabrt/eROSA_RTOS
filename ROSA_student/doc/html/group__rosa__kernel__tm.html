@@ -76,10 +76,10 @@ Functions</h2></td></tr>
 <tr class="memitem:ga88a553c195e2f549835cbbf4e36a71ff"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rosa__kernel__tm.html#ga88a553c195e2f549835cbbf4e36a71ff">ROSA_tcbCreate</a> (<a class="el" href="structtcb__record__t.html">tcb</a> *tcbTask, char tcbName[NAMESIZE], void *tcbFunction, int *tcbStack, int tcbStackSize)</td></tr>
 <tr class="memdesc:ga88a553c195e2f549835cbbf4e36a71ff"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create the TCB with correct values.  <a href="#ga88a553c195e2f549835cbbf4e36a71ff">More...</a><br /></td></tr>
 <tr class="separator:ga88a553c195e2f549835cbbf4e36a71ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ga7b9542dcdbdadbfc94f42f85536a83b0"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rosa__kernel__tm.html#ga7b9542dcdbdadbfc94f42f85536a83b0">ROSA_taskCreate</a> (<a class="el" href="structtcb__record__t.html">ROSA_taskHandle_t</a> **th, char *id, void *taskFunction, uint32_t stackSize, uint8_t priority)</td></tr>
+<tr class="memitem:ga7b9542dcdbdadbfc94f42f85536a83b0"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rosa__kernel__tm.html#ga7b9542dcdbdadbfc94f42f85536a83b0">ROSA_taskCreate</a> (<a class="el" href="rosa__def_8h.html#a99fb8cee8eedbe888bf5763d30c1d5c8">ROSA_taskHandle_t</a> **th, char *id, void *taskFunction, uint32_t stackSize, uint8_t priority)</td></tr>
 <tr class="memdesc:ga7b9542dcdbdadbfc94f42f85536a83b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create the FPPS task with correct values.  <a href="#ga7b9542dcdbdadbfc94f42f85536a83b0">More...</a><br /></td></tr>
 <tr class="separator:ga7b9542dcdbdadbfc94f42f85536a83b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:gad0845723ed20c9e51a81a7b388dbc555"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rosa__kernel__tm.html#gad0845723ed20c9e51a81a7b388dbc555">ROSA_taskDelete</a> (<a class="el" href="structtcb__record__t.html">ROSA_taskHandle_t</a> **th)</td></tr>
+<tr class="memitem:gad0845723ed20c9e51a81a7b388dbc555"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rosa__kernel__tm.html#gad0845723ed20c9e51a81a7b388dbc555">ROSA_taskDelete</a> (<a class="el" href="rosa__def_8h.html#a99fb8cee8eedbe888bf5763d30c1d5c8">ROSA_taskHandle_t</a> **th)</td></tr>
 <tr class="memdesc:gad0845723ed20c9e51a81a7b388dbc555"><td class="mdescLeft">&#160;</td><td class="mdescRight">Create the FPPS task with correct values.  <a href="#gad0845723ed20c9e51a81a7b388dbc555">More...</a><br /></td></tr>
 <tr class="separator:gad0845723ed20c9e51a81a7b388dbc555"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ga9a7bde19bc8609de66353d1f51d09eda"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="group__rosa__kernel__tm.html#ga9a7bde19bc8609de66353d1f51d09eda">ROSA_tcbInstall</a> (<a class="el" href="structtcb__record__t.html">tcb</a> *task)</td></tr>
@@ -98,7 +98,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int16_t ROSA_taskCreate </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structtcb__record__t.html">ROSA_taskHandle_t</a> **&#160;</td>
+          <td class="paramtype"><a class="el" href="rosa__def_8h.html#a99fb8cee8eedbe888bf5763d30c1d5c8">ROSA_taskHandle_t</a> **&#160;</td>
           <td class="paramname"><em>th</em>, </td>
         </tr>
         <tr>
@@ -144,8 +144,9 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Status code.</dd></dl>
-<p>Create the FPPS task with correct values. </p>
+<dl class="section return"><dt>Returns</dt><dd>Status code. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="rosa__ker_8c_source.html#l00237">237</a> of file <a class="el" href="rosa__ker_8c_source.html">rosa_ker.c</a>.</p>
 
 </div>
 </div>
@@ -158,7 +159,7 @@ Functions</h2></td></tr>
         <tr>
           <td class="memname">int16_t ROSA_taskDelete </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="structtcb__record__t.html">ROSA_taskHandle_t</a> **&#160;</td>
+          <td class="paramtype"><a class="el" href="rosa__def_8h.html#a99fb8cee8eedbe888bf5763d30c1d5c8">ROSA_taskHandle_t</a> **&#160;</td>
           <td class="paramname"><em>th</em></td><td>)</td>
           <td></td>
         </tr>
@@ -172,8 +173,9 @@ Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Status code.</dd></dl>
-<p>Delete the FPPS task. </p>
+<dl class="section return"><dt>Returns</dt><dd>Status code. </dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="rosa__ker_8c_source.html#l00262">262</a> of file <a class="el" href="rosa__ker_8c_source.html">rosa_ker.c</a>.</p>
 
 </div>
 </div>
@@ -225,14 +227,15 @@ Functions</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">tcbTask</td><td>Pointer to the tcb. </td></tr>
-    <tr><td class="paramname">tcbName[NAMESIZE]</td><td>Name of the task. </td></tr>
+    <tr><td class="paramname">tcbName</td><td>Name of the task. </td></tr>
     <tr><td class="paramname">tcbFunction</td><td>TCB function. </td></tr>
     <tr><td class="paramname">tcbStack</td><td>Pointer to the tcb stack. </td></tr>
-    <tr><td class="paramname">tcbStackSize</td><td>Stack size of the tcb stack.</td></tr>
+    <tr><td class="paramname">tcbStackSize</td><td>Stack size of the tcb stack. </td></tr>
   </table>
   </dd>
 </dl>
-<p>Create the TCB with correct values. </p>
+
+<p class="definition">Definition at line <a class="el" href="rosa__ker_8c_source.html#l00180">180</a> of file <a class="el" href="rosa__ker_8c_source.html">rosa_ker.c</a>.</p>
 
 </div>
 </div>
@@ -255,11 +258,12 @@ Functions</h2></td></tr>
 <p>Install a new task TCB into ROSA. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">task</td><td>Pointer to the tcb.</td></tr>
+    <tr><td class="paramname">task</td><td>Pointer to the tcb. </td></tr>
   </table>
   </dd>
 </dl>
-<p>Install a new task TCB into ROSA. </p>
+
+<p class="definition">Definition at line <a class="el" href="rosa__ker_8c_source.html#l00217">217</a> of file <a class="el" href="rosa__ker_8c_source.html">rosa_ker.c</a>.</p>
 
 </div>
 </div>

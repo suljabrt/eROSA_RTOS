@@ -1,12 +1,13 @@
 var indexSectionsWithContent =
 {
-  0: "eprstu",
+  0: "cdeinprstu",
   1: "rtu",
   2: "r",
   3: "r",
-  4: "ept",
-  5: "rst",
-  6: "t"
+  4: "cdeinprst",
+  5: "r",
+  6: "rst",
+  7: "t"
 };
 
 var indexSectionNames =
@@ -16,8 +17,9 @@ var indexSectionNames =
   2: "files",
   3: "functions",
   4: "variables",
-  5: "groups",
-  6: "pages"
+  5: "typedefs",
+  6: "groups",
+  7: "pages"
 };
 
 var indexSectionLabels =
@@ -27,7 +29,8 @@ var indexSectionLabels =
   2: "Files",
   3: "Functions",
   4: "Variables",
-  5: "Modules",
-  6: "Pages"
+  5: "Typedefs",
+  6: "Modules",
+  7: "Pages"
 };
 
