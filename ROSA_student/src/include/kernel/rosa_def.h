@@ -22,16 +22,18 @@
     You should have received a copy of the GNU General Public License
     along with ROSA.  If not, see <http://www.gnu.org/licenses/>.
 *****************************************************************************/
+
+/**
+ * @file rosa_def.h
+ * @author 
+ * @date 05.12.2018
+ * @brief Header file containing basic definitions for ROSA.
+ *
+ */
+
 /* Tab size: 4 */
 #ifndef rosa_def_H_
 #define rosa_def_H_
-
-#ifndef stdint_def_H_
-#define stdint_def_H_
-
-#include <stdint.h>
-
-#endif
 
 #include "rosa_config.h"
 #include <stdint.h>
@@ -40,14 +42,36 @@
 #define NULL 0
 #endif
 
-/***********************************************************
- * TCB block
- *
- * Comment:
- * 	This struct contain all the necessary information to
- * 	do a context switch
- *
- **********************************************************/
+/** @struct tcb_record_t
+    @var tcb_record_t::nexttcb 
+		A pointer to the next TCB.
+    @var tcb_record_t::id[NAMESIZE] 
+		The task id/name.
+	@var tcb_record_t::staddr 
+		Start address.
+	@var tcb_record_t::dataarea 
+		The stack data area.
+	@var tcb_record_t::datasize 
+		The stack size.
+	@var tcb_record_t::saveusp 
+		The current stack position.
+	@var tcb_record_t::SAVER0 
+		Temporary work register.
+	@var tcb_record_t::SAVER1 
+		Temporary work register.
+	@var tcb_record_t::savesr 
+		The current status register.
+	@var tcb_record_t::retaddr 
+		The return address.
+	@var tcb_record_t::savereg 
+		The CPU registers.
+	@var tcb_record_t::priority 
+		The priority of a task.
+	@var tcb_record_t::delay 
+		Time until which a task is delayed.
+	@var tcb_record_t::counter 
+		Number of semaphores currently locked by this task.
+*/
 typedef struct tcb_record_t {
 	struct tcb_record_t * nexttcb;
 	char id[NAMESIZE];		//The task id/name
@@ -65,6 +89,11 @@ typedef struct tcb_record_t {
 	uint8_t counter;		//Number of semaphores currently locked by this task
 } tcb;
 
+/** @typedef tcb ROSA_taskHandle_t 
+    @brief 	This struct contains all the necessary information
+	to do preemption.
+	@todo ROSA_taskHandle_t should be redefined as pointer to the tcb.
+*/
 typedef tcb ROSA_taskHandle_t;
 
 #endif /* rosa_def_H_ */

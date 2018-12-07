@@ -1,0 +1,65 @@
+\hypertarget{structtcb__record__t}{}\section{tcb\+\_\+record\+\_\+t Struct Reference}
+\label{structtcb__record__t}\index{tcb\+\_\+record\+\_\+t@{tcb\+\_\+record\+\_\+t}}
+\subsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structtcb__record__t}{tcb\+\_\+record\+\_\+t}} $\ast$ \mbox{\hyperlink{structtcb__record__t_abe5f58939c000c4f6b06c911bead561c}{nexttcb}}
+\item 
+char \mbox{\hyperlink{structtcb__record__t_aa25efaaaecf8c7c4d679dbc94aec3031}{id}} \mbox{[}N\+A\+M\+E\+S\+I\+ZE\mbox{]}
+\item 
+\mbox{\Hypertarget{structtcb__record__t_a0bd4589e0b8513e1de0a399b78d68f87}\label{structtcb__record__t_a0bd4589e0b8513e1de0a399b78d68f87}} 
+void($\ast$ {\bfseries staddr} )(void)
+\item 
+\mbox{\Hypertarget{structtcb__record__t_ac4967b1b1e7ad970a0f020b0d1ee6356}\label{structtcb__record__t_ac4967b1b1e7ad970a0f020b0d1ee6356}} 
+int $\ast$ {\bfseries dataarea}
+\item 
+\mbox{\Hypertarget{structtcb__record__t_a5c7949e884a8b9b3d1ab9f070267bf33}\label{structtcb__record__t_a5c7949e884a8b9b3d1ab9f070267bf33}} 
+int {\bfseries datasize}
+\item 
+\mbox{\Hypertarget{structtcb__record__t_a2f3abb0a3bc5b95a1f3a186b39df8563}\label{structtcb__record__t_a2f3abb0a3bc5b95a1f3a186b39df8563}} 
+int $\ast$ {\bfseries saveusp}
+\item 
+\mbox{\Hypertarget{structtcb__record__t_a5cc0b58f21674c6f2360277fda7110db}\label{structtcb__record__t_a5cc0b58f21674c6f2360277fda7110db}} 
+int {\bfseries S\+A\+V\+E\+R0}
+\item 
+\mbox{\Hypertarget{structtcb__record__t_a82b96d60fcbfbacab45247b8be146e63}\label{structtcb__record__t_a82b96d60fcbfbacab45247b8be146e63}} 
+int {\bfseries S\+A\+V\+E\+R1}
+\item 
+\mbox{\Hypertarget{structtcb__record__t_aaec8acf0045579c29a846ad6691ac5ca}\label{structtcb__record__t_aaec8acf0045579c29a846ad6691ac5ca}} 
+int {\bfseries savesr}
+\item 
+\mbox{\Hypertarget{structtcb__record__t_a1cd699134048594684fdc0c1a5ed1ed3}\label{structtcb__record__t_a1cd699134048594684fdc0c1a5ed1ed3}} 
+int {\bfseries retaddr}
+\item 
+\mbox{\Hypertarget{structtcb__record__t_ab62fb376bbf1ce34b1d962f24e46b825}\label{structtcb__record__t_ab62fb376bbf1ce34b1d962f24e46b825}} 
+int {\bfseries savereg} \mbox{[}15\mbox{]}
+\item 
+\mbox{\Hypertarget{structtcb__record__t_a0ad043071ccc7a261d79a759dc9c6f0c}\label{structtcb__record__t_a0ad043071ccc7a261d79a759dc9c6f0c}} 
+uint8\+\_\+t {\bfseries priority}
+\item 
+\mbox{\Hypertarget{structtcb__record__t_a8c0b95ab06c950bd9afd8444922d98a3}\label{structtcb__record__t_a8c0b95ab06c950bd9afd8444922d98a3}} 
+uint64\+\_\+t {\bfseries delay}
+\item 
+\mbox{\Hypertarget{structtcb__record__t_a0480b812cba9c1d9c71a5fb1071bd0fc}\label{structtcb__record__t_a0480b812cba9c1d9c71a5fb1071bd0fc}} 
+uint8\+\_\+t {\bfseries counter}
+\end{DoxyCompactItemize}
+
+
+\subsection{Field Documentation}
+\mbox{\Hypertarget{structtcb__record__t_aa25efaaaecf8c7c4d679dbc94aec3031}\label{structtcb__record__t_aa25efaaaecf8c7c4d679dbc94aec3031}} 
+\index{tcb\+\_\+record\+\_\+t@{tcb\+\_\+record\+\_\+t}!id@{id}}
+\index{id@{id}!tcb\+\_\+record\+\_\+t@{tcb\+\_\+record\+\_\+t}}
+\subsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily id\mbox{[}N\+A\+M\+E\+S\+I\+ZE\mbox{]}}
+
+The task id/name. \mbox{\Hypertarget{structtcb__record__t_abe5f58939c000c4f6b06c911bead561c}\label{structtcb__record__t_abe5f58939c000c4f6b06c911bead561c}} 
+\index{tcb\+\_\+record\+\_\+t@{tcb\+\_\+record\+\_\+t}!nexttcb@{nexttcb}}
+\index{nexttcb@{nexttcb}!tcb\+\_\+record\+\_\+t@{tcb\+\_\+record\+\_\+t}}
+\subsubsection{\texorpdfstring{nexttcb}{nexttcb}}
+{\footnotesize\ttfamily nexttcb}
+
+A pointer to the next T\+CB. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/ant/\+Documents/\+Git\+Hub/\+D\+V\+A438/\+R\+O\+S\+A\+\_\+student/src/include/kernel/\mbox{\hyperlink{rosa__def_8h}{rosa\+\_\+def.\+h}}\end{DoxyCompactItemize}

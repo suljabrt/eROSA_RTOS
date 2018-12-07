@@ -22,6 +22,18 @@
     You should have received a copy of the GNU General Public License
     along with ROSA.  If not, see <http://www.gnu.org/licenses/>.
 *****************************************************************************/
+
+/**
+ * @file rosa_ker.c
+ * @author Anton (?)
+ * @date 05.12.2018
+ * @brief File containing definitions of ROSA kernel's functions.
+ *
+ * In this file we define data structure for tasks, functions to create and
+ * delete tasks, global tasks to control this tasks data structure.
+ * 
+ */
+
 /* Tab size: 4 */
 
 #include <stdint.h>
@@ -41,31 +53,93 @@
 #include "drivers/pot.h"
 #include "drivers/usart.h"
 
-
-/***********************************************************
- * TCBLIST
- *
- * Comment:
- * 	Global variables that contain the list of TCB's that
- * 	have been installed into the kernel with ROSA_tcbInstall()
- **********************************************************/
+/** @var tcb * TCBLIST 
+    @brief Global variable that contains the list of TCB's that
+	have been installed into the kernel with ROSA_tcbInstall().
+*/
 tcb * TCBLIST;
 
-/***********************************************************
- * EXECTASK
- *
- * Comment:
- * 	Global variables that contain the current running TCB.
- **********************************************************/
+/** @var tcb * EXECTASK 
+    @brief Global variable that contains the current running TCB.
+*/
 tcb * EXECTASK;
+
+/** @var tcb * EXECTASK 
+    @brief Global variable that contains the TCB,
+	which preempts the current running task.
+*/
 tcb * PREEMPTASK;
 
-
+/** @var ROSA_taskHandle_t * PA[MAXNPRIO] 
+    @brief Global array of pointers to the priority queue of the running tasks.
+*/
 ROSA_taskHandle_t * PA[MAXNPRIO];
 
-int rqi(ROSA_taskHandle_t ** th);  // Insert task th into queue pQ
-int rqe(ROSA_taskHandle_t ** th); // Extract task th from queue pQ
+/** @fn int rqi(ROSA_taskHandle_t ** th)
+	@brief Inserts the given task into the ready queue by its priority.
+	@param th Task structure (tcb structure).
+	@return A status code (1 - item has been added to the empty queue, 0 - otherwise).
+*/
+int rqi(ROSA_taskHandle_t ** pth)
+{
+	uint8_t priority;
+	
+	priority = (*pth)->priority;
+	
+	if (PA[priority] == NULL) {
+		PA[priority] = *pth;
+		PA[priority]->nexttcb = *pth;
+		return 1;
+	}
+	else {
+		(*pth)->nexttcb = PA[priority]->nexttcb;
+		PA[priority]->nexttcb = *pth;
+		PA[priority] = *pth;
+		return 0;
+	}
+}
 
+/** @fn int rqe(ROSA_taskHandle_t ** th)
+	@brief Extracts the given task from the ready queue by its priority.
+	@param th Task structure (tcb structure).
+	@return A status code (1 - queue is empty after extraction, 0 - otherwise).
+*/
+int rqe(ROSA_taskHandle_t ** pth)
+{
+	ROSA_taskHandle_t * thTmp;
+	
+	uint8_t priority;
+	
+	priority = (*pth)->priority;
+	thTmp = PA[priority];
+	
+	if ((*pth)->nexttcb == *pth) 
+	{
+		PA[priority] = NULL;
+		return 1;
+	}
+	else 
+	{
+		while (thTmp->nexttcb != (*pth)) 
+		{
+			thTmp = thTmp->nexttcb;
+		}
+		
+		if (PA[priority] == *pth) 
+		{
+			PA[priority] = thTmp;
+		}
+		
+		thTmp->nexttcb = (*pth)->nexttcb;
+		return 0;
+	}
+}
+
+/** @fn int rqsearch(void)
+	@brief Search for the first non-empty highest priority queue.
+	@return A status code (reserved).
+	@todo Check for empty PA.
+*/
 int rqsearch(void)
 {
 	int i = MAXNPRIO;
@@ -77,57 +151,6 @@ int rqsearch(void)
 	return i;
 }
 
-int rqi(ROSA_taskHandle_t ** pth)
-{
-	uint8_t priority;
-	
-	priority = (*pth)->priority;
-	
-	if (PA[priority] == NULL) {
-		PA[priority] = *pth;
-		PA[priority]->nexttcb = *pth;
-		return 0;
-	}
-	else {
-		(*pth)->nexttcb = PA[priority]->nexttcb;
-		PA[priority]->nexttcb = *pth;
-		PA[priority] = *pth;
-		return 0;
-	}
-}
-
-int rqe(ROSA_taskHandle_t ** pth)
-{
-	ROSA_taskHandle_t * thTmp;
-	
-	uint8_t priority;
-	
-	priority = (*pth)->priority;
-	thTmp = PA[priority];
-	
-	if ((*pth)->nexttcb == *pth) {
-		PA[priority] = NULL;
-		return 1;
-	}
-	else {
-		while (thTmp->nexttcb != (*pth)) {
-			thTmp = thTmp->nexttcb;
-		}
-		if (PA[priority] == *pth) {
-			PA[priority] = thTmp;
-		}
-		thTmp->nexttcb = (*pth)->nexttcb;
-		return 0;
-	}
-}
-
-/***********************************************************
- * ROSA_init
- *
- * Comment:
- * 	Initialize the ROSA system
- *
- **********************************************************/
 void ROSA_init(void)
 {
 	int i = 0;
@@ -155,13 +178,6 @@ void ROSA_init(void)
 	timerStart();
 }
 
-/***********************************************************
- * ROSA_tcbCreate
- *
- * Comment:
- * 	Create the TCB with correct values.
- *
- **********************************************************/
 void ROSA_tcbCreate(tcb * tcbTask, char tcbName[NAMESIZE], void *tcbFunction, int * tcbStack, int tcbStackSize)
 {
 	int i;

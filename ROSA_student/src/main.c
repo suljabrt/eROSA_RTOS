@@ -67,7 +67,6 @@ void task1(void)
 		ROSA_delay(500);
 		ledOff(LED0_GPIO);
 		ROSA_delay(500);
-		//ROSA_yield();
 	}
 }
 
@@ -109,7 +108,7 @@ int main(void)
 	ROSA_init();
 	
 	//Create tasks and install them into the ROSA kernel
-	ROSA_taskCreate(&t1_tcb, "tsk1", task1, T1_STACK_SIZE, 4);
+	ROSA_taskCreate(&t1_tcb, "tsk1", task1, T1_STACK_SIZE, 0);
 	ROSA_taskCreate(&t2_tcb, "tsk2", task2, T2_STACK_SIZE, 4);
 	ROSA_taskCreate(&t3_tcb, "tsk3", task3, T3_STACK_SIZE, 1);
 	ROSA_semaphoreCreate(&mutex, 1);
