@@ -56,32 +56,21 @@ void timerISR(void)
 {
 	int sr;
 	volatile avr32_tc_t * tc = &AVR32_TC;
-	ROSA_taskHandle_t * tmptsk;
-	bool interruptTask;
-	int priority;
 	
 	//Read the timer status register to determine if this is a valid interrupt
 	sr = tc->channel[0].sr;
 	if (sr & AVR32_TC_CPCS_MASK)
 	{
 		systemTick++;
-		
-		interruptTask = false;
-		
-		while (DELAYQUEUE != NULL && DELAYQUEUE->delay <= systemTick)
+		ROSA_yieldFromISR();
+		/*if (systemTick % 2 == 0)
 		{
-			tmptsk = DELAYQUEUE;
-			removeDelayQueue(&DELAYQUEUE);
-			tmptsk->delay = 0;
-			rqi(&tmptsk);
-			interruptTask = true;
-		}
-		if (interruptTask)
+			ledOn(LED2_GPIO);
+		}	
+		else
 		{
-			priority = rqsearch();
-			PREEMPTASK = PA[priority];
-			ROSA_yieldFromISR();
-		}
+			ledOff(LED2_GPIO);
+		}*/
 	}
 	//timerClearInterrupt(); //Disabled until we know what it actually does
 	

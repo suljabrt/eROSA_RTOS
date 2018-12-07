@@ -163,6 +163,11 @@ void ROSA_init(void)
 	potInit();									//Potentiometer
 	usartInit(USART, &usart_options, FOSC0);	//Serial communication
 
+	interruptInit();
+	interruptEnable();
+	timerInit(100);
+	timerStart();
+	
 	//Start with empty TCBLIST and no EXECTASK.
 	TCBLIST = NULL;
 	EXECTASK = NULL;
@@ -173,9 +178,7 @@ void ROSA_init(void)
 	}
 	
 	//Initialize the timer to 1 ms period.
-	interruptInit();
-	timerInit(10);
-	timerStart();
+	
 }
 
 void ROSA_tcbCreate(tcb * tcbTask, char tcbName[NAMESIZE], void *tcbFunction, int * tcbStack, int tcbStackSize)
