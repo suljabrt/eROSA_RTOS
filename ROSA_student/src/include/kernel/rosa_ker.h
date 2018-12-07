@@ -71,11 +71,6 @@ void ROSA_tcbCreate(tcb * tcbTask, char tcbName[NAMESIZE], void *tcbFunction, in
 int16_t ROSA_taskCreate(ROSA_taskHandle_t ** th, char * id, void* taskFunction, uint32_t stackSize, uint8_t priority);
 int16_t ROSA_taskDelete(ROSA_taskHandle_t ** th);
 
-//Assisting functions for handling the ready queue
-int rqsearch(void);
-int rqi(ROSA_taskHandle_t ** pth);
-int rqe(ROSA_taskHandle_t ** pth);
-
 //Install a new task TCB into ROSA
 extern void ROSA_tcbInstall(tcb *task);
 

@@ -53,4 +53,5 @@ dkms.conf
 
 # User added
 /ROSA_student/Debug/*
-
+*.cproj
+*.atsuo

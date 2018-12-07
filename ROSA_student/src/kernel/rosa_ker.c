@@ -26,6 +26,7 @@
 
 #include <stdint.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 //Kernel includes
 #include "kernel/rosa_def.h"
@@ -39,6 +40,7 @@
 #include "drivers/led.h"
 #include "drivers/pot.h"
 #include "drivers/usart.h"
+
 
 /***********************************************************
  * TCBLIST
@@ -147,10 +149,10 @@ void ROSA_init(void)
 		PA[i] = NULL;
 	}
 	
-	//Initialize the timer to 100 ms period.
-	//...
-	//timerInit(100);
-	//...
+	//Initialize the timer to 1 ms period.
+	interruptInit();
+	timerInit(10);
+	timerStart();
 }
 
 /***********************************************************
