@@ -64,6 +64,7 @@ void task1(void)
 {
 	while(1) {
 		ledOn(LED0_GPIO);
+		ROSA_delay(500);
 	}
 }
 
@@ -75,6 +76,7 @@ void task3(void)
 {
 	while(1) {
 		ledOff(LED0_GPIO);
+		ROSA_delay(500);
 	}
 }
 
@@ -85,9 +87,7 @@ void task3(void)
 void task2(void)
 {
 	while(1) {
-		ledOff(LED0_GPIO);
-		ROSA_taskCreate(&t3_tcb, "tsk3", task3, T3_STACK_SIZE, 1);
-		ROSA_taskDelete(&t2_tcb);
+		ROSA_yield();
 	}
 }
 
@@ -104,7 +104,7 @@ int main(void)
 	//Create tasks and install them into the ROSA kernel
 	ROSA_taskCreate(&t1_tcb, "tsk1", task1, T1_STACK_SIZE, 1);
 	ROSA_taskCreate(&t2_tcb, "tsk2", task2, T2_STACK_SIZE, 1);
-	//ROSA_taskCreate(&t3_tcb, "tsk3", task3, T3_STACK_SIZE, 1);
+	ROSA_taskCreate(&t3_tcb, "tsk3", task3, T3_STACK_SIZE, 1);
 	ROSA_semaphoreCreate(&mutex, 1);
 	//ledOn(LED1_GPIO);
 /*	ROSA_tcbCreate(&t1_tcb, "tsk1", task1, t1_stack, T1_STACK_SIZE);

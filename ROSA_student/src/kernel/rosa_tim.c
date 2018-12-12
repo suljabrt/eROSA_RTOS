@@ -54,26 +54,41 @@ extern int rqe(ROSA_taskHandle_t ** pth);
 __attribute__((__interrupt__))
 void timerISR(void)
 {
+	interruptDisable();
 	int sr;
 	volatile avr32_tc_t * tc = &AVR32_TC;
+	ROSA_taskHandle_t * tmptsk;
+	bool interruptTask;
+	int priority;
 	
 	//Read the timer status register to determine if this is a valid interrupt
 	sr = tc->channel[0].sr;
 	if (sr & AVR32_TC_CPCS_MASK)
 	{
 		systemTick++;
-		ROSA_yieldFromISR();
-		/*if (systemTick % 2 == 0)
+		interruptTask = false;
+		
+		while (DELAYQUEUE != NULL && DELAYQUEUE->delay <= systemTick)
 		{
-			ledOn(LED2_GPIO);
-		}	
-		else
+			tmptsk = DELAYQUEUE;
+			removeDelayQueue(&DELAYQUEUE);
+			tmptsk->delay = 0;
+			rqi(&tmptsk);
+			interruptTask = true;
+		}
+		if (interruptTask)
 		{
-			ledOff(LED2_GPIO);
-		}*/
+			priority = rqsearch();
+			if (EXECTASK->priority < tmptsk->priority)
+			{
+				PREEMPTASK = PA[priority]->nexttcb;
+				interruptEnable();
+				ROSA_yieldFromISR();
+			}
+		}
 	}
 	//timerClearInterrupt(); //Disabled until we know what it actually does
-	
+	interruptEnable();
 }
 
 /************************************************************************/
@@ -146,6 +161,7 @@ int insertDelayQueue(ROSA_taskHandle_t ** pth, uint64_t deadline)
 	ROSA_taskHandle_t * next = DELAYQUEUE;
 	ROSA_taskHandle_t * prev;
 
+	// While the next task in the list has an earlier deadline or higher priority and an equal deadline, move down the list
 	while (next->delay <= (*pth)->delay || (next->priority >= (*pth)->priority && next->delay == (*pth)->delay))
 	{
 		prev = next;

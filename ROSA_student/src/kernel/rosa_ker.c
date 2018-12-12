@@ -165,7 +165,7 @@ void ROSA_init(void)
 
 	interruptInit();
 	interruptEnable();
-	timerInit(100);
+	timerInit(1);
 	timerStart();
 	
 	//Start with empty TCBLIST and no EXECTASK.
