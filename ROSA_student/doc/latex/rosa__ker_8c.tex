@@ -19,9 +19,9 @@ File containing definitions of R\+O\+SA kernel\textquotesingle{}s functions.
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{rosa__ker_8c_a1d1898485c035f3c4dde89392165bbfd}{rqi}} (\mbox{\hyperlink{structtcb__record__t}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$$\ast$pth)
+int \mbox{\hyperlink{rosa__ker_8c_a1d1898485c035f3c4dde89392165bbfd}{rqi}} (\mbox{\hyperlink{rosa__def_8h_a82d32f422c2987044e833843e7620aa6}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$$\ast$pth)
 \begin{DoxyCompactList}\small\item\em Inserts the given task into the ready queue by its priority. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{rosa__ker_8c_a9d8846b5ff035009d87aa66f9029d14e}{rqe}} (\mbox{\hyperlink{structtcb__record__t}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$$\ast$pth)
+int \mbox{\hyperlink{rosa__ker_8c_a9d8846b5ff035009d87aa66f9029d14e}{rqe}} (\mbox{\hyperlink{rosa__def_8h_a82d32f422c2987044e833843e7620aa6}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$$\ast$pth)
 \begin{DoxyCompactList}\small\item\em Extracts the given task from the ready queue by its priority. \end{DoxyCompactList}\item 
 int \mbox{\hyperlink{rosa__ker_8c_aac2dedb3e92a3b1f65054634b3a383ab}{rqsearch}} (void)
 \begin{DoxyCompactList}\small\item\em Search for the first non-\/empty highest priority queue. \end{DoxyCompactList}\item 
@@ -31,9 +31,9 @@ void \mbox{\hyperlink{group__rosa__kernel__tm_ga88a553c195e2f549835cbbf4e36a71ff
 \begin{DoxyCompactList}\small\item\em Create the T\+CB with correct values. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{group__rosa__kernel__tm_ga9a7bde19bc8609de66353d1f51d09eda}{R\+O\+S\+A\+\_\+tcb\+Install}} (\mbox{\hyperlink{structtcb__record__t}{tcb}} $\ast$tcb\+Task)
 \begin{DoxyCompactList}\small\item\em Install a new task T\+CB into R\+O\+SA. \end{DoxyCompactList}\item 
-int16\+\_\+t \mbox{\hyperlink{group__rosa__kernel__tm_ga7b9542dcdbdadbfc94f42f85536a83b0}{R\+O\+S\+A\+\_\+task\+Create}} (\mbox{\hyperlink{structtcb__record__t}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$$\ast$pth, char $\ast$id, void $\ast$task\+Function, uint32\+\_\+t stack\+Size, uint8\+\_\+t priority)
+int16\+\_\+t \mbox{\hyperlink{group__rosa__kernel__tm_ga7b9542dcdbdadbfc94f42f85536a83b0}{R\+O\+S\+A\+\_\+task\+Create}} (\mbox{\hyperlink{rosa__def_8h_a82d32f422c2987044e833843e7620aa6}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$$\ast$pth, char $\ast$id, void $\ast$task\+Function, uint32\+\_\+t stack\+Size, uint8\+\_\+t priority)
 \begin{DoxyCompactList}\small\item\em Create the F\+P\+PS task with correct values. \end{DoxyCompactList}\item 
-int16\+\_\+t \mbox{\hyperlink{group__rosa__kernel__tm_gad0845723ed20c9e51a81a7b388dbc555}{R\+O\+S\+A\+\_\+task\+Delete}} (\mbox{\hyperlink{structtcb__record__t}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$$\ast$pth)
+int16\+\_\+t \mbox{\hyperlink{group__rosa__kernel__tm_gad0845723ed20c9e51a81a7b388dbc555}{R\+O\+S\+A\+\_\+task\+Delete}} (\mbox{\hyperlink{rosa__def_8h_a82d32f422c2987044e833843e7620aa6}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$$\ast$pth)
 \begin{DoxyCompactList}\small\item\em Create the F\+P\+PS task with correct values. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
@@ -47,7 +47,7 @@ int16\+\_\+t \mbox{\hyperlink{group__rosa__kernel__tm_gad0845723ed20c9e51a81a7b3
 \mbox{\hyperlink{structtcb__record__t}{tcb}} $\ast$ {\bfseries P\+R\+E\+E\+M\+P\+T\+A\+SK}
 \item 
 \mbox{\Hypertarget{rosa__ker_8c_a069757787daf74781a859e9025d71ce1}\label{rosa__ker_8c_a069757787daf74781a859e9025d71ce1}} 
-\mbox{\hyperlink{structtcb__record__t}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$ \mbox{\hyperlink{rosa__ker_8c_a069757787daf74781a859e9025d71ce1}{PA}} \mbox{[}M\+A\+X\+N\+P\+R\+IO\mbox{]}
+\mbox{\hyperlink{rosa__def_8h_a82d32f422c2987044e833843e7620aa6}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$ \mbox{\hyperlink{rosa__ker_8c_a069757787daf74781a859e9025d71ce1}{PA}} \mbox{[}M\+A\+X\+N\+P\+R\+IO\mbox{]}
 \begin{DoxyCompactList}\small\item\em Global array of pointers to the priority queue of the running tasks. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -67,7 +67,7 @@ Anton (?)
 \index{rosa\+\_\+ker.\+c@{rosa\+\_\+ker.\+c}!rqe@{rqe}}
 \index{rqe@{rqe}!rosa\+\_\+ker.\+c@{rosa\+\_\+ker.\+c}}
 \subsubsection{\texorpdfstring{rqe()}{rqe()}}
-{\footnotesize\ttfamily int rqe (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtcb__record__t}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$$\ast$}]{th }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int rqe (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rosa__def_8h_a82d32f422c2987044e833843e7620aa6}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$$\ast$}]{th }\end{DoxyParamCaption})}
 
 
 
@@ -85,7 +85,7 @@ A status code (1 -\/ queue is empty after extraction, 0 -\/ otherwise).
 \index{rosa\+\_\+ker.\+c@{rosa\+\_\+ker.\+c}!rqi@{rqi}}
 \index{rqi@{rqi}!rosa\+\_\+ker.\+c@{rosa\+\_\+ker.\+c}}
 \subsubsection{\texorpdfstring{rqi()}{rqi()}}
-{\footnotesize\ttfamily int rqi (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtcb__record__t}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$$\ast$}]{th }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily int rqi (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rosa__def_8h_a82d32f422c2987044e833843e7620aa6}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$$\ast$}]{th }\end{DoxyParamCaption})}
 
 
 
@@ -113,7 +113,7 @@ Search for the first non-\/empty highest priority queue.
 A status code (reserved). 
 \end{DoxyReturn}
 \begin{DoxyRefDesc}{Todo}
-\item[\mbox{\hyperlink{todo__todo000001}{Todo}}]Check for empty PA. \end{DoxyRefDesc}
+\item[\mbox{\hyperlink{todo__todo000002}{Todo}}]Check for empty PA. \end{DoxyRefDesc}
 
 
 \subsection{Variable Documentation}

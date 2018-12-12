@@ -1,4 +1,6 @@
 var searchData=
 [
-  ['pa',['PA',['../rosa__ker_8h.html#abecd3b82b7b71a14a0e0add9282adc3b',1,'PA():&#160;rosa_ker.c'],['../rosa__ker_8c.html#a069757787daf74781a859e9025d71ce1',1,'PA():&#160;rosa_ker.c']]]
+  ['dataarea',['dataarea',['../structtcb__record__t.html#a994219890a698cd01cb7a730d0b34a5a',1,'tcb_record_t']]],
+  ['datasize',['datasize',['../structtcb__record__t.html#aceef3706b1186c624f339e303d4ae373',1,'tcb_record_t']]],
+  ['delay',['delay',['../structtcb__record__t.html#a5b1f6f1eaa44ff5c4f80c23687f4f324',1,'tcb_record_t']]]
 ];

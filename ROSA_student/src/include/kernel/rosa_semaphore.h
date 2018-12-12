@@ -13,7 +13,7 @@
 #ifndef ROSA_SEMAPHORE_H_
 #define ROSA_SEMAPHORE_H_
 
-#include "kernel/rosa_def.h";
+#include "kernel/rosa_def.h"
 
 /** @defgroup rosa_kernel ROSA semaphore.
 	@brief This module contains kernel functions of ROSA.

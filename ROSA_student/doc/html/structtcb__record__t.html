@@ -70,49 +70,277 @@ $(function() {
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:ae06d9d7114dee6671feaa0042f8edd2c"><td class="memItemLeft" align="right" valign="top"><a id="ae06d9d7114dee6671feaa0042f8edd2c"></a>
-struct <a class="el" href="structtcb__record__t.html">tcb_record_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>nexttcb</b></td></tr>
-<tr class="separator:ae06d9d7114dee6671feaa0042f8edd2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a42462d775784db1db19783b58c1d2c63"><td class="memItemLeft" align="right" valign="top"><a id="a42462d775784db1db19783b58c1d2c63"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>id</b> [NAMESIZE]</td></tr>
-<tr class="separator:a42462d775784db1db19783b58c1d2c63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0bd4589e0b8513e1de0a399b78d68f87"><td class="memItemLeft" align="right" valign="top"><a id="a0bd4589e0b8513e1de0a399b78d68f87"></a>
-void(*&#160;</td><td class="memItemRight" valign="bottom"><b>staddr</b> )(void)</td></tr>
-<tr class="separator:a0bd4589e0b8513e1de0a399b78d68f87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac4967b1b1e7ad970a0f020b0d1ee6356"><td class="memItemLeft" align="right" valign="top"><a id="ac4967b1b1e7ad970a0f020b0d1ee6356"></a>
-int *&#160;</td><td class="memItemRight" valign="bottom"><b>dataarea</b></td></tr>
-<tr class="separator:ac4967b1b1e7ad970a0f020b0d1ee6356"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c7949e884a8b9b3d1ab9f070267bf33"><td class="memItemLeft" align="right" valign="top"><a id="a5c7949e884a8b9b3d1ab9f070267bf33"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>datasize</b></td></tr>
-<tr class="separator:a5c7949e884a8b9b3d1ab9f070267bf33"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f3abb0a3bc5b95a1f3a186b39df8563"><td class="memItemLeft" align="right" valign="top"><a id="a2f3abb0a3bc5b95a1f3a186b39df8563"></a>
-int *&#160;</td><td class="memItemRight" valign="bottom"><b>saveusp</b></td></tr>
-<tr class="separator:a2f3abb0a3bc5b95a1f3a186b39df8563"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5cc0b58f21674c6f2360277fda7110db"><td class="memItemLeft" align="right" valign="top"><a id="a5cc0b58f21674c6f2360277fda7110db"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>SAVER0</b></td></tr>
-<tr class="separator:a5cc0b58f21674c6f2360277fda7110db"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82b96d60fcbfbacab45247b8be146e63"><td class="memItemLeft" align="right" valign="top"><a id="a82b96d60fcbfbacab45247b8be146e63"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>SAVER1</b></td></tr>
-<tr class="separator:a82b96d60fcbfbacab45247b8be146e63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aaec8acf0045579c29a846ad6691ac5ca"><td class="memItemLeft" align="right" valign="top"><a id="aaec8acf0045579c29a846ad6691ac5ca"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>savesr</b></td></tr>
-<tr class="separator:aaec8acf0045579c29a846ad6691ac5ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1cd699134048594684fdc0c1a5ed1ed3"><td class="memItemLeft" align="right" valign="top"><a id="a1cd699134048594684fdc0c1a5ed1ed3"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>retaddr</b></td></tr>
-<tr class="separator:a1cd699134048594684fdc0c1a5ed1ed3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab62fb376bbf1ce34b1d962f24e46b825"><td class="memItemLeft" align="right" valign="top"><a id="ab62fb376bbf1ce34b1d962f24e46b825"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>savereg</b> [15]</td></tr>
-<tr class="separator:ab62fb376bbf1ce34b1d962f24e46b825"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ad043071ccc7a261d79a759dc9c6f0c"><td class="memItemLeft" align="right" valign="top"><a id="a0ad043071ccc7a261d79a759dc9c6f0c"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>priority</b></td></tr>
-<tr class="separator:a0ad043071ccc7a261d79a759dc9c6f0c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8c0b95ab06c950bd9afd8444922d98a3"><td class="memItemLeft" align="right" valign="top"><a id="a8c0b95ab06c950bd9afd8444922d98a3"></a>
-uint64_t&#160;</td><td class="memItemRight" valign="bottom"><b>delay</b></td></tr>
-<tr class="separator:a8c0b95ab06c950bd9afd8444922d98a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0480b812cba9c1d9c71a5fb1071bd0fc"><td class="memItemLeft" align="right" valign="top"><a id="a0480b812cba9c1d9c71a5fb1071bd0fc"></a>
-uint8_t&#160;</td><td class="memItemRight" valign="bottom"><b>counter</b></td></tr>
-<tr class="separator:a0480b812cba9c1d9c71a5fb1071bd0fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe5f58939c000c4f6b06c911bead561c"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structtcb__record__t.html">tcb_record_t</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtcb__record__t.html#abe5f58939c000c4f6b06c911bead561c">nexttcb</a></td></tr>
+<tr class="separator:abe5f58939c000c4f6b06c911bead561c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa25efaaaecf8c7c4d679dbc94aec3031"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtcb__record__t.html#aa25efaaaecf8c7c4d679dbc94aec3031">id</a> [NAMESIZE]</td></tr>
+<tr class="separator:aa25efaaaecf8c7c4d679dbc94aec3031"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99e7583ffff142dbd9efb8d9c1d8ebde"><td class="memItemLeft" align="right" valign="top">void(*&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtcb__record__t.html#a99e7583ffff142dbd9efb8d9c1d8ebde">staddr</a> )(void)</td></tr>
+<tr class="separator:a99e7583ffff142dbd9efb8d9c1d8ebde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a994219890a698cd01cb7a730d0b34a5a"><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtcb__record__t.html#a994219890a698cd01cb7a730d0b34a5a">dataarea</a></td></tr>
+<tr class="separator:a994219890a698cd01cb7a730d0b34a5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aceef3706b1186c624f339e303d4ae373"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtcb__record__t.html#aceef3706b1186c624f339e303d4ae373">datasize</a></td></tr>
+<tr class="separator:aceef3706b1186c624f339e303d4ae373"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2fffaf0f5616d3f34ab2336a25a9186"><td class="memItemLeft" align="right" valign="top">int *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtcb__record__t.html#ad2fffaf0f5616d3f34ab2336a25a9186">saveusp</a></td></tr>
+<tr class="separator:ad2fffaf0f5616d3f34ab2336a25a9186"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a753e67212cb8cd447171d33a8e75c11e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtcb__record__t.html#a753e67212cb8cd447171d33a8e75c11e">SAVER0</a></td></tr>
+<tr class="separator:a753e67212cb8cd447171d33a8e75c11e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1137e438d580c22c21044a334356b696"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtcb__record__t.html#a1137e438d580c22c21044a334356b696">SAVER1</a></td></tr>
+<tr class="separator:a1137e438d580c22c21044a334356b696"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4b57f27f8be80d5cedeb6e3a7a759d18"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtcb__record__t.html#a4b57f27f8be80d5cedeb6e3a7a759d18">savesr</a></td></tr>
+<tr class="separator:a4b57f27f8be80d5cedeb6e3a7a759d18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3a7c64427bddbb6ef8ac755f2782baf7"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtcb__record__t.html#a3a7c64427bddbb6ef8ac755f2782baf7">retaddr</a></td></tr>
+<tr class="separator:a3a7c64427bddbb6ef8ac755f2782baf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22aa27436be4418c5ad79657a2128b0e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtcb__record__t.html#a22aa27436be4418c5ad79657a2128b0e">savereg</a> [15]</td></tr>
+<tr class="separator:a22aa27436be4418c5ad79657a2128b0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a5183df4c54c3e28dc8dc704f2487d5"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtcb__record__t.html#a6a5183df4c54c3e28dc8dc704f2487d5">priority</a></td></tr>
+<tr class="separator:a6a5183df4c54c3e28dc8dc704f2487d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5b1f6f1eaa44ff5c4f80c23687f4f324"><td class="memItemLeft" align="right" valign="top">uint64_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtcb__record__t.html#a5b1f6f1eaa44ff5c4f80c23687f4f324">delay</a></td></tr>
+<tr class="separator:a5b1f6f1eaa44ff5c4f80c23687f4f324"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61f7b3cbcedea4bae0c663c892d5d07f"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structtcb__record__t.html#a61f7b3cbcedea4bae0c663c892d5d07f">counter</a></td></tr>
+<tr class="separator:a61f7b3cbcedea4bae0c663c892d5d07f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock">
+<p class="definition">Definition at line <a class="el" href="rosa__def_8h_source.html#l00075">75</a> of file <a class="el" href="rosa__def_8h_source.html">rosa_def.h</a>.</p>
+</div><h2 class="groupheader">Field Documentation</h2>
+<a id="a61f7b3cbcedea4bae0c663c892d5d07f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61f7b3cbcedea4bae0c663c892d5d07f">&#9670;&nbsp;</a></span>counter</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">counter</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Number of semaphores currently locked by this task. </p>
+
+<p class="definition">Definition at line <a class="el" href="rosa__def_8h_source.html#l00089">89</a> of file <a class="el" href="rosa__def_8h_source.html">rosa_def.h</a>.</p>
+
+</div>
+</div>
+<a id="a994219890a698cd01cb7a730d0b34a5a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a994219890a698cd01cb7a730d0b34a5a">&#9670;&nbsp;</a></span>dataarea</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">dataarea</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The stack data area. </p>
+
+<p class="definition">Definition at line <a class="el" href="rosa__def_8h_source.html#l00079">79</a> of file <a class="el" href="rosa__def_8h_source.html">rosa_def.h</a>.</p>
+
+</div>
+</div>
+<a id="aceef3706b1186c624f339e303d4ae373"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aceef3706b1186c624f339e303d4ae373">&#9670;&nbsp;</a></span>datasize</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">datasize</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The stack size. </p>
+
+<p class="definition">Definition at line <a class="el" href="rosa__def_8h_source.html#l00080">80</a> of file <a class="el" href="rosa__def_8h_source.html">rosa_def.h</a>.</p>
+
+</div>
+</div>
+<a id="a5b1f6f1eaa44ff5c4f80c23687f4f324"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5b1f6f1eaa44ff5c4f80c23687f4f324">&#9670;&nbsp;</a></span>delay</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">delay</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Time until which a task is delayed. </p>
+
+<p class="definition">Definition at line <a class="el" href="rosa__def_8h_source.html#l00088">88</a> of file <a class="el" href="rosa__def_8h_source.html">rosa_def.h</a>.</p>
+
+</div>
+</div>
+<a id="aa25efaaaecf8c7c4d679dbc94aec3031"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa25efaaaecf8c7c4d679dbc94aec3031">&#9670;&nbsp;</a></span>id</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">id[NAMESIZE]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The task id/name. </p>
+
+<p class="definition">Definition at line <a class="el" href="rosa__def_8h_source.html#l00077">77</a> of file <a class="el" href="rosa__def_8h_source.html">rosa_def.h</a>.</p>
+
+</div>
+</div>
+<a id="abe5f58939c000c4f6b06c911bead561c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abe5f58939c000c4f6b06c911bead561c">&#9670;&nbsp;</a></span>nexttcb</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">nexttcb</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>A pointer to the next TCB. </p>
+
+<p class="definition">Definition at line <a class="el" href="rosa__def_8h_source.html#l00076">76</a> of file <a class="el" href="rosa__def_8h_source.html">rosa_def.h</a>.</p>
+
+</div>
+</div>
+<a id="a6a5183df4c54c3e28dc8dc704f2487d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a5183df4c54c3e28dc8dc704f2487d5">&#9670;&nbsp;</a></span>priority</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">priority</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The priority of a task. </p>
+
+<p class="definition">Definition at line <a class="el" href="rosa__def_8h_source.html#l00087">87</a> of file <a class="el" href="rosa__def_8h_source.html">rosa_def.h</a>.</p>
+
+</div>
+</div>
+<a id="a3a7c64427bddbb6ef8ac755f2782baf7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a7c64427bddbb6ef8ac755f2782baf7">&#9670;&nbsp;</a></span>retaddr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">retaddr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The return address. </p>
+
+<p class="definition">Definition at line <a class="el" href="rosa__def_8h_source.html#l00085">85</a> of file <a class="el" href="rosa__def_8h_source.html">rosa_def.h</a>.</p>
+
+</div>
+</div>
+<a id="a753e67212cb8cd447171d33a8e75c11e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a753e67212cb8cd447171d33a8e75c11e">&#9670;&nbsp;</a></span>SAVER0</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SAVER0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Temporary work register. </p>
+
+<p class="definition">Definition at line <a class="el" href="rosa__def_8h_source.html#l00082">82</a> of file <a class="el" href="rosa__def_8h_source.html">rosa_def.h</a>.</p>
+
+</div>
+</div>
+<a id="a1137e438d580c22c21044a334356b696"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1137e438d580c22c21044a334356b696">&#9670;&nbsp;</a></span>SAVER1</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">SAVER1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Temporary work register. </p>
+
+<p class="definition">Definition at line <a class="el" href="rosa__def_8h_source.html#l00083">83</a> of file <a class="el" href="rosa__def_8h_source.html">rosa_def.h</a>.</p>
+
+</div>
+</div>
+<a id="a22aa27436be4418c5ad79657a2128b0e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22aa27436be4418c5ad79657a2128b0e">&#9670;&nbsp;</a></span>savereg</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">savereg</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The CPU registers. </p>
+
+<p class="definition">Definition at line <a class="el" href="rosa__def_8h_source.html#l00086">86</a> of file <a class="el" href="rosa__def_8h_source.html">rosa_def.h</a>.</p>
+
+</div>
+</div>
+<a id="a4b57f27f8be80d5cedeb6e3a7a759d18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4b57f27f8be80d5cedeb6e3a7a759d18">&#9670;&nbsp;</a></span>savesr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">savesr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The current status register. </p>
+
+<p class="definition">Definition at line <a class="el" href="rosa__def_8h_source.html#l00084">84</a> of file <a class="el" href="rosa__def_8h_source.html">rosa_def.h</a>.</p>
+
+</div>
+</div>
+<a id="ad2fffaf0f5616d3f34ab2336a25a9186"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2fffaf0f5616d3f34ab2336a25a9186">&#9670;&nbsp;</a></span>saveusp</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">saveusp</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>The current stack position. </p>
+
+<p class="definition">Definition at line <a class="el" href="rosa__def_8h_source.html#l00081">81</a> of file <a class="el" href="rosa__def_8h_source.html">rosa_def.h</a>.</p>
+
+</div>
+</div>
+<a id="a99e7583ffff142dbd9efb8d9c1d8ebde"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a99e7583ffff142dbd9efb8d9c1d8ebde">&#9670;&nbsp;</a></span>staddr</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">staddr</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Start address. </p>
+
+<p class="definition">Definition at line <a class="el" href="rosa__def_8h_source.html#l00078">78</a> of file <a class="el" href="rosa__def_8h_source.html">rosa_def.h</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>C:/Users/ant/Documents/GitHub/DVA438/ROSA_student/src/include/kernel/<a class="el" href="rosa__def_8h_source.html">rosa_def.h</a></li>
 </ul>

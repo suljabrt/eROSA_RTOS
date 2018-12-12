@@ -52,5 +52,9 @@ Mkfile.old
 dkms.conf
 
 # User added
+
 ROSA_student/Debug/*
 ROSA_student/.vs/*
+ROSA_student/doc/*
+*.cproj
+*.atsuo

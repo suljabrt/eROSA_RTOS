@@ -38,6 +38,7 @@
 
 #include <stdint.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 //Kernel includes
 #include "kernel/rosa_def.h"
@@ -163,6 +164,11 @@ void ROSA_init(void)
 	potInit();									//Potentiometer
 	usartInit(USART, &usart_options, FOSC0);	//Serial communication
 
+	interruptInit();
+	interruptEnable();
+	timerInit(1);
+	timerStart();
+	
 	//Start with empty TCBLIST and no EXECTASK.
 	TCBLIST = NULL;
 	EXECTASK = NULL;
@@ -173,10 +179,8 @@ void ROSA_init(void)
 		PA[i] = NULL;
 	}
 	
-	//Initialize the timer to 100 ms period.
-	//...
-	//timerInit(100);
-	//...
+	//Initialize the timer to 1 ms period.
+	
 }
 
 void ROSA_tcbCreate(tcb * tcbTask, char tcbName[NAMESIZE], void *tcbFunction, int * tcbStack, int tcbStackSize)
