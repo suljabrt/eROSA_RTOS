@@ -95,7 +95,7 @@ int removeDelayQueue(ROSA_taskHandle_t pth)
 		return -1;
 	}
 	// If there is only one task in the status queue and this is pth, remove it from the queue
-	if (DELAYQUEUE->id == pth->id)
+	if (DELAYQUEUE == pth)
 	{
 		if (DELAYQUEUE->nexttcb == NULL)
 		{
@@ -108,7 +108,7 @@ int removeDelayQueue(ROSA_taskHandle_t pth)
 	// Else, find the task before pth and point it to the task after pth, removing it
 	ROSA_taskHandle_t next = DELAYQUEUE;
 	ROSA_taskHandle_t prev;
-	while (next->id != pth->id)
+	while (next != pth)
 	{
 		prev = next;
 		next = next->nexttcb;

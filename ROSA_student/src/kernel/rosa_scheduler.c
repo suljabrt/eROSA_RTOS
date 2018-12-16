@@ -25,9 +25,7 @@
 /* Tab size: 4 */
 
 #include "kernel/rosa_scheduler.h"
-
-//Assisting functions for handling the ready queue
-extern tcb * readyQueueSearch(void);
+#include "kernel/rosa_ext.h"
 
 /***********************************************************
  * scheduler
@@ -56,8 +54,9 @@ void scheduler(void)
 void ROSA_startScheduler(void)
 {
 	tcb * tmp = readyQueueSearch();	
-	
-	TCBLIST = tmp->nexttcb;
-	
-	ROSA_start();
+	if (EXECTASK == NULL)
+	{
+		TCBLIST = tmp->nexttcb;
+		ROSA_start();
+	}
 }
