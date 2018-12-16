@@ -93,6 +93,7 @@ void task3(void)
 void task2(void)
 {
 	while(1) {
+		//ROSA_taskDelete(&t2_tcb);
 		ROSA_yield();
 	}
 }

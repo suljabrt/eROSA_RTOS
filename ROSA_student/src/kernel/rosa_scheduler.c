@@ -26,6 +26,9 @@
 
 #include "kernel/rosa_scheduler.h"
 
+//Assisting functions for handling the ready queue
+extern tcb * readyQueueSearch(void);
+
 /***********************************************************
  * scheduler
  *
@@ -52,13 +55,9 @@ void scheduler(void)
 
 void ROSA_startScheduler(void)
 {
-	int i = MAXNPRIO;
+	tcb * tmp = readyQueueSearch();	
 	
-	while (PA[--i] == NULL) {
-		;
-	}
-	
-	TCBLIST = PA[i]->nexttcb;
+	TCBLIST = tmp->nexttcb;
 	
 	ROSA_start();
 }
