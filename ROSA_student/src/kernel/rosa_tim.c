@@ -39,9 +39,9 @@ ROSA_taskHandle_t * DELAYQUEUE;
 uint64_t systemTick;
 
 //Assisting functions for handling the ready queue
-extern int rqsearch(void);
-extern int rqi(ROSA_taskHandle_t ** pth);
-extern int rqe(ROSA_taskHandle_t ** pth);
+extern tcb * readyQueueSearch(void);
+extern int readyQueueInsert(ROSA_taskHandle_t ** pth);
+extern int readyQueueExtract(ROSA_taskHandle_t ** pth);
 
 
 
@@ -58,8 +58,8 @@ void timerISR(void)
 	int sr;
 	volatile avr32_tc_t * tc = &AVR32_TC;
 	ROSA_taskHandle_t * tmptsk;
+	ROSA_taskHandle_t * tmp;
 	bool interruptTask;
-	int priority;
 	
 	//Read the timer status register to determine if this is a valid interrupt
 	sr = tc->channel[0].sr;
@@ -73,15 +73,15 @@ void timerISR(void)
 			tmptsk = DELAYQUEUE;
 			removeDelayQueue(&DELAYQUEUE);
 			tmptsk->delay = 0;
-			rqi(&tmptsk);
+			readyQueueInsert(&tmptsk);
 			interruptTask = true;
 		}
 		if (interruptTask)
 		{
-			priority = rqsearch();
+			tmp = readyQueueSearch();
 			if (EXECTASK->priority < tmptsk->priority)
 			{
-				PREEMPTASK = PA[priority]->nexttcb;
+				PREEMPTASK = tmp->nexttcb;
 				interruptEnable();
 				ROSA_yieldFromISR();
 			}
@@ -109,12 +109,12 @@ uint64_t ROSA_getTickCount()
 /************************************************************************/
 int16_t ROSA_delay(uint64_t ticks)
 {
-	rqe(&EXECTASK);
+	readyQueueExtract(&EXECTASK);
 	insertDelayQueue(&EXECTASK, ROSA_getTickCount() + ticks);
-	int priority = rqsearch();
-	if (priority >= 0)
+	tcb * tmp = readyQueueSearch();
+	if (tmp->priority >= 0)
 	{
-		PREEMPTASK = PA[priority];
+		PREEMPTASK = tmp;
 	} else {
 		return -1;
 	}

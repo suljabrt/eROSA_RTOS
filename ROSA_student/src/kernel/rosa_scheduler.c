@@ -52,13 +52,9 @@ void scheduler(void)
 
 void ROSA_startScheduler(void)
 {
-	int i = MAXNPRIO;
+	tcb * tmp = readyQueueSearch();	
 	
-	while (PA[--i] == NULL) {
-		;
-	}
-	
-	TCBLIST = PA[i]->nexttcb;
+	TCBLIST = tmp->nexttcb;
 	
 	ROSA_start();
 }

@@ -63,8 +63,12 @@ ROSA_semaphoreHandle_t * mutex;
 void task1(void)
 {
 	while(1) {
+		ROSA_delay(2000);
+		ROSA_semaphoreLock(&mutex);
 		ledOn(LED0_GPIO);
 		ROSA_delay(500);
+		ROSA_semaphoreUnlock(&mutex);
+		ROSA_yield();
 	}
 }
 
@@ -75,8 +79,12 @@ void task1(void)
 void task3(void)
 {
 	while(1) {
+		ROSA_delay(2000);
+		ROSA_semaphoreLock(&mutex);
 		ledOff(LED0_GPIO);
 		ROSA_delay(500);
+		ROSA_semaphoreUnlock(&mutex);
+		ROSA_yield();
 	}
 }
 
@@ -87,6 +95,7 @@ void task3(void)
 void task2(void)
 {
 	while(1) {
+		//ROSA_taskDelete(&t2_tcb);
 		ROSA_yield();
 	}
 }

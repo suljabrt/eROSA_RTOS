@@ -53,6 +53,11 @@
 #include "drivers/pot.h"
 #include "drivers/usart.h"
 
+/** @def IDLE_STACK_SIZE
+	@brief Idle task's stack size
+*/
+#define IDLE_STACK_SIZE 32
+
 /** @var tcb * TCBLIST 
     @brief Global variable that contains the list of TCB's that
 	have been installed into the kernel with ROSA_tcbInstall().
@@ -70,85 +75,150 @@ tcb * EXECTASK;
 */
 tcb * PREEMPTASK;
 
+/** @var tcb IDLETASK_TCB
+	@brief Idle task's tcb
+*/
+tcb IDLETASK_TCB;
+
+/** @var tcb * IDLETASK 
+    @brief Global variable that contains the idle task's TCB,
+	which preempts the current running task.
+*/
+tcb * IDLETASK;
+
+/** @var static int idle_stack[IDLE_STACK_SIZE]
+	@brief Idle task's stack.
+*/
+static int idle_stack[IDLE_STACK_SIZE];
+
 /** @var ROSA_taskHandle_t * PA[MAXNPRIO] 
     @brief Global array of pointers to the priority queue of the running tasks.
 */
 ROSA_taskHandle_t * PA[MAXNPRIO];
 
-/** @fn int rqi(ROSA_taskHandle_t ** th)
+/** @fn void idle(void)
+	@brief Idle task body.
+*/
+void idle(void)
+{
+	while(1)
+	{
+		usartWriteLine(USART, "idle\n");
+	}
+}
+
+/** @fn void idleCreate(void)
+	@brief Creation of the idle task.
+*/
+void idleCreate(void)
+{
+	ROSA_tcbCreate(&IDLETASK_TCB, "idle", idle, idle_stack, IDLE_STACK_SIZE);
+	IDLETASK = &IDLETASK_TCB;
+}
+
+/** @fn int readyQueueInsert(ROSA_taskHandle_t ** th)
 	@brief Inserts the given task into the ready queue by its priority.
 	@param th Task structure (tcb structure).
 	@return A status code (1 - item has been added to the empty queue, 0 - otherwise).
 */
-int rqi(ROSA_taskHandle_t ** pth)
+int readyQueueInsert(ROSA_taskHandle_t ** pth)
 {
 	uint8_t priority;
+	int retval;
 	
 	priority = (*pth)->priority;
 	
-	if (PA[priority] == NULL) {
+	/* Check the given queue for the emptiness */
+	if (PA[priority] == NULL)
+	{
 		PA[priority] = *pth;
 		PA[priority]->nexttcb = *pth;
-		return 1;
+		
+		retval = 1;
 	}
-	else {
+	else
+	{
 		(*pth)->nexttcb = PA[priority]->nexttcb;
 		PA[priority]->nexttcb = *pth;
 		PA[priority] = *pth;
-		return 0;
+		
+		retval = 0;
 	}
+	
+	return retval;
 }
 
-/** @fn int rqe(ROSA_taskHandle_t ** th)
+/** @fn int readyQueueExtract(ROSA_taskHandle_t ** th)
 	@brief Extracts the given task from the ready queue by its priority.
 	@param th Task structure (tcb structure).
 	@return A status code (1 - queue is empty after extraction, 0 - otherwise).
 */
-int rqe(ROSA_taskHandle_t ** pth)
+int readyQueueExtract(ROSA_taskHandle_t ** pth)
 {
 	ROSA_taskHandle_t * thTmp;
-	
 	uint8_t priority;
+	int retval;
 	
 	priority = (*pth)->priority;
 	thTmp = PA[priority];
 	
+	/* Check whether the deleted task is the last in the queue or not */
 	if ((*pth)->nexttcb == *pth) 
 	{
+		/* It's enough to extract the deleted task from the queue */
 		PA[priority] = NULL;
-		return 1;
+		
+		retval = 1;
 	}
 	else 
 	{
+		/* Search for delete task */
 		while (thTmp->nexttcb != (*pth)) 
 		{
 			thTmp = thTmp->nexttcb;
 		}
 		
-		if (PA[priority] == *pth) 
+		/* Check whether the PA[priority] points to the deleted task or not */
+		if (PA[priority] == *pth)
 		{
+			/* Move PA[priority] pointer to the previous task in the queue */ 
 			PA[priority] = thTmp;
 		}
 		
 		thTmp->nexttcb = (*pth)->nexttcb;
-		return 0;
+		
+		retval = 0;
 	}
+	
+	return retval;
 }
 
-/** @fn int rqsearch(void)
+/** @fn int readyQueueSearch(void)
 	@brief Search for the first non-empty highest priority queue.
-	@return A status code (reserved).
-	@todo Check for empty PA.
+	@return Pointer to the last tcb in the queue (in other words - PA[i]).
 */
-int rqsearch(void)
+tcb * readyQueueSearch(void)
 {
 	int i = MAXNPRIO;
+	tcb * rettcb;
 	
-	while (PA[--i] == NULL) {
+	/* Search for the first non-empty queue. */
+	while ( (PA[--i] == NULL) && (i > 0))
+	{
 		;
 	}
+		
+	/* Check the PA for emptiness. */
+	if ((i == 0) && (PA[i] == NULL))
+	{
+		rettcb = IDLETASK;
+	}
+	else
+	{
+		rettcb = PA[i];
+	}
 	
-	return i;
+	return rettcb;
 }
 
 void ROSA_init(void)
@@ -172,6 +242,9 @@ void ROSA_init(void)
 	TCBLIST = NULL;
 	EXECTASK = NULL;
 	PREEMPTASK = NULL;
+	
+	/* Create idle task. */
+	idleCreate();
 	
 	for (i = 0; i < MAXNPRIO; i++) {
 		PA[i] = NULL;
@@ -251,7 +324,7 @@ int16_t ROSA_taskCreate(ROSA_taskHandle_t ** pth, char * id, void* taskFunction,
 	
 	ROSA_tcbCreate(*pth, id, taskFunction, tcbStack, stackSize);
 	
-	rqi(pth);
+	readyQueueInsert(pth);
 	
 	if (EXECTASK != NULL) {
 		if (EXECTASK->priority < priority) {
@@ -265,32 +338,43 @@ int16_t ROSA_taskCreate(ROSA_taskHandle_t ** pth, char * id, void* taskFunction,
 
 int16_t ROSA_taskDelete(ROSA_taskHandle_t ** pth)
 {	
-	rqe(pth);
-	uint8_t priority;
+	int isEmpty = 0;
 	
-	priority = (*pth)->priority;
+	/* In this case, we just check, that *pth != NULL, because
+	 * if *pth == NULL, then this task has been already deleted.
+	 */
+	//ASSERT_MEM_ALLOC(*pth);
 	
-	if (EXECTASK == (*pth)) {
-		if (PA[priority] == NULL) {
-			priority = rqsearch();
-			PREEMPTASK = PA[priority];
-			free( (*pth)->dataarea - (*pth)->datasize);
-			free(*pth);
-			*pth = NULL;
-			ROSA_yield();
-		}		
-		else {
-			PREEMPTASK = EXECTASK->nexttcb;
-			free( (*pth)->dataarea - (*pth)->datasize);
-			free(*pth);
-			*pth = NULL;
-			ROSA_yield();
+	/* Extract task from its queue */
+	isEmpty = readyQueueExtract(pth);
+	
+	/* Check for itself deletion */
+	if (EXECTASK == (*pth))
+	{ 
+		/* Check the current queue for emptiness */
+		if (isEmpty)
+		{
+			PREEMPTASK = readyQueueSearch();
+		}
+		else
+		{
+			PREEMPTASK = (*pth)->nexttcb;
 		}
 	}
 	
-	free( (*pth)->dataarea - (*pth)->datasize);
-	free(*pth);
-	*pth = NULL;
+	/* Task's stack memory deallocation */
+	free( (*pth)->dataarea - (*pth)->datasize );
 	
-	return 0;
+	/* Task's memory deallocation */
+	free(*pth);
+	
+	/* *pth must be NULL */
+	*pth = NULL;
+
+	if (PREEMPTASK != NULL)
+	{
+		ROSA_yield();
+	}
+		
+	return 1;
 }
