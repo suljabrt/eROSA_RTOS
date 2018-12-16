@@ -276,12 +276,12 @@ int main(void)
 	ROSA_taskCreate(&t11_tcb, "tsk11", task11, T11_STACK_SIZE, 11);
 	ROSA_taskCreate(&t12_tcb, "tsk12", task12, T12_STACK_SIZE, 12);
 	
-	ROSA_semaphoreCreate(&mutex1, 1);
-	ROSA_semaphoreCreate(&mutex2, 1);
-	ROSA_semaphoreCreate(&mutex3, 1);
-	ROSA_semaphoreCreate(&mutex4, 1);
-	ROSA_semaphoreCreate(&mutex5, 1);
-	ROSA_semaphoreCreate(&mutex6, 1);
+	ROSA_semaphoreCreate(&mutex1, 2);
+	ROSA_semaphoreCreate(&mutex2, 4);
+	ROSA_semaphoreCreate(&mutex3, 6);
+	ROSA_semaphoreCreate(&mutex4, 8);
+	ROSA_semaphoreCreate(&mutex5, 10);
+	ROSA_semaphoreCreate(&mutex6, 12);
 
 	ROSA_startScheduler();
 

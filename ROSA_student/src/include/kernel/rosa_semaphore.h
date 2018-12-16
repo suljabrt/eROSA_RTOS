@@ -28,12 +28,15 @@ typedef struct ROSA_semaphoreHandle_record_t {
 	ROSA_taskHandle_t *holder; 
 	uint8_t ceiling;
 	struct ROSA_semaphoreHandle_record_t * nextLockedSemaphore;
-} ROSA_semaphoreHandle_t;
+} ROSA_semaphoreHandle;
+
+typedef ROSA_semaphoreHandle * ROSA_semaphoreHandle_t;
+
 
 /***********************************************************
  * Global variable (doesnt have to be because only LOCK uses it)
  ***********************************************************/
-extern ROSA_semaphoreHandle_t * LOCKEDSEMAPHORELIST;
+extern ROSA_semaphoreHandle_t  LOCKEDSEMAPHORELIST;
 	///@}
 
 	/** @defgroup Semaphore managment.
@@ -48,7 +51,7 @@ extern ROSA_semaphoreHandle_t * LOCKEDSEMAPHORELIST;
 	
 	Create the semaphore with correct values.
 */
-int16_t ROSA_semaphoreCreate(ROSA_semaphoreHandle_t ** handle, uint8_t ceiling);
+int16_t ROSA_semaphoreCreate(ROSA_semaphoreHandle_t * handle, uint8_t ceiling);
 /** @fn int16_t ROSA_semaphoreDelete(ROSA_semaphoreHandle_t ** handle);
 	@brief 	Delete the specified semaphore.
 	@param handle Double pointer to the semaphore.
@@ -56,7 +59,7 @@ int16_t ROSA_semaphoreCreate(ROSA_semaphoreHandle_t ** handle, uint8_t ceiling);
 	
 	Delete the specified semaphore.
 */
-int16_t ROSA_semaphoreDelete(ROSA_semaphoreHandle_t ** handle);
+int16_t ROSA_semaphoreDelete(ROSA_semaphoreHandle_t handle);
 /** @fn int16_t ROSA_semaphorePeek(ROSA_semaphoreHandle_t ** handle);
 	@brief 	Check if the semaphore is already locked.
 	@param handle Double pointer to the semaphore.
@@ -64,7 +67,7 @@ int16_t ROSA_semaphoreDelete(ROSA_semaphoreHandle_t ** handle);
 	
 	Create the semaphore with correct values.
 */
-int16_t ROSA_semaphorePeek(ROSA_semaphoreHandle_t ** handle);
+int16_t ROSA_semaphorePeek(ROSA_semaphoreHandle_t handle);
 /** @fn int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t ** handle);
 	@brief 	Lock the specified semaphore.
 	@param handle Double pointer to the semaphore.
@@ -72,7 +75,7 @@ int16_t ROSA_semaphorePeek(ROSA_semaphoreHandle_t ** handle);
 	
 	Lock the specified semaphore.
 */
-int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t ** handle);
+int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t handle);
 /** @fn int16_t ROSA_semaphoreUnlock(ROSA_semaphoreHandle_t ** handle);
 	@brief 	Unlock the specified semaphore.
 	@param handle Double pointer to the semaphore.
@@ -80,9 +83,7 @@ int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t ** handle);
 	
 	Unlock the specified semaphore.
 */
-int16_t ROSA_semaphoreUnlock(ROSA_semaphoreHandle_t ** handle);
-	///@}
-///@}
+int16_t ROSA_semaphoreUnlock(ROSA_semaphoreHandle_t handle);
 
 
 #endif /* ROSA_SEMAPHORE_H_ */

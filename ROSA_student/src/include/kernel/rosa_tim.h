@@ -39,6 +39,16 @@ extern void timerReset(void);
 extern void timerStart(void);
 extern void timerStop(void);
 
+/** @defgroup rosa_tim ROSA timer functionality.
+	@brief This module contains timer functions of ROSA.
+  */
+
+	/** @defgroup rosa_timer_sm Scheduler management.
+		@ingroup rosa_timer
+		@brief Timer and delay functionality
+	  */
+	///@{
+
 //The timer interrupt service routine
 void timerISR(void);
 extern void timerClearInterrupt(void);
@@ -49,17 +59,51 @@ extern void timerPrescaleSet(int);
 extern void timerRCSet(int);
 
 //Functionality added by ROSA's extension
+
+/** @fn int64_t ROSA_getTickCount()
+	@brief 	Get the current number of system ticks, relative to the start of the system.
+	@return The number of system ticks since system start or since tick	overflow.
+*/
 uint64_t ROSA_getTickCount();
+
+/** @fn int64_t ROSA_delay()
+	@brief 	Suspends the calling task for the given number of ticks.
+	@param ticks Number of ticks to delay the task
+	@return Means nothing.
+*/
 int16_t ROSA_delay(uint64_t ticks);
-int insertDelayQueue(ROSA_taskHandle_t ** pth, uint64_t deadline);
-int removeDelayQueue(ROSA_taskHandle_t ** pth);
+
+/** @fn int16_t ROSA_delayUntil(uint64_t* lastWakeTime, uint64_t ticks)
+	@brief 	Suspends the calling task until the system ticks reach *lastWakeTime + ticks.
+	@param lastWakeTime Pointer to the number of ticks at which the calling task last resumed execution.
+	@param ticks The number of ticks for the task to be suspended, relative to *lastWakeTime.
+	@return Means nothing.
+*/
+int16_t ROSA_delayUntil(uint64_t* lastWakeTime, uint64_t ticks);
+
+/** @fn int16_t ROSA_delayAbsolute(uint64_t ticks)
+	@brief 	Suspends the calling task until the given number of ticks which is relative to the start of the system.
+	@param ticks The number of ticks for the task to be suspended, relative to *lastWakeTime.
+	@return Means nothing.
+*/
+int16_t ROSA_delayAbsolute(uint64_t ticks);
 
 //Timer period variables
 extern int timerPrescale;
 extern int timerRC;
 
 //The list storing all delayed tasks
+
+/** @var ROSA_taskHandle_t * DELAYQUEUE 
+    @brief Pointer to the first task in the queue of delayed tasks.
+*/
 extern ROSA_taskHandle_t * DELAYQUEUE;
+
+/** @var uint64_t systemTick
+    @brief Global variable with the current number of system ticks.
+*/
 extern uint64_t systemTick;
+
+///@}
 
 #endif /* _ROSA_TIMER_H_ */
