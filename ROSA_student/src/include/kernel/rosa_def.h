@@ -95,7 +95,7 @@ typedef struct tcb_record_t {
 	to do preemption.
 	@todo ROSA_taskHandle_t should be redefined as pointer to the tcb.
 */
-typedef tcb ROSA_taskHandle_t;
+typedef tcb * ROSA_taskHandle_t;
 
 #endif /* rosa_def_H_ */
 

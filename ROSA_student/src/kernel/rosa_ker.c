@@ -122,7 +122,7 @@ void idleCreate(void)
 	@param th Task structure (tcb structure).
 	@return A status code (1 - item has been added to the empty queue, 0 - otherwise).
 */
-int readyQueueInsert(ROSA_taskHandle_t ** pth)
+int readyQueueInsert(ROSA_taskHandle_t * pth)
 {
 	uint8_t priority;
 	int retval;
@@ -154,9 +154,9 @@ int readyQueueInsert(ROSA_taskHandle_t ** pth)
 	@param th Task structure (tcb structure).
 	@return A status code (1 - queue is empty after extraction, 0 - otherwise).
 */
-int readyQueueExtract(ROSA_taskHandle_t ** pth)
+int readyQueueExtract(ROSA_taskHandle_t * pth)
 {
-	ROSA_taskHandle_t * thTmp;
+	ROSA_taskHandle_t thTmp;
 	uint8_t priority;
 	int retval;
 	
@@ -313,7 +313,7 @@ void ROSA_tcbInstall(tcb * tcbTask)
 	}
 }
 
-int16_t ROSA_taskCreate(ROSA_taskHandle_t ** pth, char * id, void* taskFunction, uint32_t stackSize, uint8_t priority)
+int16_t ROSA_taskCreate(ROSA_taskHandle_t * pth, char * id, void* taskFunction, uint32_t stackSize, uint8_t priority)
 {
 	int * tcbStack;
 	
@@ -339,7 +339,7 @@ int16_t ROSA_taskCreate(ROSA_taskHandle_t ** pth, char * id, void* taskFunction,
 	return 0;
 }
 
-int16_t ROSA_taskDelete(ROSA_taskHandle_t ** pth)
+int16_t ROSA_taskDelete(ROSA_taskHandle_t * pth)
 {	
 	int isEmpty = 0;
 	
