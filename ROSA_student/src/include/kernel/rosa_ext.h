@@ -45,4 +45,9 @@ extern void contextSave(void);
 extern void contextSaveFromISR(void);
 extern void contextRestoreFromISR(void);
 
+//Assisting functions for handling the ready queue
+extern tcb * readyQueueSearch(void);
+extern int readyQueueInsert(ROSA_taskHandle_t pth);
+extern int readyQueueExtract(ROSA_taskHandle_t pth);
+
 #endif /* rosa_EXT_H_ */

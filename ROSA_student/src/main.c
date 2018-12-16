@@ -263,18 +263,18 @@ int main(void)
 	ROSA_init();
 	
 	//Create tasks and install them into the ROSA kernel
-	ROSA_taskCreate(&t1_tcb, "tsk1", task1, T1_STACK_SIZE, 1);
-	ROSA_taskCreate(&t2_tcb, "tsk2", task2, T2_STACK_SIZE, 2);
-	ROSA_taskCreate(&t3_tcb, "tsk3", task3, T3_STACK_SIZE, 3);
-	ROSA_taskCreate(&t4_tcb, "tsk4", task4, T4_STACK_SIZE, 4);
-	ROSA_taskCreate(&t5_tcb, "tsk5", task5, T5_STACK_SIZE, 5);
-	ROSA_taskCreate(&t6_tcb, "tsk6", task6, T6_STACK_SIZE, 6);
-	ROSA_taskCreate(&t7_tcb, "tsk7", task7, T7_STACK_SIZE, 7);
-	ROSA_taskCreate(&t8_tcb, "tsk8", task8, T8_STACK_SIZE, 8);
-	ROSA_taskCreate(&t9_tcb, "tsk9", task9, T9_STACK_SIZE, 9);
-	ROSA_taskCreate(&t10_tcb, "tsk10", task10, T10_STACK_SIZE, 10);
-	ROSA_taskCreate(&t11_tcb, "tsk11", task11, T11_STACK_SIZE, 11);
-	ROSA_taskCreate(&t12_tcb, "tsk12", task12, T12_STACK_SIZE, 12);
+	ROSA_taskCreate(t1_tcb, "tsk1", task1, T1_STACK_SIZE, 1);
+	ROSA_taskCreate(t2_tcb, "tsk2", task2, T2_STACK_SIZE, 2);
+	ROSA_taskCreate(t3_tcb, "tsk3", task3, T3_STACK_SIZE, 3);
+	ROSA_taskCreate(t4_tcb, "tsk4", task4, T4_STACK_SIZE, 4);
+	ROSA_taskCreate(t5_tcb, "tsk5", task5, T5_STACK_SIZE, 5);
+	ROSA_taskCreate(t6_tcb, "tsk6", task6, T6_STACK_SIZE, 6);
+	ROSA_taskCreate(t7_tcb, "tsk7", task7, T7_STACK_SIZE, 7);
+	ROSA_taskCreate(t8_tcb, "tsk8", task8, T8_STACK_SIZE, 8);
+	ROSA_taskCreate(t9_tcb, "tsk9", task9, T9_STACK_SIZE, 9);
+	ROSA_taskCreate(t10_tcb, "tsk10", task10, T10_STACK_SIZE, 10);
+	ROSA_taskCreate(t11_tcb, "tsk11", task11, T11_STACK_SIZE, 11);
+	ROSA_taskCreate(t12_tcb, "tsk12", task12, T12_STACK_SIZE, 12);
 	
 	ROSA_semaphoreCreate(&mutex1, 1);
 	ROSA_semaphoreCreate(&mutex2, 1);

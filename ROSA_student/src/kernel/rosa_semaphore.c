@@ -15,16 +15,13 @@
 #include "kernel/rosa_tim.h"
 #include "kernel/rosa_scheduler.h"
 #include "kernel/rosa_semaphore.h"
+#include "kernel/rosa_ext.h"
 
 //Driver includes
 #include "drivers/button.h"
 #include "drivers/led.h"
 #include "drivers/pot.h"
 #include "drivers/usart.h"
-
-//Assisting functions for handling the ready queue
-extern int readyQueueInsert(ROSA_taskHandle_t ** pth);
-extern int readyQueueExtract(ROSA_taskHandle_t ** pth);
 
 /***********************************************************
  * Global variable that contain the list of Semaphores that
@@ -125,9 +122,9 @@ int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t  mutex) {
 	mutex->holder = EXECTASK;
 	if (EXECTASK->priority < mutex->ceiling)
 	{
-		readyQueueExtract(&EXECTASK);
+		readyQueueExtract(EXECTASK);
 		EXECTASK->priority=mutex->ceiling; //IPCP priority inheritance		
-		readyQueueInsert(&EXECTASK);
+		readyQueueInsert(EXECTASK);
 	}
 		
 	if (LOCKEDSEMAPHORELIST==NULL)
@@ -170,9 +167,9 @@ int16_t ROSA_semaphoreUnlock(ROSA_semaphoreHandle_t  mutex) {
 		}
 		it->nextLockedSemaphore=mutex->nextLockedSemaphore;
 	}
-	readyQueueExtract(&EXECTASK);
+	readyQueueExtract(EXECTASK);
 	EXECTASK->priority=EXECTASK->originalPriority; //IPCP priority inheritance
-	readyQueueInsert(&EXECTASK);
+	readyQueueInsert(EXECTASK);
 	
 	return 0;
 }

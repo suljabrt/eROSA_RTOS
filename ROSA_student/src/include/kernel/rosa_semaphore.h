@@ -25,7 +25,7 @@
 	///@{
 
 typedef struct ROSA_semaphoreHandle_record_t {
-	ROSA_taskHandle_t *holder; 
+	ROSA_taskHandle_t holder; 
 	uint8_t ceiling;
 	struct ROSA_semaphoreHandle_record_t * nextLockedSemaphore;
 } ROSA_semaphoreHandle;

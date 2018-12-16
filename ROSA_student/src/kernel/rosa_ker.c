@@ -63,18 +63,18 @@
     @brief Global variable that contains the list of TCB's that
 	have been installed into the kernel with ROSA_tcbInstall().
 */
-tcb * TCBLIST;
+ROSA_taskHandle_t TCBLIST;
 
 /** @var tcb * EXECTASK 
     @brief Global variable that contains the current running TCB.
 */
-tcb * EXECTASK;
+ROSA_taskHandle_t EXECTASK;
 
 /** @var tcb * EXECTASK 
     @brief Global variable that contains the TCB,
 	which preempts the current running task.
 */
-tcb * PREEMPTASK;
+ROSA_taskHandle_t PREEMPTASK;
 
 /** @var tcb IDLETASK_TCB
 	@brief Idle task's tcb
@@ -85,7 +85,7 @@ tcb IDLETASK_TCB;
     @brief Global variable that contains the idle task's TCB,
 	which preempts the current running task.
 */
-tcb * IDLETASK;
+ROSA_taskHandle_t IDLETASK;
 
 /** @var static int idle_stack[IDLE_STACK_SIZE]
 	@brief Idle task's stack.
@@ -95,7 +95,7 @@ static int idle_stack[IDLE_STACK_SIZE];
 /** @var ROSA_taskHandle_t * PA[MAXNPRIO] 
     @brief Global array of pointers to the priority queue of the running tasks.
 */
-ROSA_taskHandle_t * PA[MAXNPRIO];
+ROSA_taskHandle_t PA[MAXNPRIO];
 
 /** @fn void idle(void)
 	@brief Idle task body.
@@ -122,26 +122,26 @@ void idleCreate(void)
 	@param th Task structure (tcb structure).
 	@return A status code (1 - item has been added to the empty queue, 0 - otherwise).
 */
-int readyQueueInsert(ROSA_taskHandle_t * pth)
+int readyQueueInsert(ROSA_taskHandle_t pth)
 {
 	uint8_t priority;
 	int retval;
 	
-	priority = (*pth)->priority;
+	priority = pth->priority;
 	
 	/* Check the given queue for the emptiness */
 	if (PA[priority] == NULL)
 	{
-		PA[priority] = *pth;
-		PA[priority]->nexttcb = *pth;
+		PA[priority] = pth;
+		PA[priority]->nexttcb = pth;
 		
 		retval = 1;
 	}
 	else
 	{
-		(*pth)->nexttcb = PA[priority]->nexttcb;
-		PA[priority]->nexttcb = *pth;
-		PA[priority] = *pth;
+		pth->nexttcb = PA[priority]->nexttcb;
+		PA[priority]->nexttcb = pth;
+		PA[priority] = pth;
 		
 		retval = 0;
 	}
@@ -154,17 +154,17 @@ int readyQueueInsert(ROSA_taskHandle_t * pth)
 	@param th Task structure (tcb structure).
 	@return A status code (1 - queue is empty after extraction, 0 - otherwise).
 */
-int readyQueueExtract(ROSA_taskHandle_t * pth)
+int readyQueueExtract(ROSA_taskHandle_t pth)
 {
 	ROSA_taskHandle_t thTmp;
 	uint8_t priority;
 	int retval;
 	
-	priority = (*pth)->priority;
+	priority = pth->priority;
 	thTmp = PA[priority];
 	
 	/* Check whether the deleted task is the last in the queue or not */
-	if ((*pth)->nexttcb == *pth) 
+	if (pth->nexttcb == pth) 
 	{
 		/* It's enough to extract the deleted task from the queue */
 		PA[priority] = NULL;
@@ -174,19 +174,19 @@ int readyQueueExtract(ROSA_taskHandle_t * pth)
 	else 
 	{
 		/* Search for delete task */
-		while (thTmp->nexttcb != (*pth)) 
+		while (thTmp->nexttcb != pth) 
 		{
 			thTmp = thTmp->nexttcb;
 		}
 		
 		/* Check whether the PA[priority] points to the deleted task or not */
-		if (PA[priority] == *pth)
+		if (PA[priority] == pth)
 		{
 			/* Move PA[priority] pointer to the previous task in the queue */ 
 			PA[priority] = thTmp;
 		}
 		
-		thTmp->nexttcb = (*pth)->nexttcb;
+		thTmp->nexttcb = pth->nexttcb;
 		
 		retval = 0;
 	}
@@ -198,7 +198,7 @@ int readyQueueExtract(ROSA_taskHandle_t * pth)
 	@brief Search for the first non-empty highest priority queue.
 	@return Pointer to the last tcb in the queue (in other words - PA[i]).
 */
-tcb * readyQueueSearch(void)
+ROSA_taskHandle_t readyQueueSearch(void)
 {
 	int i = MAXNPRIO;
 	tcb * rettcb;
@@ -319,7 +319,7 @@ int16_t ROSA_taskCreate(ROSA_taskHandle_t * pth, char * id, void* taskFunction, 
 	
 	tcbStack = (int *) calloc(stackSize, sizeof(uint32_t)); 
 	
-	*pth = (ROSA_taskHandle_t *) malloc(sizeof(ROSA_taskHandle_t));			
+	*pth = (ROSA_taskHandle_t) malloc(sizeof(ROSA_taskHandle_t));			
 	(*pth)->priority = priority;
 	(*pth)->delay = 0;
 	(*pth)->counter = 0;
@@ -327,7 +327,7 @@ int16_t ROSA_taskCreate(ROSA_taskHandle_t * pth, char * id, void* taskFunction, 
 	
 	ROSA_tcbCreate(*pth, id, taskFunction, tcbStack, stackSize);
 	
-	readyQueueInsert(pth);
+	readyQueueInsert(*pth);
 	
 	if (EXECTASK != NULL) {
 		if (EXECTASK->priority < priority) {
@@ -349,7 +349,7 @@ int16_t ROSA_taskDelete(ROSA_taskHandle_t * pth)
 	//ASSERT_MEM_ALLOC(*pth);
 	
 	/* Extract task from its queue */
-	isEmpty = readyQueueExtract(pth);
+	isEmpty = readyQueueExtract(*pth);
 	
 	/* Check for itself deletion */
 	if (EXECTASK == (*pth))

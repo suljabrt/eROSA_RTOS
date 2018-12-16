@@ -97,7 +97,7 @@ extern int timerRC;
 /** @var ROSA_taskHandle_t * DELAYQUEUE 
     @brief Pointer to the first task in the queue of delayed tasks.
 */
-extern ROSA_taskHandle_t * DELAYQUEUE;
+extern ROSA_taskHandle_t DELAYQUEUE;
 
 /** @var uint64_t systemTick
     @brief Global variable with the current number of system ticks.

@@ -32,16 +32,12 @@
 #include "kernel/rosa_ker.h"
 #include "kernel/rosa_tim.h"
 #include "drivers/led.h"
+#include "kernel/rosa_ext.h"
 
 
-ROSA_taskHandle_t * DELAYQUEUE;
+ROSA_taskHandle_t DELAYQUEUE;
 
 uint64_t systemTick;
-
-//Assisting functions for handling the ready queue
-extern tcb * readyQueueSearch(void);
-extern int readyQueueInsert(ROSA_taskHandle_t ** pth);
-extern int readyQueueExtract(ROSA_taskHandle_t ** pth);
 
 
 /************************************************************************/
@@ -53,35 +49,35 @@ extern int readyQueueExtract(ROSA_taskHandle_t ** pth);
 /* param deadline: integer with the number of ticks at which the task	*/
 /* needs to be woken up													*/
 /************************************************************************/
-int insertDelayQueue(ROSA_taskHandle_t ** pth, uint64_t deadline)
+int insertDelayQueue(ROSA_taskHandle_t pth, uint64_t deadline)
 {
-	(*pth)->delay = deadline;
+	pth->delay = deadline;
 	
 	if (DELAYQUEUE == NULL) {
-		DELAYQUEUE = *pth;
+		DELAYQUEUE = pth;
 		DELAYQUEUE->nexttcb = NULL;
 		return 0;
 	}
 	
-	ROSA_taskHandle_t * next = DELAYQUEUE;
-	ROSA_taskHandle_t * prev;
+	ROSA_taskHandle_t next = DELAYQUEUE;
+	ROSA_taskHandle_t prev;
 
 	// While the next task in the list has an earlier deadline or higher priority and an equal deadline, move down the list
-	while (next->delay <= (*pth)->delay || (next->priority >= (*pth)->priority && next->delay == (*pth)->delay))
+	while (next->delay <= pth->delay || (next->priority >= pth->priority && next->delay == pth->delay))
 	{
 		prev = next;
 		next = next->nexttcb;
 		
 		// Reach the end of the list
 		if (next == NULL) {
-			prev->nexttcb = *pth;
-			(*pth)->nexttcb = NULL;
+			prev->nexttcb = pth;
+			pth->nexttcb = NULL;
 			return 0;
 		}
 	}
 	
-	(*pth)->nexttcb = next;
-	prev->nexttcb = *pth;
+	pth->nexttcb = next;
+	prev->nexttcb = pth;
 	return 0;
 }
 
@@ -91,7 +87,7 @@ int insertDelayQueue(ROSA_taskHandle_t ** pth, uint64_t deadline)
 /* Removes the given task from the delay queue							*/
 /* Param pth: pointer to the task to be removed from the delay queue	*/
 /************************************************************************/
-int removeDelayQueue(ROSA_taskHandle_t ** pth)
+int removeDelayQueue(ROSA_taskHandle_t pth)
 {
 	// If there are no tasks in the delay queue, return error code -1
 	if (DELAYQUEUE == NULL)
@@ -99,20 +95,20 @@ int removeDelayQueue(ROSA_taskHandle_t ** pth)
 		return -1;
 	}
 	// If there is only one task in the status queue and this is pth, remove it from the queue
-	if (DELAYQUEUE->id == (*pth)->id)
+	if (DELAYQUEUE->id == pth->id)
 	{
 		if (DELAYQUEUE->nexttcb == NULL)
 		{
 			DELAYQUEUE = NULL; // Task was the only one in the list
 			} else {
-			DELAYQUEUE = (*pth)->nexttcb;
+			DELAYQUEUE = pth->nexttcb;
 		}
 		return 0;
 	}
 	// Else, find the task before pth and point it to the task after pth, removing it
-	ROSA_taskHandle_t * next = DELAYQUEUE;
-	ROSA_taskHandle_t * prev;
-	while (next->id != (*pth)->id)
+	ROSA_taskHandle_t next = DELAYQUEUE;
+	ROSA_taskHandle_t prev;
+	while (next->id != pth->id)
 	{
 		prev = next;
 		next = next->nexttcb;
@@ -138,8 +134,8 @@ void timerISR(void)
 	interruptDisable();
 	int sr;
 	volatile avr32_tc_t * tc = &AVR32_TC;
-	ROSA_taskHandle_t * tmptsk;
-	ROSA_taskHandle_t * tmp;
+	ROSA_taskHandle_t tmptsk;
+	ROSA_taskHandle_t tmp;
 	bool interruptTask;
 	
 	//Read the timer status register to determine if this is a valid interrupt
@@ -152,9 +148,9 @@ void timerISR(void)
 		while (DELAYQUEUE != NULL && DELAYQUEUE->delay <= systemTick)
 		{
 			tmptsk = DELAYQUEUE;
-			removeDelayQueue(&DELAYQUEUE);
+			removeDelayQueue(DELAYQUEUE);
 			tmptsk->delay = 0;
-			readyQueueInsert(&tmptsk);
+			readyQueueInsert(tmptsk);
 			interruptTask = true;
 		}
 		if (interruptTask)
@@ -190,8 +186,8 @@ uint64_t ROSA_getTickCount()
 /************************************************************************/
 int16_t ROSA_delay(uint64_t ticks)
 {
-	readyQueueExtract(&EXECTASK);
-	insertDelayQueue(&EXECTASK, ROSA_getTickCount() + ticks);
+	readyQueueExtract(EXECTASK);
+	insertDelayQueue(EXECTASK, ROSA_getTickCount() + ticks);
 	tcb * tmp = readyQueueSearch();
 	if (tmp->priority >= 0)
 	{

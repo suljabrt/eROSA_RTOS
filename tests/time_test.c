@@ -67,12 +67,12 @@ ROSA_taskHandle_t * t10_tcb;
 ROSA_taskHandle_t * t11_tcb;
 ROSA_taskHandle_t * t12_tcb;
 
-ROSA_semaphoreHandle_t * mutex1;
-ROSA_semaphoreHandle_t * mutex2;
-ROSA_semaphoreHandle_t * mutex3;
-ROSA_semaphoreHandle_t * mutex4;
-ROSA_semaphoreHandle_t * mutex5;
-ROSA_semaphoreHandle_t * mutex6;
+ROSA_semaphoreHandle_t mutex1;
+ROSA_semaphoreHandle_t mutex2;
+ROSA_semaphoreHandle_t mutex3;
+ROSA_semaphoreHandle_t mutex4;
+ROSA_semaphoreHandle_t mutex5;
+ROSA_semaphoreHandle_t mutex6;
 
 /*************************************************************
  * Task 1
@@ -81,10 +81,10 @@ ROSA_semaphoreHandle_t * mutex6;
 void task1(void)
 {
 	while(1) {
-		ROSA_semaphoreLock(&mutex1);
+		ROSA_semaphoreLock(mutex1);
 		ledOn(LED0_GPIO);
 		ROSA_delay(511);
-		ROSA_semaphoreUnlock(&mutex1);
+		ROSA_semaphoreUnlock(mutex1);
 		ROSA_yield();
 	}
 }
@@ -96,10 +96,10 @@ void task1(void)
 void task2(void)
 {
 	while(1) {
-		ROSA_semaphoreLock(&mutex1);
+		ROSA_semaphoreLock(mutex1);
 		ledOff(LED0_GPIO);
 		ROSA_delay(510);
-		ROSA_semaphoreUnlock(&mutex1);
+		ROSA_semaphoreUnlock(mutex1);
 		ROSA_yield();
 	}
 }
@@ -111,10 +111,10 @@ void task2(void)
 void task3(void)
 {
 	while(1) {
-		ROSA_semaphoreLock(&mutex2);
+		ROSA_semaphoreLock(mutex2);
 		ledOn(LED1_GPIO);
 		ROSA_delay(509);
-		ROSA_semaphoreUnlock(&mutex2);
+		ROSA_semaphoreUnlock(mutex2);
 		ROSA_yield();
 	}
 }
@@ -126,10 +126,10 @@ void task3(void)
 void task4(void)
 {
 	while(1) {
-		ROSA_semaphoreLock(&mutex2);
+		ROSA_semaphoreLock(mutex2);
 		ledOff(LED1_GPIO);
 		ROSA_delay(508);
-		ROSA_semaphoreUnlock(&mutex2);
+		ROSA_semaphoreUnlock(mutex2);
 		ROSA_yield();
 	}
 }
@@ -141,10 +141,10 @@ void task4(void)
 void task5(void)
 {
 	while(1) {
-		ROSA_semaphoreLock(&mutex3);
+		ROSA_semaphoreLock(mutex3);
 		ledOn(LED2_GPIO);
 		ROSA_delay(507);
-		ROSA_semaphoreUnlock(&mutex3);
+		ROSA_semaphoreUnlock(mutex3);
 		ROSA_yield();
 	}
 }
@@ -156,10 +156,10 @@ void task5(void)
 void task6(void)
 {
 	while(1) {
-		ROSA_semaphoreLock(&mutex3);
+		ROSA_semaphoreLock(mutex3);
 		ledOff(LED2_GPIO);
 		ROSA_delay(506);
-		ROSA_semaphoreUnlock(&mutex3);
+		ROSA_semaphoreUnlock(mutex3);
 		ROSA_yield();
 	}
 }
@@ -171,10 +171,10 @@ void task6(void)
 void task7(void)
 {
 	while(1) {
-		ROSA_semaphoreLock(&mutex4);
+		ROSA_semaphoreLock(mutex4);
 		ledOn(LED3_GPIO);
 		ROSA_delay(505);
-		ROSA_semaphoreUnlock(&mutex4);
+		ROSA_semaphoreUnlock(mutex4);
 		ROSA_yield();
 	}
 }
@@ -186,10 +186,10 @@ void task7(void)
 void task8(void)
 {
 	while(1) {
-		ROSA_semaphoreLock(&mutex4);
+		ROSA_semaphoreLock(mutex4);
 		ledOff(LED3_GPIO);
 		ROSA_delay(504);
-		ROSA_semaphoreUnlock(&mutex4);
+		ROSA_semaphoreUnlock(mutex4);
 		ROSA_yield();
 	}
 }
@@ -201,10 +201,10 @@ void task8(void)
 void task9(void)
 {
 	while(1) {
-		ROSA_semaphoreLock(&mutex5);
+		ROSA_semaphoreLock(mutex5);
 		ledOn(LED4_GPIO);
 		ROSA_delay(503);
-		ROSA_semaphoreUnlock(&mutex5);
+		ROSA_semaphoreUnlock(mutex5);
 		ROSA_yield();
 	}
 }
@@ -216,10 +216,10 @@ void task9(void)
 void task10(void)
 {
 	while(1) {
-		ROSA_semaphoreLock(&mutex5);
+		ROSA_semaphoreLock(mutex5);
 		ledOff(LED4_GPIO);
 		ROSA_delay(502);
-		ROSA_semaphoreUnlock(&mutex5);
+		ROSA_semaphoreUnlock(mutex5);
 		ROSA_yield();
 	}
 }
@@ -231,10 +231,10 @@ void task10(void)
 void task11(void)
 {
 	while(1) {
-		ROSA_semaphoreLock(&mutex6);
+		ROSA_semaphoreLock(mutex6);
 		ledOn(LED5_GPIO);
 		ROSA_delay(501);
-		ROSA_semaphoreUnlock(&mutex6);
+		ROSA_semaphoreUnlock(mutex6);
 		ROSA_yield();
 	}
 }
@@ -246,10 +246,10 @@ void task11(void)
 void task12(void)
 {
 	while(1) {
-		ROSA_semaphoreLock(&mutex6);
+		ROSA_semaphoreLock(mutex6);
 		ledOff(LED5_GPIO);
 		ROSA_delay(500);
-		ROSA_semaphoreUnlock(&mutex6);
+		ROSA_semaphoreUnlock(mutex6);
 		ROSA_yield();
 	}
 }
@@ -263,25 +263,25 @@ int main(void)
 	ROSA_init();
 	
 	//Create tasks and install them into the ROSA kernel
-	ROSA_taskCreate(&t1_tcb, "tsk1", task1, T1_STACK_SIZE, 1);
-	ROSA_taskCreate(&t2_tcb, "tsk2", task2, T2_STACK_SIZE, 2);
-	ROSA_taskCreate(&t3_tcb, "tsk3", task3, T3_STACK_SIZE, 3);
-	ROSA_taskCreate(&t4_tcb, "tsk4", task4, T4_STACK_SIZE, 4);
-	ROSA_taskCreate(&t5_tcb, "tsk5", task5, T5_STACK_SIZE, 5);
-	ROSA_taskCreate(&t6_tcb, "tsk6", task6, T6_STACK_SIZE, 6);
-	ROSA_taskCreate(&t7_tcb, "tsk7", task7, T7_STACK_SIZE, 7);
-	ROSA_taskCreate(&t8_tcb, "tsk8", task8, T8_STACK_SIZE, 8);
-	ROSA_taskCreate(&t9_tcb, "tsk9", task9, T9_STACK_SIZE, 9);
-	ROSA_taskCreate(&t10_tcb, "tsk10", task10, T10_STACK_SIZE, 10);
-	ROSA_taskCreate(&t11_tcb, "tsk11", task11, T11_STACK_SIZE, 11);
-	ROSA_taskCreate(&t12_tcb, "tsk12", task12, T12_STACK_SIZE, 12);
+	ROSA_taskCreate(t1_tcb, "tsk1", task1, T1_STACK_SIZE, 1);
+	ROSA_taskCreate(t2_tcb, "tsk2", task2, T2_STACK_SIZE, 2);
+	ROSA_taskCreate(t3_tcb, "tsk3", task3, T3_STACK_SIZE, 3);
+	ROSA_taskCreate(t4_tcb, "tsk4", task4, T4_STACK_SIZE, 4);
+	ROSA_taskCreate(t5_tcb, "tsk5", task5, T5_STACK_SIZE, 5);
+	ROSA_taskCreate(t6_tcb, "tsk6", task6, T6_STACK_SIZE, 6);
+	ROSA_taskCreate(t7_tcb, "tsk7", task7, T7_STACK_SIZE, 7);
+	ROSA_taskCreate(t8_tcb, "tsk8", task8, T8_STACK_SIZE, 8);
+	ROSA_taskCreate(t9_tcb, "tsk9", task9, T9_STACK_SIZE, 9);
+	ROSA_taskCreate(t10_tcb, "tsk10", task10, T10_STACK_SIZE, 10);
+	ROSA_taskCreate(t11_tcb, "tsk11", task11, T11_STACK_SIZE, 11);
+	ROSA_taskCreate(t12_tcb, "tsk12", task12, T12_STACK_SIZE, 12);
 	
-	ROSA_semaphoreCreate(&mutex1, 2);
-	ROSA_semaphoreCreate(&mutex2, 4);
-	ROSA_semaphoreCreate(&mutex3, 6);
-	ROSA_semaphoreCreate(&mutex4, 8);
-	ROSA_semaphoreCreate(&mutex5, 10);
-	ROSA_semaphoreCreate(&mutex6, 12);
+	ROSA_semaphoreCreate(&mutex1, 1);
+	ROSA_semaphoreCreate(&mutex2, 1);
+	ROSA_semaphoreCreate(&mutex3, 1);
+	ROSA_semaphoreCreate(&mutex4, 1);
+	ROSA_semaphoreCreate(&mutex5, 1);
+	ROSA_semaphoreCreate(&mutex6, 1);
 
 	ROSA_startScheduler();
 
