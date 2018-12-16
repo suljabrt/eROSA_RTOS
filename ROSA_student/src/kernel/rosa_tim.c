@@ -44,6 +44,87 @@ extern int readyQueueInsert(ROSA_taskHandle_t ** pth);
 extern int readyQueueExtract(ROSA_taskHandle_t ** pth);
 
 
+/************************************************************************/
+/* insertDelayQueue()													*/
+/*																		*/
+/* Inserts the given task into the delay queue, before any tasks with	*/
+/* a later deadline or lower priority									*/
+/* param pth: pointer to the task to be inserted in the delay queue		*/
+/* param deadline: integer with the number of ticks at which the task	*/
+/* needs to be woken up													*/
+/************************************************************************/
+int insertDelayQueue(ROSA_taskHandle_t ** pth, uint64_t deadline)
+{
+	(*pth)->delay = deadline;
+	
+	if (DELAYQUEUE == NULL) {
+		DELAYQUEUE = *pth;
+		DELAYQUEUE->nexttcb = NULL;
+		return 0;
+	}
+	
+	ROSA_taskHandle_t * next = DELAYQUEUE;
+	ROSA_taskHandle_t * prev;
+
+	// While the next task in the list has an earlier deadline or higher priority and an equal deadline, move down the list
+	while (next->delay <= (*pth)->delay || (next->priority >= (*pth)->priority && next->delay == (*pth)->delay))
+	{
+		prev = next;
+		next = next->nexttcb;
+		
+		// Reach the end of the list
+		if (next == NULL) {
+			prev->nexttcb = *pth;
+			(*pth)->nexttcb = NULL;
+			return 0;
+		}
+	}
+	
+	(*pth)->nexttcb = next;
+	prev->nexttcb = *pth;
+	return 0;
+}
+
+/************************************************************************/
+/* removeDelayQueue()													*/
+/*																		*/
+/* Removes the given task from the delay queue							*/
+/* Param pth: pointer to the task to be removed from the delay queue	*/
+/************************************************************************/
+int removeDelayQueue(ROSA_taskHandle_t ** pth)
+{
+	// If there are no tasks in the delay queue, return error code -1
+	if (DELAYQUEUE == NULL)
+	{
+		return -1;
+	}
+	// If there is only one task in the status queue and this is pth, remove it from the queue
+	if (DELAYQUEUE->id == (*pth)->id)
+	{
+		if (DELAYQUEUE->nexttcb == NULL)
+		{
+			DELAYQUEUE = NULL; // Task was the only one in the list
+			} else {
+			DELAYQUEUE = (*pth)->nexttcb;
+		}
+		return 0;
+	}
+	// Else, find the task before pth and point it to the task after pth, removing it
+	ROSA_taskHandle_t * next = DELAYQUEUE;
+	ROSA_taskHandle_t * prev;
+	while (next->id != (*pth)->id)
+	{
+		prev = next;
+		next = next->nexttcb;
+		if(next == NULL)
+		{
+			return -1; //Task is not in the list, so return error code -1
+		}
+	}
+	prev->nexttcb = next->nexttcb;
+	next->nexttcb = NULL;
+	return 0;
+}
 
 /***********************************************************
  * timerInterruptHandler
@@ -122,6 +203,25 @@ int16_t ROSA_delay(uint64_t ticks)
 	return 0;
 }
 
+/************************************************************************/
+/* ROSA_delayUntil()													*/
+/*																		*/
+/* Suspends the calling task for the given number of ticks				*/
+/************************************************************************/
+int16_t ROSA_delayUntil(uint64_t* lastWakeTime, uint64_t ticks)
+{
+	return ROSA_delayAbsolute(*lastWakeTime + ticks);
+}
+
+/************************************************************************/
+/* ROSA_delayAbsolute()													*/
+/*																		*/
+/* Suspends the calling task until the given number of ticks			*/
+/************************************************************************/
+int16_t ROSA_delayAbsolute(uint64_t ticks)
+{
+	return ROSA_delay(ticks - ROSA_getTickCount());
+}
 
 /***********************************************************
  * timerPeriodSet
@@ -140,82 +240,4 @@ int timerPeriodSet(unsigned int ms)
 	timerPrescaleSet(prescale);
 	timerRCSet(rc);
 	return rc * prescale / FOSC0;
-}
-
-/************************************************************************/
-/* insertDelayQueue()													*/
-/*																		*/
-/* Inserts the given task into the delay queue, before any tasks with	*/
-/* a later deadline or lower priority									*/
-/************************************************************************/
-int insertDelayQueue(ROSA_taskHandle_t ** pth, uint64_t deadline)
-{
-	(*pth)->delay = deadline;
-	
-	if (DELAYQUEUE == NULL) {
-		DELAYQUEUE = *pth;
-		DELAYQUEUE->nexttcb = NULL;
-		return 0;
-	}
-	
-	ROSA_taskHandle_t * next = DELAYQUEUE;
-	ROSA_taskHandle_t * prev;
-
-	// While the next task in the list has an earlier deadline or higher priority and an equal deadline, move down the list
-	while (next->delay <= (*pth)->delay || (next->priority >= (*pth)->priority && next->delay == (*pth)->delay))
-	{
-		prev = next;
-		next = next->nexttcb;
-		
-		// Reach the end of the list
-		if (next == NULL) {
-			prev->nexttcb = *pth;
-			(*pth)->nexttcb = NULL;
-			return 0;
-		}
-	}
-	
-	(*pth)->nexttcb = next;
-	prev->nexttcb = *pth;
-	return 0;
-}
-
-/************************************************************************/
-/* removeDelayQueue()													*/
-/*																		*/
-/* Removes the given task from the delay queue							*/
-/************************************************************************/
-int removeDelayQueue(ROSA_taskHandle_t ** pth)
-{
-	// If there are no tasks in the delay queue, return error code -1
-	if (DELAYQUEUE == NULL)
-	{
-		return -1;
-	}
-	// If there is only one task in the status queue and this is pth, remove it from the queue
-	if (DELAYQUEUE->id == (*pth)->id)
-	{
-		if (DELAYQUEUE->nexttcb == NULL)
-		{
-			DELAYQUEUE = NULL; // Task was the only one in the list
-		} else {
-			DELAYQUEUE = (*pth)->nexttcb;
-		}
-		return 0;
-	}
-	// Else, find the task before pth and point it to the task after pth, removing it
-	ROSA_taskHandle_t * next = DELAYQUEUE;
-	ROSA_taskHandle_t * prev;
-	while (next->id != (*pth)->id)
-	{
-		prev = next;
-		next = next->nexttcb;
-		if(next == NULL)
-		{
-			return -1; //Task is not in the list, so return error code -1
-		}
-	}
-	prev->nexttcb = next->nexttcb;
-	next->nexttcb = NULL;
-	return 0;
 }
