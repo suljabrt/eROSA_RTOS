@@ -319,7 +319,7 @@ int16_t ROSA_taskCreate(ROSA_taskHandle_t * pth, char * id, void* taskFunction, 
 	
 	tcbStack = (int *) calloc(stackSize, sizeof(uint32_t)); 
 	
-	*pth = (ROSA_taskHandle_t) malloc(sizeof(ROSA_taskHandle_t));			
+	*pth = (ROSA_taskHandle_t) calloc(1, sizeof(tcb));			
 	(*pth)->priority = priority;
 	(*pth)->delay = 0;
 	(*pth)->counter = 0;
