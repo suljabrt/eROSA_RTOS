@@ -27,7 +27,7 @@
  * Global variable that contain the list of Semaphores that
  * 	that are currently locked
  ***********************************************************/
-ROSA_semaphoreHandle_t  LOCKEDSEMAPHORELIST; //list of pointers to the locked semaphores
+ROSA_semaphoreHandle * LOCKEDSEMAPHORELIST; //list of pointers to the locked semaphores
 
 /***********************************************************
  * MaxLockedCeiling
@@ -45,7 +45,7 @@ static uint8_t MaxLockedCeiling(void)
 	else
 	{
 	uint8_t maxCeil=LOCKEDSEMAPHORELIST->ceiling;
-	ROSA_semaphoreHandle_t it=LOCKEDSEMAPHORELIST;
+	ROSA_semaphoreHandle * it = LOCKEDSEMAPHORELIST;
 	while (it->nextLockedSemaphore!=NULL)
 	{
 		if (it->ceiling>maxCeil)
@@ -67,10 +67,10 @@ static uint8_t MaxLockedCeiling(void)
  *
  **********************************************************/
 int16_t ROSA_semaphoreCreate(ROSA_semaphoreHandle_t * mutex, uint8_t ceiling) {
-	*mutex = (ROSA_semaphoreHandle_t) calloc(1, sizeof(ROSA_semaphoreHandle_t));
-	(*mutex)->holder = NULL;
-	(*mutex)->ceiling = ceiling;
-	(*mutex)->nextLockedSemaphore=NULL;	
+	**mutex = (ROSA_semaphoreHandle *) calloc(1, sizeof(***mutex));
+	(**mutex)->holder = NULL;
+	(**mutex)->ceiling = ceiling;
+	(**mutex)->nextLockedSemaphore=NULL;	
 	
 	return 0;
 }
@@ -81,9 +81,10 @@ int16_t ROSA_semaphoreCreate(ROSA_semaphoreHandle_t * mutex, uint8_t ceiling) {
  * 	Delete a semaphore, if deletion is successful return 0, otherwise -1
  *
  **********************************************************/
-int16_t ROSA_semaphoreDelete(ROSA_semaphoreHandle_t  mutex) {
+int16_t ROSA_semaphoreDelete(ROSA_semaphoreHandle_t mutex) {
 
-	if (mutex->holder == NULL) {					
+	if ((*mutex)->holder == NULL) {					
+		free(*mutex);
 		free(mutex);
 		mutex=NULL;
 		return 0;
@@ -100,7 +101,8 @@ int16_t ROSA_semaphoreDelete(ROSA_semaphoreHandle_t  mutex) {
  *
  **********************************************************/
 int16_t ROSA_semaphorePeek(ROSA_semaphoreHandle_t  mutex) {
-	return (mutex->holder == NULL) ? 1 : 0;
+	if (mutex == NULL) return -1;
+	return ((*mutex)->holder == NULL) ? 1 : 0;
 }
 /***********************************************************
  * ROSA_semaphoreLock
@@ -111,19 +113,19 @@ int16_t ROSA_semaphorePeek(ROSA_semaphoreHandle_t  mutex) {
  **********************************************************/
 int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t  mutex) {
 	
-	if (mutex==NULL)
+	if (*mutex==NULL)
 	{
 		return -1; // if the passed pointer to the semaphore handle is non-existent
 	}
 	
-	while (mutex->holder != NULL || EXECTASK->priority<=MaxLockedCeiling()) //if the semaphore is already locked or IPCP condition P(task)>maxLockedCeil
+	while ((*mutex)->holder != NULL || EXECTASK->priority<=MaxLockedCeiling()) //if the semaphore is already locked or IPCP condition P(task)>maxLockedCeil
 		ROSA_yield();		
 	
-	mutex->holder = EXECTASK;
-	if (EXECTASK->priority < mutex->ceiling)
+	(*mutex)->holder = EXECTASK;
+	if (EXECTASK->priority < (*mutex)->ceiling)
 	{
 		readyQueueExtract(EXECTASK);
-		EXECTASK->priority=mutex->ceiling; //IPCP priority inheritance		
+		EXECTASK->priority=(*mutex)->ceiling; //IPCP priority inheritance		
 		readyQueueInsert(EXECTASK);
 	}
 		
@@ -133,13 +135,16 @@ int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t  mutex) {
 	}
 	else
 	{
-		ROSA_semaphoreHandle_t it; //finding the last semaphore in the list and changing its nextLockedSemaphore field to point to the just locked semaphore
-		it=LOCKEDSEMAPHORELIST;
+		ROSA_semaphoreHandle * it; //finding the last semaphore in the list and changing its nextLockedSemaphore field to point to the just locked semaphore
+		
+		it = LOCKEDSEMAPHORELIST;
+		
 		while(it->nextLockedSemaphore!=NULL)
 		{
 			it=it->nextLockedSemaphore;
 		}
-		it->nextLockedSemaphore=mutex;
+		
+		it->nextLockedSemaphore = *mutex;
 	}
 	
 	return 0;
@@ -152,20 +157,20 @@ int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t  mutex) {
  *
  **********************************************************/
 int16_t ROSA_semaphoreUnlock(ROSA_semaphoreHandle_t  mutex) {
-	mutex->holder = NULL;
-	if (mutex==LOCKEDSEMAPHORELIST)
+	(*mutex)->holder = NULL;
+	if (*mutex == LOCKEDSEMAPHORELIST)
 	{
-		LOCKEDSEMAPHORELIST=mutex->nextLockedSemaphore; //if first locked semaphore needs to be unlocked
+		LOCKEDSEMAPHORELIST = (*mutex)->nextLockedSemaphore; //if first locked semaphore needs to be unlocked
 	}
 	else
 	{
-		ROSA_semaphoreHandle_t it;
+		ROSA_semaphoreHandle * it;
 		it=LOCKEDSEMAPHORELIST;
-		while (it->nextLockedSemaphore!=mutex) //find the locked semaphore before the one that needs to be unlocked
+		while (it->nextLockedSemaphore != *mutex) //find the locked semaphore before the one that needs to be unlocked
 		{
 			it=it->nextLockedSemaphore;
 		}
-		it->nextLockedSemaphore=mutex->nextLockedSemaphore;
+		it->nextLockedSemaphore=(*mutex)->nextLockedSemaphore;
 	}
 	readyQueueExtract(EXECTASK);
 	EXECTASK->priority=EXECTASK->originalPriority; //IPCP priority inheritance

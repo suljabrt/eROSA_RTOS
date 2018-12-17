@@ -30,13 +30,13 @@ typedef struct ROSA_semaphoreHandle_record_t {
 	struct ROSA_semaphoreHandle_record_t * nextLockedSemaphore;
 } ROSA_semaphoreHandle;
 
-typedef ROSA_semaphoreHandle * ROSA_semaphoreHandle_t;
+typedef ROSA_semaphoreHandle ** ROSA_semaphoreHandle_t;
 
 
 /***********************************************************
  * Global variable (doesnt have to be because only LOCK uses it)
  ***********************************************************/
-extern ROSA_semaphoreHandle_t  LOCKEDSEMAPHORELIST;
+extern ROSA_semaphoreHandle *  LOCKEDSEMAPHORELIST;
 	///@}
 
 	/** @defgroup Semaphore managment.

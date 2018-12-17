@@ -10,7 +10,6 @@
 
 #ifdef DBG_MODE
 	#define ASSERT(expr) if (!(expr)) aFailed(__FILE__, __LINE__)
-			
 	#define STATIC_ASSERT(expr) typedef int foo[(expr) ? 1 : -1]
 #else
 	#define ASSERT(expr) ;

@@ -51,6 +51,7 @@ void scheduler(void)
 void ROSA_startScheduler(void)
 {
 	tcb * tmp = readyQueueSearch();	
+	
 	if (EXECTASK == NULL)
 	{
 		TCBLIST = tmp->nexttcb;

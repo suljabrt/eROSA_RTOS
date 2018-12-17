@@ -54,6 +54,13 @@
 #include "drivers/pot.h"
 #include "drivers/usart.h"
 
+/** @def ASSERT_MEM_ALLOC
+	@brief Check for a successful memory allocation.
+*/
+#define ASSERT_MEM_ALLOC(expr) if (expr == NULL) return -1
+
+int ROSA_INIT_GUARD; 
+
 /** @def IDLE_STACK_SIZE
 	@brief Idle task's stack size
 */
@@ -223,37 +230,39 @@ ROSA_taskHandle_t readyQueueSearch(void)
 }
 
 void ROSA_init(void)
-{
+{	
 	int i = 0;
 	systemTick = 0;
-	
-	//Do initialization of I/O drivers
-	ledInit();									//LEDs
-	buttonInit();								//Buttons
-	joystickInit();								//Joystick
-	potInit();									//Potentiometer
-	usartInit(USART, &usart_options, FOSC0);	//Serial communication
 
-	interruptInit();
-	interruptEnable();
-	timerInit(1);
-	timerStart();
+	if (ROSA_INIT_GUARD == 0)
+	{
+		//Do initialization of I/O drivers
+		ledInit();									//LEDs
+		buttonInit();								//Buttons
+		joystickInit();								//Joystick
+		potInit();									//Potentiometer
+		usartInit(USART, &usart_options, FOSC0);	//Serial communication
+
+		interruptInit();
+		interruptEnable();
+		timerInit(1);
+		timerStart();
 	
-	//Start with empty TCBLIST and no EXECTASK.
-	TCBLIST = NULL;
-	EXECTASK = NULL;
-	PREEMPTASK = NULL;
-	LOCKEDSEMAPHORELIST=NULL;
+		//Start with empty TCBLIST and no EXECTASK.
+		TCBLIST = NULL;
+		EXECTASK = NULL;
+		PREEMPTASK = NULL;
+		LOCKEDSEMAPHORELIST=NULL;
 	
-	/* Create idle task. */
-	idleCreate();
+		/* Create idle task. */
+		idleCreate();
 	
-	for (i = 0; i < MAXNPRIO; i++) {
-		PA[i] = NULL;
+		for (i = 0; i < MAXNPRIO; i++) {
+			PA[i] = NULL;
+		}
 	}
 	
-	//Initialize the timer to 1 ms period.
-	
+	ROSA_INIT_GUARD = 1;
 }
 
 void ROSA_tcbCreate(tcb * tcbTask, char tcbName[NAMESIZE], void *tcbFunction, int * tcbStack, int tcbStackSize)
@@ -318,8 +327,16 @@ int16_t ROSA_taskCreate(ROSA_taskHandle_t * pth, char * id, void* taskFunction, 
 	int * tcbStack;
 	
 	tcbStack = (int *) calloc(stackSize, sizeof(uint32_t)); 
-	
-	*pth = (ROSA_taskHandle_t) calloc(1, sizeof(tcb));			
+	ASSERT_MEM_ALLOC(tcbStack);
+		
+	*pth = (ROSA_taskHandle_t) calloc(1, sizeof(tcb));
+	ASSERT_MEM_ALLOC(*pth);
+
+	if (priority > MAXNPRIO - 1)
+	{
+		return -1;
+	}
+
 	(*pth)->priority = priority;
 	(*pth)->delay = 0;
 	(*pth)->counter = 0;
@@ -346,7 +363,12 @@ int16_t ROSA_taskDelete(ROSA_taskHandle_t * pth)
 	/* In this case, we just check, that *pth != NULL, because
 	 * if *pth == NULL, then this task has been already deleted.
 	 */
-	//ASSERT_MEM_ALLOC(*pth);
+	ASSERT_MEM_ALLOC(*pth);
+	
+	if ((*pth)->counter != 0)
+	{
+		return -1;
+	}
 	
 	/* Extract task from its queue */
 	isEmpty = readyQueueExtract(*pth);
