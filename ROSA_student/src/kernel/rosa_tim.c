@@ -58,26 +58,31 @@ int insertDelayQueue(ROSA_taskHandle_t pth, uint64_t deadline)
 		DELAYQUEUE->nexttcb = NULL;
 		return 0;
 	}
+	if (DELAYQUEUE->nexttcb == NULL && DELAYQUEUE->delay > pth->delay) {
+		pth->nexttcb = DELAYQUEUE;
+		DELAYQUEUE = pth;
+		return 0;
+	}
 	
 	ROSA_taskHandle_t next = DELAYQUEUE;
-	ROSA_taskHandle_t prev;
+	ROSA_taskHandle_t * prev;
 
 	// While the next task in the list has an earlier deadline or higher priority and an equal deadline, move down the list
 	while (next->delay <= pth->delay || (next->priority >= pth->priority && next->delay == pth->delay))
 	{
-		prev = next;
+		prev = &next;
 		next = next->nexttcb;
 		
 		// Reach the end of the list
 		if (next == NULL) {
-			prev->nexttcb = pth;
+			(*prev)->nexttcb = pth;
 			pth->nexttcb = NULL;
 			return 0;
 		}
 	}
 	
 	pth->nexttcb = next;
-	prev->nexttcb = pth;
+	(*prev)->nexttcb = pth;
 	return 0;
 }
 
@@ -156,12 +161,21 @@ void timerISR(void)
 		if (interruptTask)
 		{
 			tmp = readyQueueSearch();
-			if (EXECTASK->priority < tmptsk->priority)
+			if(EXECTASK != IDLETASK)
+			{
+				if (EXECTASK->priority < tmp->priority)
+				{
+				PREEMPTASK = tmp->nexttcb;
+				//interruptEnable();
+				ROSA_yieldFromISR();
+				}
+			}
+			else
 			{
 				PREEMPTASK = tmp->nexttcb;
-				interruptEnable();
 				ROSA_yieldFromISR();
 			}
+			
 		}
 	}
 	//timerClearInterrupt(); //Disabled until we know what it actually does
