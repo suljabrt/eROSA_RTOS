@@ -33,6 +33,7 @@ LINKER_SCRIPT_DEP:=
 
 # Every subdirectory with source files must be described here
 SUBDIRS :=  \
+../src/dbg \
 ../doc \
 ../doc/order \
 ../src \
@@ -48,6 +49,7 @@ SUBDIRS :=  \
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS +=  \
+../src/dbg/dbg_assert.c \
 ../src/kernel/rosa_semaphore.c \
 ../src/main.c \
 ../src/kernel/rosa_int.c \
@@ -65,6 +67,7 @@ ASM_SRCS +=
 
 
 OBJS +=  \
+src/dbg/dbg_assert.o \
 src/kernel/rosa_semaphore.o \
 src/main.o \
 src/kernel/rosa_int.o \
@@ -75,6 +78,7 @@ src/kernel/rosa_scheduler.o \
 src/kernel/rosa_tim.o
 
 OBJS_AS_ARGS +=  \
+src/dbg/dbg_assert.o \
 src/kernel/rosa_semaphore.o \
 src/main.o \
 src/kernel/rosa_int.o \
@@ -85,6 +89,7 @@ src/kernel/rosa_scheduler.o \
 src/kernel/rosa_tim.o
 
 C_DEPS +=  \
+src/dbg/dbg_assert.d \
 src/kernel/rosa_semaphore.d \
 src/main.d \
 src/kernel/rosa_int.d \
@@ -95,6 +100,7 @@ src/kernel/rosa_scheduler.d \
 src/kernel/rosa_tim.d
 
 C_DEPS_AS_ARGS +=  \
+src/dbg/dbg_assert.d \
 src/kernel/rosa_semaphore.d \
 src/main.d \
 src/kernel/rosa_int.d \
@@ -119,6 +125,13 @@ LINKER_SCRIPT_DEP+=  \
 
 
 # AVR32/GNU C Compiler
+src/dbg/dbg_assert.o: ../src/dbg/dbg_assert.c
+	@echo Building file: $<
+	@echo Invoking: AVR32/GNU C Compiler : 4.4.7
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr32\avr32-gnu-toolchain\bin\avr32-gcc.exe$(QUOTE)  -x c -I"../src" -I"../src/include" -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\UC3A_DFP\1.0.53\include\AT32UC3A0512"  -O0 -ffunction-sections -masm-addr-pseudos -g3 -Wall -mpart=uc3a0512 -c -c -fmessage-length=0 -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 src/kernel/rosa_semaphore.o: ../src/kernel/rosa_semaphore.c
 	@echo Building file: $<
 	@echo Invoking: AVR32/GNU C Compiler : 4.4.7

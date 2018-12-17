@@ -40,10 +40,7 @@ void scheduler(void)
 	//Find the next task to execute
 	if (PREEMPTASK == NULL) {
 		PA[EXECTASK->priority] = EXECTASK;
-		if (EXECTASK->nexttcb != NULL)
-		{
-			EXECTASK = EXECTASK->nexttcb;
-		}
+		EXECTASK = EXECTASK->nexttcb;
 	}
 	else {
 		EXECTASK = PREEMPTASK;

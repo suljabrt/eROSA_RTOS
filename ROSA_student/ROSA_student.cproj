@@ -190,6 +190,7 @@
   </PropertyGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
   <ItemGroup>
+    <Folder Include="src\dbg" />
     <None Include="AUTHOR">
       <SubType>compile</SubType>
     </None>
@@ -220,6 +221,12 @@
       <SubType>compile</SubType>
     </None>
     <Folder Include="src" />
+    <Compile Include="src\dbg\dbg_assert.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\dbg\dbg_assert.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\include\kernel\rosa_semaphore.h">
       <SubType>compile</SubType>
     </Compile>

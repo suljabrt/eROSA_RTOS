@@ -23,6 +23,9 @@
     along with ROSA.  If not, see <http://www.gnu.org/licenses/>.
 *****************************************************************************/
 /* Tab size: 4 */
+#define DBG_MODE
+
+#include "dbg/dbg_assert.h"
 
 //Standard library includes
 #include <avr32/io.h>
@@ -231,10 +234,14 @@ void task10(void)
 void task11(void)
 {
 	while(1) {
+		usartWriteLine(USART, "task11 Entry\r\n");
 		ROSA_semaphoreLock(mutex6);
+		usartWriteLine(USART, "task11 locked the mutex\r\n");
 		ledOn(LED5_GPIO);
-		ROSA_delay(501);
+		delay_ms(500);
+		//ROSA_delay(501);
 		ROSA_semaphoreUnlock(mutex6);
+		usartWriteLine(USART, "task11 unlocked the mutex\r\n");
 		ROSA_yield();
 	}
 }
@@ -246,9 +253,11 @@ void task11(void)
 void task12(void)
 {
 	while(1) {
+		usartWriteLine(USART, "task11 Entry\r\n");
 		ROSA_semaphoreLock(mutex6);
 		ledOff(LED5_GPIO);
-		ROSA_delay(500);
+		delay_ms(500);
+		//ROSA_delay(500);
 		ROSA_semaphoreUnlock(mutex6);
 		ROSA_yield();
 	}

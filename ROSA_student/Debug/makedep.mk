@@ -2,6 +2,8 @@
 # Automatically-generated file. Do not edit or delete the file
 ################################################################################
 
+src\dbg\dbg_assert.c
+
 src\kernel\rosa_semaphore.c
 
 src\main.c
