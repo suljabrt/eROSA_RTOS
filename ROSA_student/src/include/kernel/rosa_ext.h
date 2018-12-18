@@ -34,7 +34,9 @@
  ***********************************************************/
 extern tcb * TCBLIST;
 extern tcb * EXECTASK;
-
+extern tcb * PREEMPTASK;
+extern tcb * IDLETASK;
+extern tcb * DQ;
 
 /***********************************************************
  * Kernel low level context switch functions

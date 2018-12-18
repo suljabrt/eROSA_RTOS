@@ -37,24 +37,20 @@
 void scheduler(void)
 {
 	//Find the next task to execute
-	if (PREEMPTASK == NULL) {
-		PA[EXECTASK->priority] = EXECTASK;
-		if (EXECTASK->nexttcb != NULL)
-		{
-			EXECTASK = EXECTASK->nexttcb;
-		}
-	}
-	else {
+	if (PREEMPTASK) {
 		EXECTASK = PREEMPTASK;
 		PREEMPTASK = NULL;
 	}
+	else {
+		PA[EXECTASK->priority] = EXECTASK;
+		EXECTASK = EXECTASK->nexttcb;
+	}
 }
 
+extern tcb * readyQueueSearch(void);
+
 void ROSA_startScheduler(void)
-{
-	tcb * tmp = readyQueueSearch();	
-	
-	TCBLIST = tmp->nexttcb;
-	
+{	
+	TCBLIST = ((tcb *) readyQueueSearch())->nexttcb;
 	ROSA_start();
 }

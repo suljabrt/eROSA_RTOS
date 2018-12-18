@@ -116,4 +116,6 @@ int16_t ROSA_taskDelete(ROSA_taskHandle_t ** th);
 extern void ROSA_tcbInstall(tcb *task);
 	///@}
 
+int16_t ROSA_delay(uint64_t ticks);
+
 #endif /* _ROSA_KER_H_ */

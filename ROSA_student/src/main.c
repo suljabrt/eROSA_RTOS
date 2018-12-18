@@ -42,48 +42,23 @@
 
 //Data blocks for the tasks
 #define T1_STACK_SIZE 256
-//static int t1_stack[T1_STACK_SIZE];
-//static tcb t1_tcb;
 ROSA_taskHandle_t * t1_tcb;
 
 #define T2_STACK_SIZE 256
-#define T3_STACK_SIZE 32
-//static int t2_stack[T2_STACK_SIZE];
-//static tcb t2_tcb;
 ROSA_taskHandle_t * t2_tcb;
-ROSA_taskHandle_t * t3_tcb;
-ROSA_taskHandle_t * t4_tcb;
-
-ROSA_semaphoreHandle_t * mutex;
 
 /*************************************************************
  * Task1
  * Blink LED0
  ************************************************************/
 void task1(void)
-{
+{	
 	while(1) {
-		ROSA_delay(2000);
-		ROSA_semaphoreLock(&mutex);
-		ledOn(LED0_GPIO);
-		ROSA_delay(500);
-		ROSA_semaphoreUnlock(&mutex);
-		ROSA_yield();
-	}
-}
-
-/*************************************************************
- * Task 3
- * Idle
- ************************************************************/
-void task3(void)
-{
-	while(1) {
-		ROSA_delay(2000);
-		ROSA_semaphoreLock(&mutex);
-		ledOff(LED0_GPIO);
-		ROSA_delay(500);
-		ROSA_semaphoreUnlock(&mutex);
+		usartWriteLine(USART, "task1\r\n");		
+		ROSA_delay(250);
+		usartWriteLine(USART, "task1 woken up\r\n");
+		ROSA_delay(250);
+		usartWriteLine(USART, "task1 woken up again!\r\n");
 		ROSA_yield();
 	}
 }
@@ -95,12 +70,14 @@ void task3(void)
 void task2(void)
 {
 	while(1) {
-		//ROSA_taskDelete(&t2_tcb);
-		ROSA_yield();
+		usartWriteLine(USART, "task2\r\n");
+		ROSA_delay(250);
+		usartWriteLine(USART, "task2 woken up\r\n");
+		ROSA_delay(250);
+		usartWriteLine(USART, "task2 woken up again!\r\n");
+		ROSA_yield();	
 	}
 }
-
-ROSA_semaphoreHandle_t * mutex;
 
 /*************************************************************
  * Main function
@@ -111,21 +88,11 @@ int main(void)
 	ROSA_init();
 	
 	//Create tasks and install them into the ROSA kernel
-	ROSA_taskCreate(&t1_tcb, "tsk1", task1, T1_STACK_SIZE, 1);
+	ROSA_taskCreate(&t1_tcb, "tsk1", task1, T1_STACK_SIZE, 2);
 	ROSA_taskCreate(&t2_tcb, "tsk2", task2, T2_STACK_SIZE, 1);
-	ROSA_taskCreate(&t3_tcb, "tsk3", task3, T3_STACK_SIZE, 1);
-	ROSA_semaphoreCreate(&mutex, 1);
-	//ledOn(LED1_GPIO);
-/*	ROSA_tcbCreate(&t1_tcb, "tsk1", task1, t1_stack, T1_STACK_SIZE);
-	ROSA_tcbInstall(&t1_tcb);
-	ROSA_tcbCreate(&t2_tcb, "tsk2", task2, t2_stack, T2_STACK_SIZE);
-	ROSA_tcbInstall(&t2_tcb);*/
 
-	//Start the ROSA kernel
-	//TCBLIST = PA[2]->nexttcb;
-	//ROSA_start();
 	ROSA_startScheduler();
-	//ledOn(LED1_GPIO);
+
 	/* Execution will never return here */
 	while(1);
 }

@@ -38,7 +38,6 @@
 
 #include <stdint.h>
 #include <stdlib.h>
-#include <stdbool.h>
 
 //Kernel includes
 #include "kernel/rosa_def.h"
@@ -57,6 +56,7 @@
 	@brief Idle task's stack size
 */
 #define IDLE_STACK_SIZE 32
+#define DLAY_STACK_SIZE 32
 
 /** @var tcb * TCBLIST 
     @brief Global variable that contains the list of TCB's that
@@ -79,22 +79,26 @@ tcb * PREEMPTASK;
 	@brief Idle task's tcb
 */
 tcb IDLETASK_TCB;
+tcb DELHANDL_TCB;
 
 /** @var tcb * IDLETASK 
     @brief Global variable that contains the idle task's TCB,
 	which preempts the current running task.
 */
 tcb * IDLETASK;
+tcb * DELHANDL;
 
 /** @var static int idle_stack[IDLE_STACK_SIZE]
 	@brief Idle task's stack.
 */
 static int idle_stack[IDLE_STACK_SIZE];
+static int dlay_stack[DLAY_STACK_SIZE];
 
 /** @var ROSA_taskHandle_t * PA[MAXNPRIO] 
     @brief Global array of pointers to the priority queue of the running tasks.
 */
-ROSA_taskHandle_t * PA[MAXNPRIO];
+tcb * PA[MAXNPRIO];
+tcb * DQ;
 
 /** @fn void idle(void)
 	@brief Idle task body.
@@ -103,94 +107,40 @@ void idle(void)
 {
 	while(1)
 	{
-		usartWriteLine(USART, "idle\n");
+		//usartWriteLine(USART, "idle\n");
 	}
 }
 
-/** @fn void idleCreate(void)
-	@brief Creation of the idle task.
-*/
-void idleCreate(void)
+/***********************************************************
+ * ROSA_tcbInstall
+ *
+ * Comment:
+ * 	Install the TCB into the TCBLIST.
+ *
+ **********************************************************/
+void ROSA_tcbInstall(tcb * tcbTask)
 {
-	ROSA_tcbCreate(&IDLETASK_TCB, "idle", idle, idle_stack, IDLE_STACK_SIZE);
-	IDLETASK = &IDLETASK_TCB;
+	/* Is this the first tcb installed? */
+	if(TCBLIST == NULL) {
+		TCBLIST = tcbTask;
+		TCBLIST->nexttcb = tcbTask;			//Install the first tcb
+		tcbTask->nexttcb = TCBLIST;			//Make the list circular
+	}
+	else {
+		tcbTask->nexttcb = TCBLIST->nexttcb;
+		TCBLIST->nexttcb = tcbTask;
+		TCBLIST = tcbTask;
+	}
 }
 
-/** @fn int readyQueueInsert(ROSA_taskHandle_t ** th)
-	@brief Inserts the given task into the ready queue by its priority.
-	@param th Task structure (tcb structure).
-	@return A status code (1 - item has been added to the empty queue, 0 - otherwise).
-*/
-int readyQueueInsert(ROSA_taskHandle_t ** pth)
+void ROSA_tcbUninstall(tcb * tcbTask)
 {
-	uint8_t priority;
-	int retval;
+	while (TCBLIST->nexttcb != tcbTask)
+	TCBLIST = TCBLIST->nexttcb;
 	
-	priority = (*pth)->priority;
-	
-	/* Check the given queue for the emptiness */
-	if (PA[priority] == NULL)
-	{
-		PA[priority] = *pth;
-		PA[priority]->nexttcb = *pth;
-		
-		retval = 1;
-	}
-	else
-	{
-		(*pth)->nexttcb = PA[priority]->nexttcb;
-		PA[priority]->nexttcb = *pth;
-		PA[priority] = *pth;
-		
-		retval = 0;
-	}
-	
-	return retval;
-}
-
-/** @fn int readyQueueExtract(ROSA_taskHandle_t ** th)
-	@brief Extracts the given task from the ready queue by its priority.
-	@param th Task structure (tcb structure).
-	@return A status code (1 - queue is empty after extraction, 0 - otherwise).
-*/
-int readyQueueExtract(ROSA_taskHandle_t ** pth)
-{
-	ROSA_taskHandle_t * thTmp;
-	uint8_t priority;
-	int retval;
-	
-	priority = (*pth)->priority;
-	thTmp = PA[priority];
-	
-	/* Check whether the deleted task is the last in the queue or not */
-	if ((*pth)->nexttcb == *pth) 
-	{
-		/* It's enough to extract the deleted task from the queue */
-		PA[priority] = NULL;
-		
-		retval = 1;
-	}
-	else 
-	{
-		/* Search for delete task */
-		while (thTmp->nexttcb != (*pth)) 
-		{
-			thTmp = thTmp->nexttcb;
-		}
-		
-		/* Check whether the PA[priority] points to the deleted task or not */
-		if (PA[priority] == *pth)
-		{
-			/* Move PA[priority] pointer to the previous task in the queue */ 
-			PA[priority] = thTmp;
-		}
-		
-		thTmp->nexttcb = (*pth)->nexttcb;
-		
-		retval = 0;
-	}
-	
-	return retval;
+	TCBLIST->nexttcb = tcbTask->nexttcb;
+	tcbTask->nexttcb = NULL;
+	TCBLIST = TCBLIST->nexttcb;
 }
 
 /** @fn int readyQueueSearch(void)
@@ -200,25 +150,58 @@ int readyQueueExtract(ROSA_taskHandle_t ** pth)
 tcb * readyQueueSearch(void)
 {
 	int i = MAXNPRIO;
+	
 	tcb * rettcb;
 	
 	/* Search for the first non-empty queue. */
-	while ( (PA[--i] == NULL) && (i > 0))
-	{
-		;
-	}
+	while ( (PA[--i] == NULL) && (i > 0));
 		
 	/* Check the PA for emptiness. */
 	if ((i == 0) && (PA[i] == NULL))
-	{
 		rettcb = IDLETASK;
-	}
 	else
-	{
 		rettcb = PA[i];
-	}
 	
 	return rettcb;
+}
+
+void dlay()
+{
+	tcb * tmp;
+	
+	while(1)
+	{	
+		while ((DQ) && (DQ->delay < systemTick))
+		{
+			tmp = DQ;
+			tmp->delay = 0;
+			
+			TCBLIST = DQ;
+			ROSA_tcbUninstall(DQ);
+			DQ = TCBLIST;		
+		
+			TCBLIST = PA[tmp->priority];
+			ROSA_tcbInstall(tmp);
+			PA[tmp->priority] = TCBLIST;
+		}
+
+		PREEMPTASK = readyQueueSearch();
+		ROSA_yield();
+	}
+}
+/** @fn void idleCreate(void)
+	@brief Creation of the idle task.
+*/
+void idleCreate(void)
+{
+	ROSA_tcbCreate(&IDLETASK_TCB, "idle", idle, idle_stack, IDLE_STACK_SIZE);
+	IDLETASK = &IDLETASK_TCB;
+}
+
+void dlayCreate(void)
+{
+	ROSA_tcbCreate(&DELHANDL_TCB, "dlay", dlay, dlay_stack, DLAY_STACK_SIZE);
+	DELHANDL = &DELHANDL_TCB;
 }
 
 void ROSA_init(void)
@@ -245,6 +228,7 @@ void ROSA_init(void)
 	
 	/* Create idle task. */
 	idleCreate();
+	dlayCreate();
 	
 	for (i = 0; i < MAXNPRIO; i++) {
 		PA[i] = NULL;
@@ -283,98 +267,101 @@ void ROSA_tcbCreate(tcb * tcbTask, char tcbName[NAMESIZE], void *tcbFunction, in
 	contextInit(tcbTask);
 }
 
-
-/***********************************************************
- * ROSA_tcbInstall
- *
- * Comment:
- * 	Install the TCB into the TCBLIST.
- *
- **********************************************************/
-void ROSA_tcbInstall(tcb * tcbTask)
-{
-	tcb * tcbTmp;
-
-	/* Is this the first tcb installed? */
-	if(TCBLIST == NULL) {
-		TCBLIST = tcbTask;
-		TCBLIST->nexttcb = tcbTask;			//Install the first tcb
-		tcbTask->nexttcb = TCBLIST;			//Make the list circular
-	}
-	else {
-		tcbTmp = TCBLIST;					//Find last tcb in the list
-		while(tcbTmp->nexttcb != TCBLIST) {
-			tcbTmp = tcbTmp->nexttcb;
-		}
-		tcbTmp->nexttcb = tcbTask;			//Install tcb last in the list
-		tcbTask->nexttcb = TCBLIST;			//Make the list circular
-	}
-}
-
-int16_t ROSA_taskCreate(ROSA_taskHandle_t ** pth, char * id, void* taskFunction, uint32_t stackSize, uint8_t priority)
+int16_t ROSA_taskCreate(ROSA_taskHandle_t ** pth, char * id, void* taskFunction, uint32_t stackSize, uint8_t prio)
 {
 	int * tcbStack;
 	
-	tcbStack = (int *) calloc(stackSize, sizeof(uint32_t)); 
+	tcbStack = (int *) malloc(stackSize * sizeof(uint32_t)); 
+	*pth = (ROSA_taskHandle_t *) malloc(sizeof(ROSA_taskHandle_t));
 	
-	*pth = (ROSA_taskHandle_t *) malloc(sizeof(ROSA_taskHandle_t));			
-	(*pth)->priority = priority;
+	(*pth)->priority = prio;
 	(*pth)->delay = 0;
 	(*pth)->counter = 0;
 	
 	ROSA_tcbCreate(*pth, id, taskFunction, tcbStack, stackSize);
-	
-	readyQueueInsert(pth);
-	
-	if (EXECTASK != NULL) {
-		if (EXECTASK->priority < priority) {
-			PREEMPTASK = PA[priority];
-			ROSA_yield();
-		}	
-	}
+	TCBLIST = PA[(*pth)->priority];
+	ROSA_tcbInstall(*pth);
+	PA[TCBLIST->priority] = TCBLIST;
+		
+	if ((EXECTASK) && (EXECTASK->priority < prio)) {
+		PREEMPTASK = PA[prio];
+		ROSA_yield();
+	}	
 	
 	return 0;
 }
 
 int16_t ROSA_taskDelete(ROSA_taskHandle_t ** pth)
-{	
-	int isEmpty = 0;
-	
-	/* In this case, we just check, that *pth != NULL, because
-	 * if *pth == NULL, then this task has been already deleted.
-	 */
-	//ASSERT_MEM_ALLOC(*pth);
-	
+{
+	if (!(*pth)) return -1;
+			
 	/* Extract task from its queue */
-	isEmpty = readyQueueExtract(pth);
+	if ((*pth)->delay) {
+		TCBLIST = DQ;
+		ROSA_tcbUninstall(*pth);
+		DQ = TCBLIST;
+	}
+	else {
+		TCBLIST = PA[(*pth)->priority];
+		ROSA_tcbUninstall(*pth);
+		PA[(*pth)->priority] = TCBLIST;
+	}
+	
+	
 	
 	/* Check for itself deletion */
-	if (EXECTASK == (*pth))
-	{ 
+	if (EXECTASK == (*pth)) { 
 		/* Check the current queue for emptiness */
-		if (isEmpty)
-		{
-			PREEMPTASK = readyQueueSearch();
-		}
-		else
-		{
+		if (PA[(*pth)->priority])
 			PREEMPTASK = (*pth)->nexttcb;
-		}
+		else
+			PREEMPTASK = readyQueueSearch();
 	}
 	
 	/* Task's stack memory deallocation */
 	free( (*pth)->dataarea - (*pth)->datasize );
 	
 	/* Task's memory deallocation */
-	free(*pth);
+	free(*pth);	
 	
 	/* *pth must be NULL */
 	*pth = NULL;
 
 	if (PREEMPTASK != NULL)
-	{
 		ROSA_yield();
-	}
 		
 	return 1;
+}
+
+/************************************************************************/
+/* ROSA_delay()															*/
+/*																		*/
+/* Suspends the calling task for the given number of ticks				*/
+/************************************************************************/
+int16_t ROSA_delay(uint64_t ticks)
+{
+	EXECTASK->delay = ROSA_getTickCount() + ticks;
+
+	/* Extract task from its queue */
+	TCBLIST = PA[EXECTASK->priority];
+	ROSA_tcbUninstall(EXECTASK);
+	PA[EXECTASK->priority] = TCBLIST;
+	
+	/* Check the current queue for emptiness */
+	if (PA[EXECTASK->priority])
+		PREEMPTASK = EXECTASK->nexttcb;
+	else
+		PREEMPTASK = readyQueueSearch();
+
+	TCBLIST = DQ;
+	
+	while ((TCBLIST->delay <= EXECTASK->delay) && (EXECTASK->delay <= TCBLIST->nexttcb->delay))
+		TCBLIST = TCBLIST->nexttcb;
+
+	ROSA_tcbInstall(EXECTASK);
+	DQ = TCBLIST;
+	
+	ROSA_yield();
+	
+	return 0;
 }
