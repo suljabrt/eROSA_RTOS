@@ -56,7 +56,8 @@ void timerISR(void)
 	{
 		systemTick++;
 		
-		if ((DQ) && DQ->delay < systemTick) {
+		if ( (DQ) && (DQ->delay <= systemTick) ) 
+		{
 			PREEMPTASK = DELHANDL;
 			ROSA_yieldFromISR();
 		}

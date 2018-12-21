@@ -48,34 +48,37 @@ ROSA_taskHandle_t * t1_tcb;
 ROSA_taskHandle_t * t2_tcb;
 
 /*************************************************************
- * Task1
- * Blink LED0
- ************************************************************/
-void task1(void)
-{	
-	while(1) {
-		usartWriteLine(USART, "task1\r\n");		
-		ROSA_delay(250);
-		usartWriteLine(USART, "task1 woken up\r\n");
-		ROSA_delay(250);
-		usartWriteLine(USART, "task1 woken up again!\r\n");
-		ROSA_yield();
-	}
-}
-
-/*************************************************************
  * Task2
  * Blink LED1
  ************************************************************/
 void task2(void)
 {
 	while(1) {
-		usartWriteLine(USART, "task2\r\n");
+		//usartWriteLine(USART, "task 2 entry\r\n");
+		ledOn(LED1_GPIO);
+		//usartWriteLine(USART, "task 2 delayed\r\n");
+		ROSA_delay(500);
+		//usartWriteLine(USART, "task 2 woken up!\r\n");
+		ledOff(LED1_GPIO);
+		ROSA_delay(500);
+		ROSA_yield();
+	}
+}
+
+
+/*************************************************************
+ * Task1
+ * Blink LED0
+ ************************************************************/
+void task1(void)
+{	
+	while(1) {
+		ledOn(LED0_GPIO);
+		ROSA_delay(500);
+		ledOff(LED0_GPIO);
 		ROSA_delay(250);
-		usartWriteLine(USART, "task2 woken up\r\n");
-		ROSA_delay(250);
-		usartWriteLine(USART, "task2 woken up again!\r\n");
-		ROSA_yield();	
+		ROSA_taskDelete(&t2_tcb);
+		ROSA_yield();
 	}
 }
 
@@ -88,8 +91,8 @@ int main(void)
 	ROSA_init();
 	
 	//Create tasks and install them into the ROSA kernel
-	ROSA_taskCreate(&t1_tcb, "tsk1", task1, T1_STACK_SIZE, 2);
-	ROSA_taskCreate(&t2_tcb, "tsk2", task2, T2_STACK_SIZE, 1);
+	ROSA_taskCreate(&t1_tcb, "tsk1", task1, T1_STACK_SIZE, 3);
+	ROSA_taskCreate(&t2_tcb, "tsk2", task2, T2_STACK_SIZE, 2);
 
 	ROSA_startScheduler();
 
