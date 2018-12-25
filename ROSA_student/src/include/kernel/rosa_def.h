@@ -87,6 +87,7 @@ typedef struct tcb_record_t {
 	uint8_t priority;		//The priority of a task
 	uint64_t delay;			//Time until which a task is delayed
 	uint8_t counter;		//Number of semaphores currently locked by this task
+	uint8_t originalPriority; //First priority assigned to task when creating it
 } tcb;
 
 /** @typedef tcb ROSA_taskHandle_t 

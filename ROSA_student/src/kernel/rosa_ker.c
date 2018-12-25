@@ -45,6 +45,7 @@
 #include "kernel/rosa_ker.h"
 #include "kernel/rosa_tim.h"
 #include "kernel/rosa_scheduler.h"
+#include "kernel/rosa_semaphore.h"
 
 //Driver includes
 #include "drivers/button.h"
@@ -239,6 +240,7 @@ void ROSA_init(void)
 	EXECTASK = NULL;
 	PREEMPTASK = NULL;
 	DQ = NULL;
+	LOCKEDSEMAPHORELIST=NULL;
 	
 	/* Create system's tasks (idle, delay). */
 	sysTasksCreate();
@@ -288,6 +290,7 @@ int16_t ROSA_taskCreate(ROSA_taskHandle_t ** pth, char * id, void* taskFunction,
 	(*pth)->priority = prio;
 	(*pth)->delay = 0;
 	(*pth)->counter = 0;
+	(*pth)->originalPriority = prio;
 	
 	ROSA_tcbCreate(*pth, id, taskFunction, tcbStack, stackSize);
 	ROSA_TM_ACTION(PA[(*pth)->priority], *pth, Install);
