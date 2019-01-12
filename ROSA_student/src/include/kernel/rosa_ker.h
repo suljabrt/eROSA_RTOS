@@ -42,7 +42,7 @@
 extern tcb * TCBLIST;
 extern tcb * EXECTASK;
 extern tcb * PREEMPTASK;
-extern ROSA_taskHandle_t * PA[MAXNPRIO];
+extern tcb * PA[MAXNPRIO];
 extern void ROSA_contextInit(tcb * tcbTask);
 extern void ROSA_yield(void);
 
@@ -100,14 +100,14 @@ void ROSA_tcbCreate(tcb * tcbTask, char tcbName[NAMESIZE], void *tcbFunction, in
 	@param priority Priority of the task.
 	@return Status code.
 */
-int16_t ROSA_taskCreate(ROSA_taskHandle_t ** th, char * id, void* taskFunction, uint32_t stackSize, uint8_t priority);
+int16_t ROSA_taskCreate(ROSA_taskHandle_t * th, char * id, void* taskFunction, uint32_t stackSize, uint8_t priority);
 
 /** @fn int16_t ROSA_taskDelete(ROSA_taskHandle_t ** th)
 	@brief 	Create the FPPS task with correct values.
 	@param th Pointer to the task.
 	@return Status code.
 */
-int16_t ROSA_taskDelete(ROSA_taskHandle_t ** th);
+int16_t ROSA_taskDelete(ROSA_taskHandle_t th);
 
 /** @fn extern void ROSA_tcbInstall(tcb *task)
 	@brief Install a new task TCB into ROSA.

@@ -72,7 +72,7 @@ static MaxSemHandle_t MaxLockedCeiling(void)
 	}
 }
 
-static void updatePriority(ROSA_taskHandle_t * task)
+static void updatePriority(tcb * task)
 {
 	int maximum=0,counter=0;
 	ROSA_semaphoreHandle_t it=LOCKEDSEMAPHORELIST;
@@ -244,7 +244,7 @@ int16_t ROSA_semaphoreUnlock(ROSA_semaphoreHandle_t  mutex) {
 		updatePriority(EXECTASK);
 		if (old_prio>EXECTASK->priority && PA[EXECTASK->priority]!=NULL)
 		{
-			ROSA_taskHandle_t *temp = PA[EXECTASK->priority]; //inserting a task into proper lower prio queue
+			tcb *temp = PA[EXECTASK->priority]; //inserting a task into proper lower prio queue
 			PA[EXECTASK->priority]=EXECTASK;
 			EXECTASK->nexttcb=temp->nexttcb;
 			PREEMPTASK = readyQueueSearch();

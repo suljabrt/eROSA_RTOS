@@ -21,10 +21,10 @@
 #define T3_STACK_SIZE 32
 
 
-ROSA_taskHandle_t *task1_handle=NULL;
-ROSA_taskHandle_t *led3_task_handle = NULL;
-ROSA_taskHandle_t *led5_task_handle = NULL;
-ROSA_taskHandle_t *led7_task_handle = NULL;
+ROSA_taskHandle_t task1_handle=NULL;
+ROSA_taskHandle_t led3_task_handle = NULL;
+ROSA_taskHandle_t led5_task_handle = NULL;
+ROSA_taskHandle_t led7_task_handle = NULL;
 
 ROSA_semaphoreHandle_t S1;
 ROSA_semaphoreHandle_t S2;
