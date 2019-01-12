@@ -246,6 +246,7 @@ void ROSA_init(void)
 	sysTasksCreate();
 	
 	for (i = 0; i < MAXNPRIO; PA[i++] = NULL);
+	
 }
 
 void ROSA_tcbCreate(tcb * tcbTask, char tcbName[NAMESIZE], void *tcbFunction, int * tcbStack, int tcbStackSize)
