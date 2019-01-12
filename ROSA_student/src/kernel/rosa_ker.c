@@ -172,11 +172,23 @@ void ROSA_tcbUninstall(tcb * tcbTask)
 tcb * readyQueueSearch(void)
 {
 	int i = MAXNPRIO;
-	
+	tcb * retval;
+		
+	interruptDisable();
 	/* Search for the first non-empty queue. */
 	while ( (PA[--i] == NULL) && (i > 0));
 	
-	return ((i == 0) && (PA[i] == NULL)) ? IDLETASK : PA[i];
+	if ((i == 0) && (PA[i] == NULL))
+	{
+		retval = IDLETASK;
+	}
+	else
+	{
+		retval = PA[i];
+	}
+	interruptEnable();
+	
+	return retval;
 }
 
 void dlay()
@@ -293,8 +305,11 @@ int16_t ROSA_taskCreate(ROSA_taskHandle_t ** pth, char * id, void* taskFunction,
 	(*pth)->originalPriority = prio;
 	
 	ROSA_tcbCreate(*pth, id, taskFunction, tcbStack, stackSize);
+	
+	interruptDisable();
 	ROSA_TM_ACTION(PA[(*pth)->priority], *pth, Install);
-		
+	interruptEnable();
+			
 	if ((EXECTASK) && (EXECTASK->priority < prio))
 	{
 		PREEMPTASK = PA[prio];
@@ -307,15 +322,24 @@ int16_t ROSA_taskCreate(ROSA_taskHandle_t ** pth, char * id, void* taskFunction,
 int16_t ROSA_taskDelete(ROSA_taskHandle_t ** pth)
 {
 	MEM_CHECK(*pth);
+	
+	if ((*pth)->counter > 0)
+	{
+		return -1;
+	}
 			
 	/* Extract task from its queue */
 	if ((*pth)->delay)
 	{
+		interruptDisable();
 		ROSA_TM_ACTION(DQ, *pth, Uninstall);
+		interruptEnable();
 	}
 	else
 	{
+		interruptDisable();
 		ROSA_TM_ACTION(PA[(*pth)->priority], *pth, Uninstall);
+		interruptEnable();
 	}
 	
 	/* Check for itself deletion */
