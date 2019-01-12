@@ -114,11 +114,8 @@ tcb * DQ;
 */
 void idle(void)
 {
-	while(1)
-	{
-		ledToggle(LED7_GPIO);
-		//usartWriteLine(USART, "idle\n");
-	}
+	while(1);
+	
 }
 
 /***********************************************************

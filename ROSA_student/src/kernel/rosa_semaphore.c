@@ -230,11 +230,11 @@ int16_t ROSA_semaphoreUnlock(ROSA_semaphoreHandle_t  mutex) {
 		it->nextLockedSemaphore=mutex->nextLockedSemaphore;
 	}
 	//readyQueueExtract(EXECTASK);
-	if(mutex->ceiling >= EXECTASK->priority)
+	if(EXECTASK->priority!=EXECTASK->originalPriority)
 	{
 		if (EXECTASK!=EXECTASK->nexttcb)
 		{
-			PA[EXECTASK->priority]=EXECTASK->nexttcb; //deattaching the EXECTASK from its current priority queue
+			PA[EXECTASK->priority]->nexttcb=EXECTASK->nexttcb; //deattaching the EXECTASK from its current priority queue
 		}
 		else
 		{
