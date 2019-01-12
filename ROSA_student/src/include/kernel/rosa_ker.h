@@ -117,5 +117,7 @@ extern void ROSA_tcbInstall(tcb *task);
 	///@}
 
 int16_t ROSA_delay(uint64_t ticks);
+int16_t ROSA_delayUntil(uint64_t* LastWakeTime, uint64_t ticks);
+int16_t ROSA_delayAbsolute(uint64_t ticks);
 
 #endif /* _ROSA_KER_H_ */

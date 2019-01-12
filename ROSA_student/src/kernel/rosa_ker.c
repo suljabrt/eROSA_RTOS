@@ -418,12 +418,23 @@ int16_t ROSA_delay(uint64_t ticks)
 	ROSA_tcbInstall(EXECTASK);
 	DQ = TCBLIST;
 	
-	usartWriteTcb(USART, DQ);
-	usartWriteTcb(USART, DQ->nexttcb);
-	
 	interruptEnable();
 	
 	ROSA_yield();
 	
+	if (ROSA_getTickCount()>dv)
+	{
+		return dv-ROSA_getTickCount();
+	}
+	
 	return 0;
+}
+int16_t ROSA_delayUntil(uint64_t* LastWakeTime, uint64_t ticks)
+{
+	return ROSA_delay((*LastWakeTime+ticks)-ROSA_getTickCount());	
+}
+
+int16_t ROSA_delayAbsolute(uint64_t ticks)
+{
+	return ROSA_delay(ticks-ROSA_getTickCount());
 }
