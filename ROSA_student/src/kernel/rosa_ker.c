@@ -116,11 +116,7 @@ int ROSA_init_GUARD = 0;
 */
 void idle(void)
 {
-	while(1)
-	{
-		ledToggle(LED7_GPIO);
-		//usartWriteLine(USART, "idle\n");
-	}
+	while(1);
 }
 
 /***********************************************************
