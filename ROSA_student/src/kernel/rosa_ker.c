@@ -109,6 +109,8 @@ static int dlay_stack[SYS_TASK_STACK_SIZE];
 tcb * PA[MAXNPRIO];
 tcb * DQ;
 
+int ROSA_init_GUARD = 0;
+
 /** @fn void idle(void)
 	@brief Idle task body.
 */
@@ -234,30 +236,35 @@ void ROSA_init(void)
 	int i = 0;
 	systemTick = 0;
 	
-	//Do initialization of I/O drivers
-	ledInit();									//LEDs
-	buttonInit();								//Buttons
-	joystickInit();								//Joystick
-	potInit();									//Potentiometer
-	usartInit(USART, &usart_options, FOSC0);	//Serial communication
-	usartWriteLine(USART, "USART initialized\r\n");
+	if (ROSA_init_GUARD == 0)
+	{
+		//Do initialization of I/O drivers
+		ledInit();									//LEDs
+		buttonInit();								//Buttons
+		joystickInit();								//Joystick
+		potInit();									//Potentiometer
+		usartInit(USART, &usart_options, FOSC0);	//Serial communication
+		usartWriteLine(USART, "USART initialized\r\n");
 
-	interruptInit();
-	interruptEnable();
-	timerInit(1);
-	timerStart();
+		interruptInit();
+		interruptEnable();
+		timerInit(1);
+		timerStart();
 	
-	//Start with empty TCBLIST and no EXECTASK.
-	TCBLIST = NULL;
-	EXECTASK = NULL;
-	PREEMPTASK = NULL;
-	DQ = NULL;
-	LOCKEDSEMAPHORELIST=NULL;
+		//Start with empty TCBLIST and no EXECTASK.
+		TCBLIST = NULL;
+		EXECTASK = NULL;
+		PREEMPTASK = NULL;
+		DQ = NULL;
+		LOCKEDSEMAPHORELIST=NULL;
 	
-	/* Create system's tasks (idle, delay). */
-	sysTasksCreate();
+		/* Create system's tasks (idle, delay). */
+		sysTasksCreate();
 	
-	for (i = 0; i < MAXNPRIO; PA[i++] = NULL);
+		for (i = 0; i < MAXNPRIO; PA[i++] = NULL);
+	}
+	
+	ROSA_init_GUARD = 1;
 }
 
 void ROSA_tcbCreate(tcb * tcbTask, char tcbName[NAMESIZE], void *tcbFunction, int * tcbStack, int tcbStackSize)

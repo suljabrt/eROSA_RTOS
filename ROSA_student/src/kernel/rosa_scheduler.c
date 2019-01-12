@@ -49,8 +49,14 @@ void scheduler(void)
 
 extern tcb * readyQueueSearch(void);
 
+int startScheduler_GUARD = 0;
+
 void ROSA_startScheduler(void)
 {	
-	TCBLIST = ((tcb *) readyQueueSearch())->nexttcb;
-	ROSA_start();
+	if (startScheduler_GUARD == 0)
+	{	
+		TCBLIST = ((tcb *) readyQueueSearch())->nexttcb;
+		startScheduler_GUARD = 1;
+		ROSA_start();
+	}
 }
