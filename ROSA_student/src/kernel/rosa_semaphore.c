@@ -28,7 +28,7 @@
  * 	that are currently locked
  ***********************************************************/
 ROSA_semaphoreHandle_t  LOCKEDSEMAPHORELIST; //list of pointers to the locked semaphores
-
+extern tcb* readyQueueSearch();
 /***********************************************************
  * MaxLockedCeiling
  *
@@ -36,30 +36,39 @@ ROSA_semaphoreHandle_t  LOCKEDSEMAPHORELIST; //list of pointers to the locked se
  * 	Returns a maximum ceiling of all currently locked semaphores
  *
  **********************************************************/
-static uint8_t MaxLockedCeiling(void)
+
+
+static MaxSemHandle_t MaxLockedCeiling(void)
 {
+	MaxSemHandle_t MaxT;
+	MaxT.Ceil=0;
+	MaxT.Mutex=NULL;
 	if (LOCKEDSEMAPHORELIST==NULL)
 	{
-		return 0;
+		
+		return MaxT;
 	}
 	else
 	{
-	uint8_t maxCeil=LOCKEDSEMAPHORELIST->ceiling;
+	MaxT.Ceil=LOCKEDSEMAPHORELIST->ceiling;
+	//uint8_t maxCeil=LOCKEDSEMAPHORELIST->ceiling;
 	ROSA_semaphoreHandle_t it=LOCKEDSEMAPHORELIST;
+	MaxT.Mutex=it;
 	if (it->nextLockedSemaphore==NULL)
 	{
-		return it->ceiling;
+		return MaxT;
 	}
 	while (it->nextLockedSemaphore!=NULL)
 	{
-		if (it->ceiling>maxCeil)
+		if (it->ceiling>=MaxT.Ceil)
 		{
-			maxCeil=it->ceiling;
+			MaxT.Ceil=it->ceiling;
+			MaxT.Mutex=it;
 		}
 		it=it->nextLockedSemaphore;
 	}
 
-	return maxCeil;
+	return MaxT;
 	}
 }
 
@@ -74,7 +83,7 @@ static void updatePriority(ROSA_taskHandle_t * task)
 	}
 	else
 	{
-		while (it->nextLockedSemaphore!=NULL && it!=NULL)
+		while ( it!=NULL)
 	{
 		if (it->holder==task && it->ceiling > maximum)
 		{
@@ -153,7 +162,8 @@ int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t  mutex) {
 		return -1; // if the passed pointer to the semaphore handle is non-existent
 	}
 	
-	while (mutex->holder != NULL || EXECTASK->priority<=MaxLockedCeiling()) //if the semaphore is already locked or IPCP condition P(task)>maxLockedCeil
+	
+	while (mutex->holder != NULL || ((EXECTASK->priority==MaxLockedCeiling().Ceil && MaxLockedCeiling().Mutex->holder!=EXECTASK) || EXECTASK->priority<MaxLockedCeiling().Ceil)) //if the semaphore is already locked or IPCP condition P(task)>maxLockedCeil
 		ROSA_yield();		
 	
 	mutex->holder = EXECTASK;
@@ -178,7 +188,7 @@ int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t  mutex) {
 	}
 	if (EXECTASK->priority < mutex->ceiling)
 	{
-		if (PA[EXECTASK->priority]!=EXECTASK->nexttcb)
+		if (EXECTASK!=EXECTASK->nexttcb)
 		{
 			PA[EXECTASK->priority]=EXECTASK->nexttcb; //deattaching the EXECTASK from its current priority queue
 		}
@@ -220,19 +230,34 @@ int16_t ROSA_semaphoreUnlock(ROSA_semaphoreHandle_t  mutex) {
 		it->nextLockedSemaphore=mutex->nextLockedSemaphore;
 	}
 	//readyQueueExtract(EXECTASK);
-	if(mutex->ceiling >= EXECTASK->priority)
+	if(EXECTASK->priority!=EXECTASK->originalPriority)
 	{
-		if (PA[EXECTASK->priority]!=EXECTASK->nexttcb)
+		if (EXECTASK!=EXECTASK->nexttcb)
 		{
-			PA[EXECTASK->priority]=EXECTASK->nexttcb; //deattaching the EXECTASK from its current priority queue
+			PA[EXECTASK->priority]->nexttcb=EXECTASK->nexttcb; //deattaching the EXECTASK from its current priority queue
 		}
 		else
 		{
 			PA[EXECTASK->priority]=NULL; // if the task that is being removed from the queue is alone in the queue
 		}
+		int old_prio=EXECTASK->priority;
 		updatePriority(EXECTASK);
-		PA[EXECTASK->priority]=EXECTASK;
-		EXECTASK->nexttcb=PA[EXECTASK->priority];
+		if (old_prio>EXECTASK->priority && PA[EXECTASK->priority]!=NULL)
+		{
+			ROSA_taskHandle_t *temp = PA[EXECTASK->priority]; //inserting a task into proper lower prio queue
+			PA[EXECTASK->priority]=EXECTASK;
+			EXECTASK->nexttcb=temp->nexttcb;
+			PREEMPTASK = readyQueueSearch();
+			ROSA_yield();
+		}
+		else if(old_prio>EXECTASK->priority)
+		{
+			PA[EXECTASK->priority]=EXECTASK;
+			EXECTASK->nexttcb=EXECTASK;
+			PREEMPTASK = readyQueueSearch();
+			ROSA_yield();
+		}
+		
 	}
 	
 	

@@ -32,6 +32,10 @@ typedef struct ROSA_semaphoreHandle_record_t {
 
 typedef ROSA_semaphoreHandle * ROSA_semaphoreHandle_t;
 
+typedef struct MaxSem{
+uint8_t Ceil;
+ROSA_semaphoreHandle_t Mutex;	
+} MaxSemHandle_t;
 
 /***********************************************************
  * Global variable (doesnt have to be because only LOCK uses it)

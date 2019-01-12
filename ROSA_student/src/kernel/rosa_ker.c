@@ -116,11 +116,8 @@ int ROSA_init_GUARD = 0;
 */
 void idle(void)
 {
-	while(1)
-	{
-		ledToggle(LED7_GPIO);
-		//usartWriteLine(USART, "idle\n");
-	}
+	while(1);
+	
 }
 
 /***********************************************************
@@ -261,10 +258,12 @@ void ROSA_init(void)
 		/* Create system's tasks (idle, delay). */
 		sysTasksCreate();
 	
+
 		for (i = 0; i < MAXNPRIO; PA[i++] = NULL);
 	}
 	
 	ROSA_init_GUARD = 1;
+
 }
 
 void ROSA_tcbCreate(tcb * tcbTask, char tcbName[NAMESIZE], void *tcbFunction, int * tcbStack, int tcbStackSize)
