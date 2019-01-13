@@ -141,6 +141,11 @@ void ROSA_tcbInstall(tcb * tcbTask)
 		TCBLIST->nexttcb = tcbTask;
 		TCBLIST = tcbTask;
 	}
+	
+	if (OLD_API)
+	{
+		TCBLIST = TCBLIST->nexttcb;
+	}
 }
 
 void ROSA_tcbUninstall(tcb * tcbTask)
@@ -242,10 +247,16 @@ void ROSA_init(void)
 		usartInit(USART, &usart_options, FOSC0);	//Serial communication
 		usartWriteLine(USART, "USART initialized\r\n");
 
-		interruptInit();
-		interruptEnable();
-		timerInit(1);
-		timerStart();
+		if (!OLD_API)
+		{
+			interruptInit();
+			interruptEnable();
+			timerInit(1);
+			timerStart();
+			/* Create system's tasks (idle, delay). */
+			sysTasksCreate();
+			for (i = 0; i < MAXNPRIO; PA[i++] = NULL);
+		}
 	
 		//Start with empty TCBLIST and no EXECTASK.
 		TCBLIST = NULL;
@@ -255,11 +266,6 @@ void ROSA_init(void)
 		DQ->delay = 0;
 		DQ->nexttcb = DQ;
 		LOCKEDSEMAPHORELIST=NULL;
-	
-		/* Create system's tasks (idle, delay). */
-		sysTasksCreate();
-	
-		for (i = 0; i < MAXNPRIO; PA[i++] = NULL);
 	}
 	
 	ROSA_init_GUARD = 1;

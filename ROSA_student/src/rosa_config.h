@@ -51,4 +51,6 @@
 
 #define FOSC0 12000000			//CPU clock frequency
 
+#define OLD_API	0
+
 #endif /* _ROSA_CONFIG_H_ */

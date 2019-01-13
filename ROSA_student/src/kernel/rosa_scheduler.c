@@ -25,6 +25,7 @@
 /* Tab size: 4 */
 
 #include "kernel/rosa_scheduler.h"
+#include "rosa_config.h"
 
 /***********************************************************
  * scheduler
@@ -36,13 +37,20 @@
  **********************************************************/
 void scheduler(void)
 {
-	if (PREEMPTASK) {
-		EXECTASK = PREEMPTASK;
-		PREEMPTASK = NULL;
-	}
-	else {
-		PA[EXECTASK->priority] = EXECTASK;
+	if (OLD_API)
+	{
 		EXECTASK = EXECTASK->nexttcb;
+	}
+	else
+	{
+		if (PREEMPTASK) {
+			EXECTASK = PREEMPTASK;
+			PREEMPTASK = NULL;
+		}
+		else {
+			PA[EXECTASK->priority] = EXECTASK;
+			EXECTASK = EXECTASK->nexttcb;
+		}
 	}
 }
 
