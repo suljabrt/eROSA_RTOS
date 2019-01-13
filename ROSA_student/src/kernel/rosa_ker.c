@@ -195,14 +195,14 @@ void dlay()
 	
 	while (1)
 	{	
-		interruptDisable();
+		//interruptDisable();
 			
 		while ((DQ) && (DQ->delay <= systemTick))
 		{	
 			tmp = DQ;
 
 			ROSA_TM_ACTION(DQ, DQ, Uninstall);
-		
+			DQ = TCBLIST;
 			tmp->delay = 0;
 			ROSA_TM_ACTION(PA[tmp->priority], tmp, Install);
 		}
@@ -252,6 +252,8 @@ void ROSA_init(void)
 		EXECTASK = NULL;
 		PREEMPTASK = NULL;
 		DQ = NULL;
+		DQ->delay = 0;
+		DQ->nexttcb = DQ;
 		LOCKEDSEMAPHORELIST=NULL;
 	
 		/* Create system's tasks (idle, delay). */
@@ -297,13 +299,22 @@ int16_t ROSA_taskCreate(ROSA_taskHandle_t * pth_a, char * id, void* taskFunction
 	int * tcbStack;
 	tcb ** pth;
 	
-	pth = *pth_a;
+	//pth = *pth_a;
+	
+	// Task cannot be created since it already exists
+	if (**pth_a != NULL)
+	{
+		return -1;
+	}
 	
 	tcbStack = (int *) malloc(stackSize * sizeof(uint32_t)); 
 	MEM_CHECK(tcbStack);
 	
+	pth = (tcb **) malloc(sizeof(ROSA_taskHandle_t));
 	*pth = (tcb *) malloc(sizeof(tcb));
 	MEM_CHECK(*pth);
+	
+	*pth_a = pth;
 	
 	(*pth)->priority = prio;
 	(*pth)->delay = 0;
@@ -315,7 +326,6 @@ int16_t ROSA_taskCreate(ROSA_taskHandle_t * pth_a, char * id, void* taskFunction
 	interruptDisable();
 	ROSA_TM_ACTION(PA[(*pth)->priority], *pth, Install);
 	interruptEnable();
-			
 	if ((EXECTASK) && (EXECTASK->priority < prio))
 	{
 		PREEMPTASK = PA[prio];
@@ -413,17 +423,34 @@ int16_t ROSA_delay(uint64_t ticks)
 		PREEMPTASK = readyQueueSearch();	
 	}
 	
-	TCBLIST = DQ;
-	
-	/* Search for the right place to insert the task to the delay queue */	
-	while ((DQ) && (TCBLIST->delay <= dv) && (dv <= TCBLIST->nexttcb->delay))
+	if (!DQ)
 	{
-		TCBLIST = TCBLIST->nexttcb;
+		DQ = EXECTASK;
+		EXECTASK->nexttcb = DQ;
 	}
-
-	ROSA_tcbInstall(EXECTASK);
-	DQ = TCBLIST;
+	else if (DQ->nexttcb == DQ)
+	{
+		DQ->nexttcb = EXECTASK;
+		EXECTASK->nexttcb = DQ;
+	}
+	else
+	{
+		TCBLIST = DQ;
+		while (!( (TCBLIST->delay <= dv) && (dv <= TCBLIST->nexttcb->delay) ) && (TCBLIST->nexttcb != DQ))
+			TCBLIST = TCBLIST->nexttcb;
+		ROSA_tcbInstall(EXECTASK);
+	}
 	
+	if (DQ->delay > EXECTASK->delay)
+	{
+		DQ = EXECTASK;
+	}
+	
+/*	usartWriteLine(USART, "*********DELAY**********\n");
+	usartWriteTcb(USART, DQ);
+	usartWriteTcb(USART, DQ->nexttcb);
+	usartWriteTcb(USART, DQ->nexttcb->nexttcb);
+	usartWriteLine(USART, "************************\n");*/
 	interruptEnable();
 	
 	ROSA_yield();

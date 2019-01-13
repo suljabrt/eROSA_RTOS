@@ -23,12 +23,12 @@
 
 ROSA_taskHandle_t task1_handle=NULL;
 ROSA_taskHandle_t task2_handle=NULL;
-
-void task2 (void);
+ROSA_taskHandle_t task3_handle=NULL;
 
 void task1(void)
 {
 	while(1) {
+		usartWriteLine(USART, "task 1\n");
 		ledToggle(LED0_GPIO);
 		//ROSA_taskCreate(&task2_handle, "tsk2", task2, 0x40, 2);
 		ROSA_delay(1000);
@@ -39,8 +39,21 @@ void task1(void)
 void task2(void)
 {
 	while(1) {
+		usartWriteLine(USART, "task 2\n");
 		ledToggle(LED1_GPIO);
-		//ROSA_taskCreate(&task1_handle, "tsk1", task1, 0x40, 2);
+		ROSA_taskCreate(&task1_handle, "tsk1", task1, 0x40, 2);
+		//ROSA_taskDelete(task2_handle);
+		ROSA_delay(1000);
+	}
+}
+
+void task3(void)
+{
+	while(1)
+	{
+		usartWriteLine(USART, "task 3\n");
+		ledToggle(LED2_GPIO);
+		//ROSA_taskDelete(task1_handle);
 		ROSA_delay(1000);
 	}
 }
@@ -55,11 +68,12 @@ int main(void)
 	
 	ROSA_taskCreate(&task1_handle, "tsk1", task1, 0x40, 2);
 	ROSA_taskCreate(&task2_handle, "tsk2", task2, 0x40, 2);	
+	ROSA_taskCreate(&task3_handle, "tsk3", task3, 0x40, 2);	
 	
 	//Start the timer
 	//timerStart();
 	
-	ROSA_start();
+	ROSA_startScheduler();
 	/* Execution will never return here */
 	while(1);
 }

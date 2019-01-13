@@ -48,7 +48,6 @@ extern tcb * DELHANDL;
 __attribute__((__interrupt__))
 void timerISR(void)
 {
-	interruptDisable();
 	int sr;
 	volatile avr32_tc_t * tc = &AVR32_TC;
 	
@@ -60,12 +59,11 @@ void timerISR(void)
 		
 		if ( (DQ) && (DQ->delay <= systemTick) ) 
 		{
+			interruptDisable();
 			PREEMPTASK = DELHANDL;
-			
 			ROSA_yieldFromISR();
 		}
 	}
-	interruptEnable();
 }
 
 /************************************************************************/

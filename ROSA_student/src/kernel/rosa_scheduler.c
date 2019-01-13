@@ -36,7 +36,6 @@
  **********************************************************/
 void scheduler(void)
 {
-	//Find the next task to execute
 	if (PREEMPTASK) {
 		EXECTASK = PREEMPTASK;
 		PREEMPTASK = NULL;
