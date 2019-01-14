@@ -212,7 +212,7 @@ void dlay()
 			ROSA_TM_ACTION(PA[tmp->priority], tmp, Install);
 		}
 
-		PREEMPTASK = readyQueueSearch();
+		PREEMPTASK = readyQueueSearch()->nexttcb;
 		
 		interruptEnable();
 		
@@ -300,38 +300,44 @@ void ROSA_tcbCreate(tcb * tcbTask, char tcbName[NAMESIZE], void *tcbFunction, in
 	contextInit(tcbTask);
 }
 
-int16_t ROSA_taskCreate(ROSA_taskHandle_t * pth_a, char * id, void* taskFunction, uint32_t stackSize, uint8_t prio)
+int16_t ROSA_taskCreate(ROSA_taskHandle_t * pth, char * id, void* taskFunction, uint32_t stackSize, uint8_t prio)
 {
 	int * tcbStack;
-	tcb ** pth;
 	
+	if ((*pth)->existence == 1)
+	{
+		return -2; // task already exists
+	}
 	//pth = *pth_a;
 	
 	// Task cannot be created since it already exists
-	if (**pth_a != NULL)
+	/*if (**pth_a != NULL)
 	{
 		return -1;
-	}
+	}*/
 	
 	tcbStack = (int *) malloc(stackSize * sizeof(uint32_t)); 
 	MEM_CHECK(tcbStack);
 	
-	pth = (tcb **) malloc(sizeof(ROSA_taskHandle_t));
+//	pth = (tcb **) malloc(sizeof(ROSA_taskHandle_t));
 	*pth = (tcb *) malloc(sizeof(tcb));
 	MEM_CHECK(*pth);
 	
-	*pth_a = pth;
+	//**pth_a = *pth;
+	//*pth_a = pth;
 	
 	(*pth)->priority = prio;
 	(*pth)->delay = 0;
 	(*pth)->counter = 0;
 	(*pth)->originalPriority = prio;
+	(*pth)->existence = 1;
 	
 	ROSA_tcbCreate(*pth, id, taskFunction, tcbStack, stackSize);
 	
 	interruptDisable();
 	ROSA_TM_ACTION(PA[(*pth)->priority], *pth, Install);
 	interruptEnable();
+	
 	if ((EXECTASK) && (EXECTASK->priority < prio))
 	{
 		PREEMPTASK = PA[prio];
@@ -341,17 +347,22 @@ int16_t ROSA_taskCreate(ROSA_taskHandle_t * pth_a, char * id, void* taskFunction
 	return 0;
 }
 
-int16_t ROSA_taskDelete(ROSA_taskHandle_t pth_a)
+int16_t ROSA_taskDelete(ROSA_taskHandle_t pth)
 {
-	tcb * pth;
+	//tcb * pth;
 	
-	pth = *pth_a;
+	//pth = *pth_a;
+	
+	if ((pth)->existence != 1)
+	{
+		return -2; // task doesn't exist
+	}
 	
 	MEM_CHECK(pth);
 	
 	if ((pth)->counter > 0)
 	{
-		return -1;
+		return -1; // task holds mutex
 	}
 			
 	/* Extract task from its queue */
@@ -381,15 +392,16 @@ int16_t ROSA_taskDelete(ROSA_taskHandle_t pth_a)
 			PREEMPTASK = readyQueueSearch();
 		}
 	}
-		
+	
+	(pth)->existence = 0;	
+	
 	/* Task's stack memory deallocation */
 	free( (pth)->dataarea - (pth)->datasize );
 	/* Task's memory deallocation */
 	free(pth);
-	free(pth_a);
-
+	
 	/* *pth must be NULL */
-	*pth_a = NULL;
+	//*pth_a = NULL;
 
 	if (PREEMPTASK != NULL)
 	{
@@ -413,11 +425,11 @@ int16_t ROSA_delay(uint64_t ticks)
 	
 	dv = ROSA_getTickCount() + ticks;
 	pr = EXECTASK->priority;
-	
-	EXECTASK->delay = dv;
 
 	/* Extract task from its queue */
 	ROSA_TM_ACTION(PA[pr], EXECTASK, Uninstall);
+	
+	EXECTASK->delay = dv;
 	
 	/* Check the current queue for emptiness */	
 	if (PA[pr])
@@ -452,11 +464,6 @@ int16_t ROSA_delay(uint64_t ticks)
 		DQ = EXECTASK;
 	}
 	
-/*	usartWriteLine(USART, "*********DELAY**********\n");
-	usartWriteTcb(USART, DQ);
-	usartWriteTcb(USART, DQ->nexttcb);
-	usartWriteTcb(USART, DQ->nexttcb->nexttcb);
-	usartWriteLine(USART, "************************\n");*/
 	interruptEnable();
 	
 	ROSA_yield();

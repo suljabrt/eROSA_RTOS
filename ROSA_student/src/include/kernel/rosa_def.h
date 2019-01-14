@@ -88,7 +88,7 @@ typedef struct tcb_record_t {
 	uint64_t delay;			//Time until which a task is delayed
 	uint8_t counter;		//Number of semaphores currently locked by this task
 	uint8_t originalPriority; //First priority assigned to task when creating it
-	int existance;
+	int existence;
 } tcb;
 
 /** @typedef tcb ROSA_taskHandle_t 
@@ -96,8 +96,8 @@ typedef struct tcb_record_t {
 	to do preemption.
 	@todo ROSA_taskHandle_t should be redefined as pointer to the tcb.
 */
-//typedef tcb ROSA_taskHandle_t;
-typedef tcb** ROSA_taskHandle_t; 
+typedef tcb * ROSA_taskHandle_t;
+//typedef tcb** ROSA_taskHandle_t; 
 #endif /* rosa_def_H_ */
 
 

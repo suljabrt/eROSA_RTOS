@@ -163,7 +163,7 @@ int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t  mutex) {
 	}
 	
 	
-	while (mutex->holder != NULL || ((EXECTASK->priority==MaxLockedCeiling().Ceil && MaxLockedCeiling().Mutex->holder!=EXECTASK) || EXECTASK->priority<MaxLockedCeiling().Ceil)) //if the semaphore is already locked or IPCP condition P(task)>maxLockedCeil
+	while (mutex->holder != NULL || ((EXECTASK->priority==MaxLockedCeiling().Ceil && (MaxLockedCeiling().Mutex->holder!=EXECTASK)) || EXECTASK->priority<MaxLockedCeiling().Ceil)) //if the semaphore is already locked or IPCP condition P(task)>maxLockedCeil
 		ROSA_yield();		
 	
 	mutex->holder = EXECTASK;
