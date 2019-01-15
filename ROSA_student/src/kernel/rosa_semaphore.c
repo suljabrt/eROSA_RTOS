@@ -5,8 +5,8 @@
  *  Author: haris
  */ 
 
-#include  < stdlib.h > 
-#include  < stdint.h > 
+#include <stdlib.h> 
+#include <stdint.h> 
 
 //Kernel includes
 #include "kernel/rosa_def.h"
@@ -27,8 +27,8 @@
  * Global variable that contain the list of Semaphores that
  * 	that are currently locked
  ***********************************************************/
-ROSA_semaphoreHandle_t  LOCKEDSEMAPHORELIST; //list of pointers to the locked semaphores
-extern tcb* readyQueueSearch();
+ROSA_semaphoreHandle_t LOCKEDSEMAPHORELIST; //list of pointers to the locked semaphores
+extern tcb * readyQueueSearch();
 
 /***********************************************************
  * MaxLockedCeiling
@@ -75,7 +75,7 @@ static void updatePriority(tcb * task)
 {
 	int maximum = 0, counter = 0;
 	ROSA_semaphoreHandle_t it = LOCKEDSEMAPHORELIST;
-	if (it->nextLockedSemaphore == NULL && it->holder == task && it->ceiling  >  maximum && it != NULL)
+	if (it->nextLockedSemaphore == NULL && it->holder == task && it->ceiling > maximum && it != NULL)
 	{
 		maximum = it->ceiling;
 		counter++; //are there any semaphores locked by this task?

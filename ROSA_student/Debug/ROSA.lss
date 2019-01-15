@@ -63,23 +63,23 @@ Disassembly of section .reset:
 Disassembly of section .text:
 
 80000008 <MaxLockedCeiling>:
+ * Comment:
+ * 	Returns a maximum ceiling of all currently locked semaphores
  *
  **********************************************************/
-
-
 static MaxSemHandle_t MaxLockedCeiling(void)
 {
 80000008:	eb cd 40 80 	pushm	r7,lr
 8000000c:	1a 97       	mov	r7,sp
 8000000e:	20 3d       	sub	sp,12
 	MaxSemHandle_t MaxT;
-	MaxT.Ceil=0;
+	MaxT.Ceil = 0;
 80000010:	30 08       	mov	r8,0
 80000012:	ef 68 ff f4 	st.b	r7[-12],r8
-	MaxT.Mutex=NULL;
+	MaxT.Mutex = NULL;
 80000016:	30 08       	mov	r8,0
 80000018:	ef 48 ff f8 	st.w	r7[-8],r8
-	if (LOCKEDSEMAPHORELIST==NULL)
+	if (LOCKEDSEMAPHORELIST == NULL)
 8000001c:	4a 08       	lddpc	r8,8000009c <MaxLockedCeiling+0x94>
 8000001e:	70 08       	ld.w	r8,r8[0x0]
 80000020:	58 08       	cp.w	r8,0
@@ -92,20 +92,20 @@ static MaxSemHandle_t MaxLockedCeiling(void)
 	}
 	else
 	{
-	MaxT.Ceil=LOCKEDSEMAPHORELIST->ceiling;
+	MaxT.Ceil = LOCKEDSEMAPHORELIST->ceiling;
 8000002a:	49 d8       	lddpc	r8,8000009c <MaxLockedCeiling+0x94>
 8000002c:	70 08       	ld.w	r8,r8[0x0]
 8000002e:	11 c8       	ld.ub	r8,r8[0x4]
 80000030:	ef 68 ff f4 	st.b	r7[-12],r8
-	//uint8_t maxCeil=LOCKEDSEMAPHORELIST->ceiling;
-	ROSA_semaphoreHandle_t it=LOCKEDSEMAPHORELIST;
+	//uint8_t maxCeil = LOCKEDSEMAPHORELIST->ceiling;
+	ROSA_semaphoreHandle_t it = LOCKEDSEMAPHORELIST;
 80000034:	49 a8       	lddpc	r8,8000009c <MaxLockedCeiling+0x94>
 80000036:	70 08       	ld.w	r8,r8[0x0]
 80000038:	ef 48 ff fc 	st.w	r7[-4],r8
-	MaxT.Mutex=it;
+	MaxT.Mutex = it;
 8000003c:	ee f8 ff fc 	ld.w	r8,r7[-4]
 80000040:	ef 48 ff f8 	st.w	r7[-8],r8
-	if (it->nextLockedSemaphore==NULL)
+	if (it->nextLockedSemaphore == NULL)
 80000044:	ee f8 ff fc 	ld.w	r8,r7[-4]
 80000048:	70 28       	ld.w	r8,r8[0x8]
 8000004a:	58 08       	cp.w	r8,0
@@ -115,42 +115,42 @@ static MaxSemHandle_t MaxLockedCeiling(void)
 8000004e:	ee e8 ff f4 	ld.d	r8,r7[-12]
 80000052:	c2 08       	rjmp	80000092 <MaxLockedCeiling+0x8a>
 	}
-	while (it->nextLockedSemaphore!=NULL)
+	while (it->nextLockedSemaphore != NULL)
 	{
-		if (it->ceiling>=MaxT.Ceil)
+		if (it->ceiling>= MaxT.Ceil)
 80000054:	ee f8 ff fc 	ld.w	r8,r7[-4]
 80000058:	11 c9       	ld.ub	r9,r8[0x4]
 8000005a:	ef 38 ff f4 	ld.ub	r8,r7[-12]
 8000005e:	f0 09 18 00 	cp.b	r9,r8
 80000062:	c0 a3       	brcs	80000076 <MaxLockedCeiling+0x6e>
 		{
-			MaxT.Ceil=it->ceiling;
+			MaxT.Ceil = it->ceiling;
 80000064:	ee f8 ff fc 	ld.w	r8,r7[-4]
 80000068:	11 c8       	ld.ub	r8,r8[0x4]
 8000006a:	ef 68 ff f4 	st.b	r7[-12],r8
-			MaxT.Mutex=it;
+			MaxT.Mutex = it;
 8000006e:	ee f8 ff fc 	ld.w	r8,r7[-4]
 80000072:	ef 48 ff f8 	st.w	r7[-8],r8
 		}
-		it=it->nextLockedSemaphore;
+		it = it->nextLockedSemaphore;
 80000076:	ee f8 ff fc 	ld.w	r8,r7[-4]
 8000007a:	70 28       	ld.w	r8,r8[0x8]
 8000007c:	ef 48 ff fc 	st.w	r7[-4],r8
 80000080:	c0 28       	rjmp	80000084 <MaxLockedCeiling+0x7c>
-	MaxT.Mutex=it;
-	if (it->nextLockedSemaphore==NULL)
+	MaxT.Mutex = it;
+	if (it->nextLockedSemaphore == NULL)
 	{
 		return MaxT;
 	}
-	while (it->nextLockedSemaphore!=NULL)
+	while (it->nextLockedSemaphore != NULL)
 80000082:	d7 03       	nop
 80000084:	ee f8 ff fc 	ld.w	r8,r7[-4]
 80000088:	70 28       	ld.w	r8,r8[0x8]
 8000008a:	58 08       	cp.w	r8,0
 8000008c:	ce 41       	brne	80000054 <MaxLockedCeiling+0x4c>
-			MaxT.Mutex=it;
+			MaxT.Mutex = it;
 		}
-		it=it->nextLockedSemaphore;
+		it = it->nextLockedSemaphore;
 	}
 
 	return MaxT;
@@ -172,16 +172,16 @@ static void updatePriority(tcb * task)
 800000a4:	1a 97       	mov	r7,sp
 800000a6:	20 4d       	sub	sp,16
 800000a8:	ef 4c ff f0 	st.w	r7[-16],r12
-	int maximum=0,counter=0;
+	int maximum = 0, counter = 0;
 800000ac:	30 08       	mov	r8,0
 800000ae:	ef 48 ff f4 	st.w	r7[-12],r8
 800000b2:	30 08       	mov	r8,0
 800000b4:	ef 48 ff f8 	st.w	r7[-8],r8
-	ROSA_semaphoreHandle_t it=LOCKEDSEMAPHORELIST;
+	ROSA_semaphoreHandle_t it = LOCKEDSEMAPHORELIST;
 800000b8:	4b 18       	lddpc	r8,8000017c <updatePriority+0xdc>
 800000ba:	70 08       	ld.w	r8,r8[0x0]
 800000bc:	ef 48 ff fc 	st.w	r7[-4],r8
-	if (it->nextLockedSemaphore==NULL && it->holder==task && it->ceiling > maximum && it!=NULL)
+	if (it->nextLockedSemaphore == NULL && it->holder == task && it->ceiling > maximum && it != NULL)
 800000c0:	ee f8 ff fc 	ld.w	r8,r7[-4]
 800000c4:	70 28       	ld.w	r8,r8[0x8]
 800000c6:	58 08       	cp.w	r8,0
@@ -201,7 +201,7 @@ static void updatePriority(tcb * task)
 800000ee:	58 08       	cp.w	r8,0
 800000f0:	c2 b0       	breq	80000146 <updatePriority+0xa6>
 	{
-		maximum=it->ceiling;
+		maximum = it->ceiling;
 800000f2:	ee f8 ff fc 	ld.w	r8,r7[-4]
 800000f6:	11 c8       	ld.ub	r8,r8[0x4]
 800000f8:	ef 48 ff f4 	st.w	r7[-12],r8
@@ -212,16 +212,16 @@ static void updatePriority(tcb * task)
 
 static void updatePriority(tcb * task)
 {
-	int maximum=0,counter=0;
-	ROSA_semaphoreHandle_t it=LOCKEDSEMAPHORELIST;
-	if (it->nextLockedSemaphore==NULL && it->holder==task && it->ceiling > maximum && it!=NULL)
+	int maximum = 0, counter = 0;
+	ROSA_semaphoreHandle_t it = LOCKEDSEMAPHORELIST;
+	if (it->nextLockedSemaphore == NULL && it->holder == task && it->ceiling > maximum && it != NULL)
 80000106:	c2 48       	rjmp	8000014e <updatePriority+0xae>
 	}
 	else
 	{
-		while ( it!=NULL)
+		while ( it != NULL)
 	{
-		if (it->holder==task && it->ceiling > maximum)
+		if (it->holder == task && it->ceiling  >  maximum)
 80000108:	ee f8 ff fc 	ld.w	r8,r7[-4]
 8000010c:	70 09       	ld.w	r9,r8[0x0]
 8000010e:	ee f8 ff f0 	ld.w	r8,r7[-16]
@@ -234,7 +234,7 @@ static void updatePriority(tcb * task)
 80000122:	10 39       	cp.w	r9,r8
 80000124:	e0 8a 00 0c 	brle	8000013c <updatePriority+0x9c>
 		{
-			maximum=it->ceiling;
+			maximum = it->ceiling;
 80000128:	ee f8 ff fc 	ld.w	r8,r7[-4]
 8000012c:	11 c8       	ld.ub	r8,r8[0x4]
 8000012e:	ef 48 ff f4 	st.w	r7[-12],r8
@@ -243,30 +243,30 @@ static void updatePriority(tcb * task)
 80000136:	2f f8       	sub	r8,-1
 80000138:	ef 48 ff f8 	st.w	r7[-8],r8
 		}
-		it=it->nextLockedSemaphore;
+		it = it->nextLockedSemaphore;
 8000013c:	ee f8 ff fc 	ld.w	r8,r7[-4]
 80000140:	70 28       	ld.w	r8,r8[0x8]
 80000142:	ef 48 ff fc 	st.w	r7[-4],r8
-		maximum=it->ceiling;
+		maximum = it->ceiling;
 		counter++; //are there any semaphores locked by this task?
 	}
 	else
 	{
-		while ( it!=NULL)
+		while ( it != NULL)
 80000146:	ee f8 ff fc 	ld.w	r8,r7[-4]
 8000014a:	58 08       	cp.w	r8,0
 8000014c:	cd e1       	brne	80000108 <updatePriority+0x68>
 		}
-		it=it->nextLockedSemaphore;
+		it = it->nextLockedSemaphore;
 	}
 	}
 	
-	if (counter!=0)
+	if (counter != 0)
 8000014e:	ee f8 ff f8 	ld.w	r8,r7[-8]
 80000152:	58 08       	cp.w	r8,0
 80000154:	c0 90       	breq	80000166 <updatePriority+0xc6>
 	{
-		task->priority=maximum;
+		task->priority = maximum;
 80000156:	ee f8 ff f4 	ld.w	r8,r7[-12]
 8000015a:	5c 58       	castu.b	r8
 8000015c:	ee f9 ff f0 	ld.w	r9,r7[-16]
@@ -275,7 +275,7 @@ static void updatePriority(tcb * task)
 	}
 	else 
 		{
-			EXECTASK->priority=EXECTASK->originalPriority; //IPCP priority inheritance
+			EXECTASK->priority = EXECTASK->originalPriority; //IPCP priority inheritance
 80000166:	48 78       	lddpc	r8,80000180 <updatePriority+0xe0>
 80000168:	70 09       	ld.w	r9,r8[0x0]
 8000016a:	48 68       	lddpc	r8,80000180 <updatePriority+0xe0>
@@ -323,7 +323,7 @@ int16_t ROSA_semaphoreCreate(ROSA_semaphoreHandle_t * mutex, uint8_t ceiling) {
 800001b6:	70 09       	ld.w	r9,r8[0x0]
 800001b8:	ef 38 ff f8 	ld.ub	r8,r7[-8]
 800001bc:	b2 c8       	st.b	r9[0x4],r8
-	(*mutex)->nextLockedSemaphore=NULL;	
+	(*mutex)->nextLockedSemaphore = NULL;	
 800001be:	ee f8 ff fc 	ld.w	r8,r7[-4]
 800001c2:	70 08       	ld.w	r8,r8[0x0]
 800001c4:	30 09       	mov	r9,0
@@ -351,7 +351,7 @@ int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t  mutex) {
 800001de:	20 2d       	sub	sp,8
 800001e0:	ef 4c ff f8 	st.w	r7[-8],r12
 	
-	if (mutex==NULL)
+	if (mutex == NULL)
 800001e4:	ee f8 ff f8 	ld.w	r8,r7[-8]
 800001e8:	58 08       	cp.w	r8,0
 800001ea:	c0 61       	brne	800001f6 <ROSA_semaphoreLock+0x1e>
@@ -362,7 +362,7 @@ int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t  mutex) {
 	}
 	
 	
-	while (mutex->holder != NULL || ((EXECTASK->priority==MaxLockedCeiling().Ceil && (MaxLockedCeiling().Mutex->holder!=EXECTASK)) || EXECTASK->priority<MaxLockedCeiling().Ceil)) //if the semaphore is already locked or IPCP condition P(task)>maxLockedCeil
+	while (mutex->holder  !=  NULL || ((EXECTASK->priority == MaxLockedCeiling().Ceil && (MaxLockedCeiling().Mutex->holder != EXECTASK)) || EXECTASK->priority < MaxLockedCeiling().Ceil)) //if the semaphore is already locked or IPCP condition P(task) > maxLockedCeil
 		ROSA_yield();		
 800001f0:	f0 1f 00 4e 	mcall	80000328 <ROSA_semaphoreLock+0x150>
 800001f4:	c0 28       	rjmp	800001f8 <ROSA_semaphoreLock+0x20>
@@ -371,7 +371,7 @@ int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t  mutex) {
 	}
 	
 	
-	while (mutex->holder != NULL || ((EXECTASK->priority==MaxLockedCeiling().Ceil && (MaxLockedCeiling().Mutex->holder!=EXECTASK)) || EXECTASK->priority<MaxLockedCeiling().Ceil)) //if the semaphore is already locked or IPCP condition P(task)>maxLockedCeil
+	while (mutex->holder  !=  NULL || ((EXECTASK->priority == MaxLockedCeiling().Ceil && (MaxLockedCeiling().Mutex->holder != EXECTASK)) || EXECTASK->priority < MaxLockedCeiling().Ceil)) //if the semaphore is already locked or IPCP condition P(task) > maxLockedCeil
 800001f6:	d7 03       	nop
 800001f8:	ee f8 ff f8 	ld.w	r8,r7[-8]
 800001fc:	70 08       	ld.w	r8,r8[0x0]
@@ -414,13 +414,13 @@ int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t  mutex) {
 80000252:	ee f8 ff f8 	ld.w	r8,r7[-8]
 80000256:	91 09       	st.w	r8[0x0],r9
 		
-	if (LOCKEDSEMAPHORELIST==NULL)
+	if (LOCKEDSEMAPHORELIST == NULL)
 80000258:	4b 78       	lddpc	r8,80000334 <ROSA_semaphoreLock+0x15c>
 8000025a:	70 08       	ld.w	r8,r8[0x0]
 8000025c:	58 08       	cp.w	r8,0
 8000025e:	c0 61       	brne	8000026a <ROSA_semaphoreLock+0x92>
 	{
-		LOCKEDSEMAPHORELIST=mutex;
+		LOCKEDSEMAPHORELIST = mutex;
 80000260:	4b 58       	lddpc	r8,80000334 <ROSA_semaphoreLock+0x15c>
 80000262:	ee f9 ff f8 	ld.w	r9,r7[-8]
 80000266:	91 09       	st.w	r8[0x0],r9
@@ -429,14 +429,14 @@ int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t  mutex) {
 	else
 	{
 		ROSA_semaphoreHandle_t it; //finding the last semaphore in the list and changing its nextLockedSemaphore field to point to the just locked semaphore
-		it=LOCKEDSEMAPHORELIST;
+		it = LOCKEDSEMAPHORELIST;
 8000026a:	4b 38       	lddpc	r8,80000334 <ROSA_semaphoreLock+0x15c>
 8000026c:	70 08       	ld.w	r8,r8[0x0]
 8000026e:	ef 48 ff fc 	st.w	r7[-4],r8
-		while(it->nextLockedSemaphore!=NULL)
+		while(it->nextLockedSemaphore != NULL)
 80000272:	c0 68       	rjmp	8000027e <ROSA_semaphoreLock+0xa6>
 		{
-			it=it->nextLockedSemaphore;
+			it = it->nextLockedSemaphore;
 80000274:	ee f8 ff fc 	ld.w	r8,r7[-4]
 80000278:	70 28       	ld.w	r8,r8[0x8]
 8000027a:	ef 48 ff fc 	st.w	r7[-4],r8
@@ -444,29 +444,29 @@ int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t  mutex) {
 	else
 	{
 		ROSA_semaphoreHandle_t it; //finding the last semaphore in the list and changing its nextLockedSemaphore field to point to the just locked semaphore
-		it=LOCKEDSEMAPHORELIST;
-		while(it->nextLockedSemaphore!=NULL)
+		it = LOCKEDSEMAPHORELIST;
+		while(it->nextLockedSemaphore != NULL)
 8000027e:	ee f8 ff fc 	ld.w	r8,r7[-4]
 80000282:	70 28       	ld.w	r8,r8[0x8]
 80000284:	58 08       	cp.w	r8,0
 80000286:	cf 71       	brne	80000274 <ROSA_semaphoreLock+0x9c>
 		{
-			it=it->nextLockedSemaphore;
+			it = it->nextLockedSemaphore;
 		}
-		if (it!=mutex)
+		if (it != mutex)
 80000288:	ee f9 ff fc 	ld.w	r9,r7[-4]
 8000028c:	ee f8 ff f8 	ld.w	r8,r7[-8]
 80000290:	10 39       	cp.w	r9,r8
 80000292:	c0 60       	breq	8000029e <ROSA_semaphoreLock+0xc6>
 		{
-			it->nextLockedSemaphore=mutex;
+			it->nextLockedSemaphore = mutex;
 80000294:	ee f8 ff fc 	ld.w	r8,r7[-4]
 80000298:	ee f9 ff f8 	ld.w	r9,r7[-8]
 8000029c:	91 29       	st.w	r8[0x8],r9
 		}
 		
 	}
-	if (EXECTASK->priority < mutex->ceiling)
+	if (EXECTASK->priority  <  mutex->ceiling)
 8000029e:	4a 48       	lddpc	r8,8000032c <ROSA_semaphoreLock+0x154>
 800002a0:	70 08       	ld.w	r8,r8[0x0]
 800002a2:	f1 39 00 64 	ld.ub	r9,r8[100]
@@ -475,7 +475,7 @@ int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t  mutex) {
 800002ac:	f0 09 18 00 	cp.b	r9,r8
 800002b0:	c3 72       	brcc	8000031e <ROSA_semaphoreLock+0x146>
 	{
-		if (EXECTASK!=EXECTASK->nexttcb)
+		if (EXECTASK != EXECTASK->nexttcb)
 800002b2:	49 f8       	lddpc	r8,8000032c <ROSA_semaphoreLock+0x154>
 800002b4:	70 08       	ld.w	r8,r8[0x0]
 800002b6:	70 09       	ld.w	r9,r8[0x0]
@@ -484,7 +484,7 @@ int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t  mutex) {
 800002bc:	10 39       	cp.w	r9,r8
 800002be:	c0 d0       	breq	800002d8 <ROSA_semaphoreLock+0x100>
 		{
-			PA[EXECTASK->priority]=EXECTASK->nexttcb; //deattaching the EXECTASK from its current priority queue
+			PA[EXECTASK->priority] = EXECTASK->nexttcb; //deattaching the EXECTASK from its current priority queue
 800002c0:	49 b8       	lddpc	r8,8000032c <ROSA_semaphoreLock+0x154>
 800002c2:	70 08       	ld.w	r8,r8[0x0]
 800002c4:	f1 38 00 64 	ld.ub	r8,r8[100]
@@ -498,7 +498,7 @@ int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t  mutex) {
 		}
 		else
 		{
-			PA[EXECTASK->priority]=NULL; // if the task that is being removed from the queue is alone in the queue
+			PA[EXECTASK->priority] = NULL; // if the task that is being removed from the queue is alone in the queue
 800002d8:	49 58       	lddpc	r8,8000032c <ROSA_semaphoreLock+0x154>
 800002da:	70 08       	ld.w	r8,r8[0x0]
 800002dc:	f1 38 00 64 	ld.ub	r8,r8[100]
@@ -513,7 +513,7 @@ int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t  mutex) {
 800002ec:	70 08       	ld.w	r8,r8[0x0]
 800002ee:	10 9c       	mov	r12,r8
 800002f0:	f0 1f 00 13 	mcall	8000033c <ROSA_semaphoreLock+0x164>
-		PA[EXECTASK->priority]=EXECTASK;
+		PA[EXECTASK->priority] = EXECTASK;
 800002f4:	48 e8       	lddpc	r8,8000032c <ROSA_semaphoreLock+0x154>
 800002f6:	70 08       	ld.w	r8,r8[0x0]
 800002f8:	f1 38 00 64 	ld.ub	r8,r8[100]
@@ -522,7 +522,7 @@ int16_t ROSA_semaphoreLock(ROSA_semaphoreHandle_t  mutex) {
 80000300:	70 0a       	ld.w	r10,r8[0x0]
 80000302:	48 e8       	lddpc	r8,80000338 <ROSA_semaphoreLock+0x160>
 80000304:	f0 09 09 2a 	st.w	r8[r9<<0x2],r10
-		EXECTASK->nexttcb=PA[EXECTASK->priority];
+		EXECTASK->nexttcb = PA[EXECTASK->priority];
 80000308:	48 98       	lddpc	r8,8000032c <ROSA_semaphoreLock+0x154>
 8000030a:	70 08       	ld.w	r8,r8[0x0]
 8000030c:	48 89       	lddpc	r9,8000032c <ROSA_semaphoreLock+0x154>
@@ -570,14 +570,14 @@ int16_t ROSA_semaphoreUnlock(ROSA_semaphoreHandle_t  mutex) {
 8000034c:	ee f8 ff f0 	ld.w	r8,r7[-16]
 80000350:	30 09       	mov	r9,0
 80000352:	91 09       	st.w	r8[0x0],r9
-	if (mutex==LOCKEDSEMAPHORELIST)
+	if (mutex == LOCKEDSEMAPHORELIST)
 80000354:	4d 88       	lddpc	r8,800004b4 <ROSA_semaphoreUnlock+0x174>
 80000356:	70 08       	ld.w	r8,r8[0x0]
 80000358:	ee f9 ff f0 	ld.w	r9,r7[-16]
 8000035c:	10 39       	cp.w	r9,r8
 8000035e:	c0 71       	brne	8000036c <ROSA_semaphoreUnlock+0x2c>
 	{
-		LOCKEDSEMAPHORELIST=mutex->nextLockedSemaphore; //if first locked semaphore needs to be unlocked
+		LOCKEDSEMAPHORELIST = mutex->nextLockedSemaphore; //if first locked semaphore needs to be unlocked
 80000360:	ee f8 ff f0 	ld.w	r8,r7[-16]
 80000364:	70 29       	ld.w	r9,r8[0x8]
 80000366:	4d 48       	lddpc	r8,800004b4 <ROSA_semaphoreUnlock+0x174>
@@ -586,40 +586,40 @@ int16_t ROSA_semaphoreUnlock(ROSA_semaphoreHandle_t  mutex) {
 	}
 	else
 	{
-		ROSA_semaphoreHandle_t it=LOCKEDSEMAPHORELIST;
+		ROSA_semaphoreHandle_t it = LOCKEDSEMAPHORELIST;
 8000036c:	4d 28       	lddpc	r8,800004b4 <ROSA_semaphoreUnlock+0x174>
 8000036e:	70 08       	ld.w	r8,r8[0x0]
 80000370:	ef 48 ff f4 	st.w	r7[-12],r8
-		//it=LOCKEDSEMAPHORELIST;
-		while (it->nextLockedSemaphore!=mutex) //find the locked semaphore before the one that needs to be unlocked
+		//it = LOCKEDSEMAPHORELIST;
+		while (it->nextLockedSemaphore != mutex) //find the locked semaphore before the one that needs to be unlocked
 80000374:	c0 68       	rjmp	80000380 <ROSA_semaphoreUnlock+0x40>
 		{
-			it=it->nextLockedSemaphore;
+			it = it->nextLockedSemaphore;
 80000376:	ee f8 ff f4 	ld.w	r8,r7[-12]
 8000037a:	70 28       	ld.w	r8,r8[0x8]
 8000037c:	ef 48 ff f4 	st.w	r7[-12],r8
 	}
 	else
 	{
-		ROSA_semaphoreHandle_t it=LOCKEDSEMAPHORELIST;
-		//it=LOCKEDSEMAPHORELIST;
-		while (it->nextLockedSemaphore!=mutex) //find the locked semaphore before the one that needs to be unlocked
+		ROSA_semaphoreHandle_t it = LOCKEDSEMAPHORELIST;
+		//it = LOCKEDSEMAPHORELIST;
+		while (it->nextLockedSemaphore != mutex) //find the locked semaphore before the one that needs to be unlocked
 80000380:	ee f8 ff f4 	ld.w	r8,r7[-12]
 80000384:	70 29       	ld.w	r9,r8[0x8]
 80000386:	ee f8 ff f0 	ld.w	r8,r7[-16]
 8000038a:	10 39       	cp.w	r9,r8
 8000038c:	cf 51       	brne	80000376 <ROSA_semaphoreUnlock+0x36>
 		{
-			it=it->nextLockedSemaphore;
+			it = it->nextLockedSemaphore;
 		}
-		it->nextLockedSemaphore=mutex->nextLockedSemaphore;
+		it->nextLockedSemaphore = mutex->nextLockedSemaphore;
 8000038e:	ee f8 ff f0 	ld.w	r8,r7[-16]
 80000392:	70 29       	ld.w	r9,r8[0x8]
 80000394:	ee f8 ff f4 	ld.w	r8,r7[-12]
 80000398:	91 29       	st.w	r8[0x8],r9
 	}
 	//readyQueueExtract(EXECTASK);
-	if(EXECTASK->priority!=EXECTASK->originalPriority)
+	if(EXECTASK->priority != EXECTASK->originalPriority)
 8000039a:	4c 88       	lddpc	r8,800004b8 <ROSA_semaphoreUnlock+0x178>
 8000039c:	70 08       	ld.w	r8,r8[0x0]
 8000039e:	f1 39 00 64 	ld.ub	r9,r8[100]
@@ -629,7 +629,7 @@ int16_t ROSA_semaphoreUnlock(ROSA_semaphoreHandle_t  mutex) {
 800003aa:	f0 09 18 00 	cp.b	r9,r8
 800003ae:	c7 d0       	breq	800004a8 <ROSA_semaphoreUnlock+0x168>
 	{
-		if (EXECTASK!=EXECTASK->nexttcb)
+		if (EXECTASK != EXECTASK->nexttcb)
 800003b0:	4c 28       	lddpc	r8,800004b8 <ROSA_semaphoreUnlock+0x178>
 800003b2:	70 08       	ld.w	r8,r8[0x0]
 800003b4:	70 09       	ld.w	r9,r8[0x0]
@@ -638,7 +638,7 @@ int16_t ROSA_semaphoreUnlock(ROSA_semaphoreHandle_t  mutex) {
 800003ba:	10 39       	cp.w	r9,r8
 800003bc:	c0 e0       	breq	800003d8 <ROSA_semaphoreUnlock+0x98>
 		{
-			PA[EXECTASK->priority]->nexttcb=EXECTASK->nexttcb; //deattaching the EXECTASK from its current priority queue
+			PA[EXECTASK->priority]->nexttcb = EXECTASK->nexttcb; //deattaching the EXECTASK from its current priority queue
 800003be:	4b f8       	lddpc	r8,800004b8 <ROSA_semaphoreUnlock+0x178>
 800003c0:	70 08       	ld.w	r8,r8[0x0]
 800003c2:	f1 38 00 64 	ld.ub	r8,r8[100]
@@ -653,7 +653,7 @@ int16_t ROSA_semaphoreUnlock(ROSA_semaphoreHandle_t  mutex) {
 		}
 		else
 		{
-			PA[EXECTASK->priority]=NULL; // if the task that is being removed from the queue is alone in the queue
+			PA[EXECTASK->priority] = NULL; // if the task that is being removed from the queue is alone in the queue
 800003d8:	4b 88       	lddpc	r8,800004b8 <ROSA_semaphoreUnlock+0x178>
 800003da:	70 08       	ld.w	r8,r8[0x0]
 800003dc:	f1 38 00 64 	ld.ub	r8,r8[100]
@@ -662,7 +662,7 @@ int16_t ROSA_semaphoreUnlock(ROSA_semaphoreHandle_t  mutex) {
 800003e4:	30 0a       	mov	r10,0
 800003e6:	f0 09 09 2a 	st.w	r8[r9<<0x2],r10
 		}
-		int old_prio=EXECTASK->priority;
+		int old_prio = EXECTASK->priority;
 800003ea:	4b 48       	lddpc	r8,800004b8 <ROSA_semaphoreUnlock+0x178>
 800003ec:	70 08       	ld.w	r8,r8[0x0]
 800003ee:	f1 38 00 64 	ld.ub	r8,r8[100]
@@ -672,7 +672,7 @@ int16_t ROSA_semaphoreUnlock(ROSA_semaphoreHandle_t  mutex) {
 800003f8:	70 08       	ld.w	r8,r8[0x0]
 800003fa:	10 9c       	mov	r12,r8
 800003fc:	f0 1f 00 31 	mcall	800004c0 <ROSA_semaphoreUnlock+0x180>
-		if (old_prio>EXECTASK->priority && PA[EXECTASK->priority]!=NULL)
+		if (old_prio > EXECTASK->priority && PA[EXECTASK->priority] != NULL)
 80000400:	4a e8       	lddpc	r8,800004b8 <ROSA_semaphoreUnlock+0x178>
 80000402:	70 08       	ld.w	r8,r8[0x0]
 80000404:	f1 38 00 64 	ld.ub	r8,r8[100]
@@ -697,7 +697,7 @@ int16_t ROSA_semaphoreUnlock(ROSA_semaphoreHandle_t  mutex) {
 80000430:	4a 38       	lddpc	r8,800004bc <ROSA_semaphoreUnlock+0x17c>
 80000432:	f0 09 03 28 	ld.w	r8,r8[r9<<0x2]
 80000436:	ef 48 ff fc 	st.w	r7[-4],r8
-			PA[EXECTASK->priority]=EXECTASK;
+			PA[EXECTASK->priority] = EXECTASK;
 8000043a:	4a 08       	lddpc	r8,800004b8 <ROSA_semaphoreUnlock+0x178>
 8000043c:	70 08       	ld.w	r8,r8[0x0]
 8000043e:	f1 38 00 64 	ld.ub	r8,r8[100]
@@ -706,7 +706,7 @@ int16_t ROSA_semaphoreUnlock(ROSA_semaphoreHandle_t  mutex) {
 80000446:	70 0a       	ld.w	r10,r8[0x0]
 80000448:	49 d8       	lddpc	r8,800004bc <ROSA_semaphoreUnlock+0x17c>
 8000044a:	f0 09 09 2a 	st.w	r8[r9<<0x2],r10
-			EXECTASK->nexttcb=temp->nexttcb;
+			EXECTASK->nexttcb = temp->nexttcb;
 8000044e:	49 b8       	lddpc	r8,800004b8 <ROSA_semaphoreUnlock+0x178>
 80000450:	70 08       	ld.w	r8,r8[0x0]
 80000452:	ee f9 ff fc 	ld.w	r9,r7[-4]
@@ -720,18 +720,18 @@ int16_t ROSA_semaphoreUnlock(ROSA_semaphoreHandle_t  mutex) {
 			ROSA_yield();
 80000464:	f0 1f 00 1a 	mcall	800004cc <ROSA_semaphoreUnlock+0x18c>
 		{
-			PA[EXECTASK->priority]=NULL; // if the task that is being removed from the queue is alone in the queue
+			PA[EXECTASK->priority] = NULL; // if the task that is being removed from the queue is alone in the queue
 		}
-		int old_prio=EXECTASK->priority;
+		int old_prio = EXECTASK->priority;
 		updatePriority(EXECTASK);
-		if (old_prio>EXECTASK->priority && PA[EXECTASK->priority]!=NULL)
+		if (old_prio > EXECTASK->priority && PA[EXECTASK->priority] != NULL)
 80000468:	c2 08       	rjmp	800004a8 <ROSA_semaphoreUnlock+0x168>
-			PA[EXECTASK->priority]=EXECTASK;
-			EXECTASK->nexttcb=temp->nexttcb;
+			PA[EXECTASK->priority] = EXECTASK;
+			EXECTASK->nexttcb = temp->nexttcb;
 			PREEMPTASK = readyQueueSearch();
 			ROSA_yield();
 		}
-		else if(old_prio>EXECTASK->priority)
+		else if(old_prio > EXECTASK->priority)
 8000046a:	49 48       	lddpc	r8,800004b8 <ROSA_semaphoreUnlock+0x178>
 8000046c:	70 08       	ld.w	r8,r8[0x0]
 8000046e:	f1 38 00 64 	ld.ub	r8,r8[100]
@@ -740,7 +740,7 @@ int16_t ROSA_semaphoreUnlock(ROSA_semaphoreHandle_t  mutex) {
 80000478:	10 39       	cp.w	r9,r8
 8000047a:	c1 74       	brge	800004a8 <ROSA_semaphoreUnlock+0x168>
 		{
-			PA[EXECTASK->priority]=EXECTASK;
+			PA[EXECTASK->priority] = EXECTASK;
 8000047c:	48 f8       	lddpc	r8,800004b8 <ROSA_semaphoreUnlock+0x178>
 8000047e:	70 08       	ld.w	r8,r8[0x0]
 80000480:	f1 38 00 64 	ld.ub	r8,r8[100]
@@ -749,7 +749,7 @@ int16_t ROSA_semaphoreUnlock(ROSA_semaphoreHandle_t  mutex) {
 80000488:	70 0a       	ld.w	r10,r8[0x0]
 8000048a:	48 d8       	lddpc	r8,800004bc <ROSA_semaphoreUnlock+0x17c>
 8000048c:	f0 09 09 2a 	st.w	r8[r9<<0x2],r10
-			EXECTASK->nexttcb=EXECTASK;
+			EXECTASK->nexttcb = EXECTASK;
 80000490:	48 a8       	lddpc	r8,800004b8 <ROSA_semaphoreUnlock+0x178>
 80000492:	70 08       	ld.w	r8,r8[0x0]
 80000494:	48 99       	lddpc	r9,800004b8 <ROSA_semaphoreUnlock+0x178>
@@ -1505,8 +1505,8 @@ void dlay()
 
 8000096c <sysTasksCreate>:
 
-/** @fn void idleCreate(void)
-	@brief Creation of the idle task.
+/** @fn void sysTasksCreate(void)
+	@brief Creation of the idle and dlay tasks.
 */
 void sysTasksCreate(void)
 {
