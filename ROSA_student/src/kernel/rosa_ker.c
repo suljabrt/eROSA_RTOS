@@ -25,8 +25,6 @@
 
 /**
  * @file rosa_ker.c
- * @author Anton (?)
- * @date 05.12.2018
  * @brief File containing definitions of ROSA kernel's functions.
  *
  * In this file we define data structure for tasks, functions to create and
@@ -95,12 +93,20 @@ tcb DELHANDL_TCB;
 	which preempts the current running task.
 */
 tcb * IDLETASK;
+
+/** @var tcb * DELHANDL 
+    @brief Global variable that contains the delay handler task's TCB.
+*/
 tcb * DELHANDL;
 
-/** @var static int sysTask_stack[SYS_TASK_STACK_SIZE]
-	@brief System tasks' stack.
+/** @var static int idle_stack[SYS_TASK_STACK_SIZE]
+	@brief Idle task's stack.
 */
 static int idle_stack[SYS_TASK_STACK_SIZE];
+
+/** @var static int dlay_stack[SYS_TASK_STACK_SIZE]
+	@brief Delay handler task's stack.
+*/
 static int dlay_stack[SYS_TASK_STACK_SIZE];
 
 /** @var ROSA_taskHandle_t * PA[MAXNPRIO] 
@@ -220,8 +226,8 @@ void dlay()
 	}
 }
 
-/** @fn void idleCreate(void)
-	@brief Creation of the idle task.
+/** @fn void sysTasksCreate(void)
+	@brief Creation of the idle and dlay tasks.
 */
 void sysTasksCreate(void)
 {

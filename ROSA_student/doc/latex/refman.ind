@@ -1,76 +1,211 @@
 \begin{theindex}
 
-  \item {C\+:/\+Users/ant/\+Documents/\+Git\+Hub/\+D\+V\+A438/\+R\+O\+S\+A\+\_\+student/src/include/kernel/rosa\+\_\+def.\+h}, 
-		\hyperpage{17}
-  \item {C\+:/\+Users/ant/\+Documents/\+Git\+Hub/\+D\+V\+A438/\+R\+O\+S\+A\+\_\+student/src/include/kernel/rosa\+\_\+ker.\+h}, 
+  \item {Ceil}
+    \subitem {Max\+Sem}, \hyperpage{17}
+  \item {ceiling}
+    \subitem {R\+O\+S\+A\+\_\+semaphore\+Handle\+\_\+record\+\_\+t}, 
 		\hyperpage{18}
-  \item {C\+:/\+Users/ant/\+Documents/\+Git\+Hub/\+D\+V\+A438/\+R\+O\+S\+A\+\_\+student/src/kernel/rosa\+\_\+ker.\+c}, 
-		\hyperpage{19}
+  \item {counter}
+    \subitem {tcb\+\_\+record\+\_\+t}, \hyperpage{19}
 
   \indexspace
 
-  \item {E\+X\+E\+C\+T\+A\+SK}
-    \subitem {rosa\+\_\+ker.\+c}, \hyperpage{21}
-    \subitem {rosa\+\_\+ker.\+h}, \hyperpage{19}
+  \item {dataarea}
+    \subitem {tcb\+\_\+record\+\_\+t}, \hyperpage{19}
+  \item {datasize}
+    \subitem {tcb\+\_\+record\+\_\+t}, \hyperpage{19}
+  \item {delay}
+    \subitem {tcb\+\_\+record\+\_\+t}, \hyperpage{19}
+  \item {Delays.}, \hyperpage{13}
+    \subitem {R\+O\+S\+A\+\_\+delay}, \hyperpage{13}
+    \subitem {R\+O\+S\+A\+\_\+delay\+Absolute}, \hyperpage{13}
+    \subitem {R\+O\+S\+A\+\_\+delay\+Until}, \hyperpage{13}
+
+  \indexspace
+
+  \item {E\+:/\+User data/\+Documents/\+De School/\+Master/-\/ Sweden/\+D\+V\+A438/\+D\+V\+A438/\+R\+O\+S\+A\+\_\+student/src/include/kernel/rosa\+\_\+def.\+h}, 
+		\hyperpage{21}
+  \item {E\+:/\+User data/\+Documents/\+De School/\+Master/-\/ Sweden/\+D\+V\+A438/\+D\+V\+A438/\+R\+O\+S\+A\+\_\+student/src/include/kernel/rosa\+\_\+ker.\+h}, 
+		\hyperpage{21}
+  \item {E\+:/\+User data/\+Documents/\+De School/\+Master/-\/ Sweden/\+D\+V\+A438/\+D\+V\+A438/\+R\+O\+S\+A\+\_\+student/src/include/kernel/rosa\+\_\+semaphore.\+h}, 
+		\hyperpage{23}
+  \item {E\+:/\+User data/\+Documents/\+De School/\+Master/-\/ Sweden/\+D\+V\+A438/\+D\+V\+A438/\+R\+O\+S\+A\+\_\+student/src/include/kernel/rosa\+\_\+tim.\+h}, 
+		\hyperpage{23}
+  \item {E\+:/\+User data/\+Documents/\+De School/\+Master/-\/ Sweden/\+D\+V\+A438/\+D\+V\+A438/\+R\+O\+S\+A\+\_\+student/src/kernel/rosa\+\_\+ker.\+c}, 
+		\hyperpage{24}
+  \item {E\+X\+E\+C\+T\+A\+S\+K}
+    \subitem {rosa\+\_\+ker.\+c}, \hyperpage{26}
+    \subitem {rosa\+\_\+ker.\+h}, \hyperpage{22}
+
+  \indexspace
+
+  \item {holder}
+    \subitem {R\+O\+S\+A\+\_\+semaphore\+Handle\+\_\+record\+\_\+t}, 
+		\hyperpage{18}
 
   \indexspace
 
   \item {id}
-    \subitem {tcb\+\_\+record\+\_\+t}, \hyperpage{15}
+    \subitem {tcb\+\_\+record\+\_\+t}, \hyperpage{19}
 
   \indexspace
 
+  \item {L\+O\+C\+K\+E\+D\+S\+E\+M\+A\+P\+H\+O\+R\+E\+L\+I\+S\+T}
+    \subitem {rosa\+\_\+semaphore.\+h}, \hyperpage{23}
+
+  \indexspace
+
+  \item {Max\+Sem}, \hyperpage{17}
+    \subitem {Ceil}, \hyperpage{17}
+    \subitem {Mutex}, \hyperpage{17}
+  \item {Mutex}
+    \subitem {Max\+Sem}, \hyperpage{17}
+
+  \indexspace
+
+  \item {next\+Locked\+Semaphore}
+    \subitem {R\+O\+S\+A\+\_\+semaphore\+Handle\+\_\+record\+\_\+t}, 
+		\hyperpage{18}
   \item {nexttcb}
-    \subitem {tcb\+\_\+record\+\_\+t}, \hyperpage{16}
+    \subitem {tcb\+\_\+record\+\_\+t}, \hyperpage{19}
 
   \indexspace
 
-  \item {R\+O\+S\+A kernel.}, \hyperpage{9}
+  \item {priority}
+    \subitem {tcb\+\_\+record\+\_\+t}, \hyperpage{19}
+
+  \indexspace
+
+  \item {R\+O\+S\+A kernel.}, \hyperpage{7}
+    \subitem {R\+O\+S\+A\+\_\+get\+Tick\+Count}, \hyperpage{8}
+    \subitem {system\+Tick}, \hyperpage{9}
+    \subitem {timer\+Clear\+Interrupt}, \hyperpage{8}
+    \subitem {timer\+I\+S\+R}, \hyperpage{8}
+    \subitem {timer\+Init}, \hyperpage{8}
+    \subitem {timer\+Period\+Set}, \hyperpage{8}
+    \subitem {timer\+Reset}, \hyperpage{8}
+    \subitem {timer\+Start}, \hyperpage{8}
+    \subitem {timer\+Stop}, \hyperpage{8}
+  \item {R\+O\+S\+A\+\_\+\+T\+M\+\_\+\+A\+C\+T\+I\+O\+N}
+    \subitem {rosa\+\_\+ker.\+c}, \hyperpage{26}
+  \item {R\+O\+S\+A\+\_\+delay}
+    \subitem {Delays.}, \hyperpage{13}
+  \item {R\+O\+S\+A\+\_\+delay\+Absolute}
+    \subitem {Delays.}, \hyperpage{13}
+  \item {R\+O\+S\+A\+\_\+delay\+Until}
+    \subitem {Delays.}, \hyperpage{13}
+  \item {R\+O\+S\+A\+\_\+get\+Tick\+Count}
+    \subitem {R\+O\+S\+A kernel.}, \hyperpage{8}
+  \item {R\+O\+S\+A\+\_\+init}
+    \subitem {Scheduler management.}, \hyperpage{10}
+  \item {R\+O\+S\+A\+\_\+semaphore\+Create}
+    \subitem {Semaphore management.}, \hyperpage{15}
+  \item {R\+O\+S\+A\+\_\+semaphore\+Delete}
+    \subitem {Semaphore management.}, \hyperpage{15}
   \item {R\+O\+S\+A\+\_\+semaphore\+Handle\+\_\+record\+\_\+t}, 
-		\hyperpage{15}
+		\hyperpage{17}
+    \subitem {ceiling}, \hyperpage{18}
+    \subitem {holder}, \hyperpage{18}
+    \subitem {next\+Locked\+Semaphore}, \hyperpage{18}
+  \item {R\+O\+S\+A\+\_\+semaphore\+Lock}
+    \subitem {Semaphore management.}, \hyperpage{15}
+  \item {R\+O\+S\+A\+\_\+semaphore\+Peek}
+    \subitem {Semaphore management.}, \hyperpage{16}
+  \item {R\+O\+S\+A\+\_\+semaphore\+Unlock}
+    \subitem {Semaphore management.}, \hyperpage{16}
+  \item {R\+O\+S\+A\+\_\+start}
+    \subitem {Scheduler management.}, \hyperpage{10}
+  \item {R\+O\+S\+A\+\_\+start\+Scheduler}
+    \subitem {Scheduler management.}, \hyperpage{10}
   \item {R\+O\+S\+A\+\_\+task\+Create}
     \subitem {Task management.}, \hyperpage{11}
   \item {R\+O\+S\+A\+\_\+task\+Delete}
-    \subitem {Task management.}, \hyperpage{12}
-  \item {R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}
-    \subitem {rosa\+\_\+def.\+h}, \hyperpage{18}
+    \subitem {Task management.}, \hyperpage{11}
   \item {R\+O\+S\+A\+\_\+tcb\+Create}
-    \subitem {Task management.}, \hyperpage{12}
+    \subitem {Task management.}, \hyperpage{11}
   \item {R\+O\+S\+A\+\_\+tcb\+Install}
     \subitem {Task management.}, \hyperpage{12}
-  \item {rosa\+\_\+def.\+h}
-    \subitem {R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}, \hyperpage{18}
+  \item {ready\+Queue\+Search}
+    \subitem {rosa\+\_\+ker.\+c}, \hyperpage{26}
+  \item {retaddr}
+    \subitem {tcb\+\_\+record\+\_\+t}, \hyperpage{19}
   \item {rosa\+\_\+ker.\+c}
-    \subitem {E\+X\+E\+C\+T\+A\+SK}, \hyperpage{21}
-    \subitem {rqe}, \hyperpage{20}
-    \subitem {rqi}, \hyperpage{21}
-    \subitem {rqsearch}, \hyperpage{21}
+    \subitem {E\+X\+E\+C\+T\+A\+S\+K}, \hyperpage{26}
+    \subitem {R\+O\+S\+A\+\_\+\+T\+M\+\_\+\+A\+C\+T\+I\+O\+N}, 
+		\hyperpage{26}
+    \subitem {ready\+Queue\+Search}, \hyperpage{26}
   \item {rosa\+\_\+ker.\+h}
-    \subitem {E\+X\+E\+C\+T\+A\+SK}, \hyperpage{19}
-  \item {rqe}
-    \subitem {rosa\+\_\+ker.\+c}, \hyperpage{20}
-  \item {rqi}
-    \subitem {rosa\+\_\+ker.\+c}, \hyperpage{21}
-  \item {rqsearch}
-    \subitem {rosa\+\_\+ker.\+c}, \hyperpage{21}
+    \subitem {E\+X\+E\+C\+T\+A\+S\+K}, \hyperpage{22}
+  \item {rosa\+\_\+semaphore.\+h}
+    \subitem {L\+O\+C\+K\+E\+D\+S\+E\+M\+A\+P\+H\+O\+R\+E\+L\+I\+S\+T}, 
+		\hyperpage{23}
 
   \indexspace
 
+  \item {S\+A\+V\+E\+R0}
+    \subitem {tcb\+\_\+record\+\_\+t}, \hyperpage{19}
+  \item {S\+A\+V\+E\+R1}
+    \subitem {tcb\+\_\+record\+\_\+t}, \hyperpage{19}
+  \item {savereg}
+    \subitem {tcb\+\_\+record\+\_\+t}, \hyperpage{20}
+  \item {savesr}
+    \subitem {tcb\+\_\+record\+\_\+t}, \hyperpage{20}
+  \item {saveusp}
+    \subitem {tcb\+\_\+record\+\_\+t}, \hyperpage{20}
   \item {Scheduler management.}, \hyperpage{10}
+    \subitem {R\+O\+S\+A\+\_\+init}, \hyperpage{10}
+    \subitem {R\+O\+S\+A\+\_\+start}, \hyperpage{10}
+    \subitem {R\+O\+S\+A\+\_\+start\+Scheduler}, \hyperpage{10}
+  \item {Semaphore management.}, \hyperpage{15}
+    \subitem {R\+O\+S\+A\+\_\+semaphore\+Create}, \hyperpage{15}
+    \subitem {R\+O\+S\+A\+\_\+semaphore\+Delete}, \hyperpage{15}
+    \subitem {R\+O\+S\+A\+\_\+semaphore\+Lock}, \hyperpage{15}
+    \subitem {R\+O\+S\+A\+\_\+semaphore\+Peek}, \hyperpage{16}
+    \subitem {R\+O\+S\+A\+\_\+semaphore\+Unlock}, \hyperpage{16}
+  \item {staddr}
+    \subitem {tcb\+\_\+record\+\_\+t}, \hyperpage{20}
+  \item {system\+Tick}
+    \subitem {R\+O\+S\+A kernel.}, \hyperpage{9}
 
   \indexspace
 
   \item {Task management.}, \hyperpage{11}
     \subitem {R\+O\+S\+A\+\_\+task\+Create}, \hyperpage{11}
-    \subitem {R\+O\+S\+A\+\_\+task\+Delete}, \hyperpage{12}
-    \subitem {R\+O\+S\+A\+\_\+tcb\+Create}, \hyperpage{12}
+    \subitem {R\+O\+S\+A\+\_\+task\+Delete}, \hyperpage{11}
+    \subitem {R\+O\+S\+A\+\_\+tcb\+Create}, \hyperpage{11}
     \subitem {R\+O\+S\+A\+\_\+tcb\+Install}, \hyperpage{12}
-  \item {tcb\+\_\+record\+\_\+t}, \hyperpage{15}
-    \subitem {id}, \hyperpage{15}
-    \subitem {nexttcb}, \hyperpage{16}
+  \item {tcb\+\_\+record\+\_\+t}, \hyperpage{18}
+    \subitem {counter}, \hyperpage{19}
+    \subitem {dataarea}, \hyperpage{19}
+    \subitem {datasize}, \hyperpage{19}
+    \subitem {delay}, \hyperpage{19}
+    \subitem {id}, \hyperpage{19}
+    \subitem {nexttcb}, \hyperpage{19}
+    \subitem {priority}, \hyperpage{19}
+    \subitem {retaddr}, \hyperpage{19}
+    \subitem {S\+A\+V\+E\+R0}, \hyperpage{19}
+    \subitem {S\+A\+V\+E\+R1}, \hyperpage{19}
+    \subitem {savereg}, \hyperpage{20}
+    \subitem {savesr}, \hyperpage{20}
+    \subitem {saveusp}, \hyperpage{20}
+    \subitem {staddr}, \hyperpage{20}
+  \item {timer\+Clear\+Interrupt}
+    \subitem {R\+O\+S\+A kernel.}, \hyperpage{8}
+  \item {timer\+I\+S\+R}
+    \subitem {R\+O\+S\+A kernel.}, \hyperpage{8}
+  \item {timer\+Init}
+    \subitem {R\+O\+S\+A kernel.}, \hyperpage{8}
+  \item {timer\+Period\+Set}
+    \subitem {R\+O\+S\+A kernel.}, \hyperpage{8}
+  \item {timer\+Reset}
+    \subitem {R\+O\+S\+A kernel.}, \hyperpage{8}
+  \item {timer\+Start}
+    \subitem {R\+O\+S\+A kernel.}, \hyperpage{8}
+  \item {timer\+Stop}
+    \subitem {R\+O\+S\+A kernel.}, \hyperpage{8}
 
   \indexspace
 
-  \item {usart\+\_\+options\+\_\+t}, \hyperpage{16}
+  \item {usart\+\_\+options\+\_\+t}, \hyperpage{20}
 
 \end{theindex}

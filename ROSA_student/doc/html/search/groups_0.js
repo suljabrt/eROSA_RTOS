@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['rosa_20kernel_2e',['ROSA kernel.',['../group__rosa__kernel.html',1,'']]]
+  ['delays_2e',['Delays.',['../group__rosa__kernel__dm.html',1,'']]]
 ];

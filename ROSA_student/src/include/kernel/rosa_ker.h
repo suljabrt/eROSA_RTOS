@@ -25,8 +25,6 @@
 
 /**
  * @file rosa_ker.h
- * @author Anton (?)
- * @date 05.12.2018
  * @brief Header file containing declarations for ROSA kernel's functions.
  *
  * Header file containing declarations of ROSA kernel's functions.
@@ -60,18 +58,18 @@ extern void ROSA_yield(void);
  */
 #define ROSA_INITIALSR 0x1c0000
 
-/** @fn void ROSA_init(void)
-	@brief Initialize the ROSA system.
+/**
+	Initialize the ROSA system.
 */
 void ROSA_init(void);
 
-/** @fn extern void ROSA_start(void)
-	@brief Start running the ROSA kernel.
+/**
+	Start running the ROSA kernel.
 */
 extern void ROSA_start(void);
 
-/** @fn extern void ROSA_startScheduler(void);
-	@brief Start running the ROSA kernel for FPPS.
+/**
+	Start running the ROSA kernel for FPPS.
 */
 extern void ROSA_startScheduler(void);
 	///@}
@@ -81,8 +79,8 @@ extern void ROSA_startScheduler(void);
 		@brief Task creation and deletion.
 	  */
 	///@{
-/** @fn void ROSA_tcbCreate(tcb * tcbTask, char tcbName[NAMESIZE], void *tcbFunction, int * tcbStack, int tcbStackSize)
-	@brief 	Create the TCB with correct values.
+/**
+	Create the TCB with correct values.
 	@param tcbTask Pointer to the tcb.
 	@param tcbName Name of the task.
 	@param tcbFunction TCB function.
@@ -91,8 +89,8 @@ extern void ROSA_startScheduler(void);
 */
 void ROSA_tcbCreate(tcb * tcbTask, char tcbName[NAMESIZE], void *tcbFunction, int * tcbStack, int tcbStackSize);
 
-/** @fn int16_t ROSA_taskCreate(ROSA_taskHandle_t ** th, char * id, void* taskFunction, uint32_t stackSize, uint8_t priority)
-	@brief 	Create the FPPS task with correct values.
+/**
+	Create the FPPS task with correct values.
 	@param th Pointer to the task.
 	@param id Id of the task.
 	@param tcbFunction Task function.
@@ -102,43 +100,43 @@ void ROSA_tcbCreate(tcb * tcbTask, char tcbName[NAMESIZE], void *tcbFunction, in
 */
 int16_t ROSA_taskCreate(ROSA_taskHandle_t * th, char * id, void* taskFunction, uint32_t stackSize, uint8_t priority);
 
-/** @fn int16_t ROSA_taskDelete(ROSA_taskHandle_t ** th)
-	@brief 	Create the FPPS task with correct values.
+/**
+	Create the FPPS task with correct values.
 	@param th Pointer to the task.
 	@return Status code.
 */
 int16_t ROSA_taskDelete(ROSA_taskHandle_t th);
 
-/** @fn extern void ROSA_tcbInstall(tcb *task)
-	@brief Install a new task TCB into ROSA.
+/**
+	Install a new task TCB into ROSA.
 	@param task Pointer to the tcb.
 */
 extern void ROSA_tcbInstall(tcb *task);
 	///@}
 	
-/** @defgroup rosa_kernel_dm Delay management.
+/** @defgroup rosa_kernel_dm Delays.
 		@ingroup rosa_kernel
 		@brief Task delays.
 	  */
 	///@{	
 
-/** @fn int16_t ROSA_delay(uint64_t ticks)
-	@brief 	Delay the calling task for the given number of ticks.
+/**
+	Delay the calling task for the given number of ticks.
 	@param ticks Number of ticks to delay the task for.
 	@return Status code.
 */
 int16_t ROSA_delay(uint64_t ticks);
 
-/** @fn int16_t ROSA_delayUntil(ROSA_taskHandle_t ** th)
-	@brief 	Delay the calling task until the system reaches *LastWakeTime + ticks.
+/**
+	Delay the calling task until the system reaches *LastWakeTime + ticks.
 	@param LastWakeTime Pointer to the time the calling task was last started.
 	@param ticks Number of ticks relative to LastWakeTime.
 	@return Status code.
 */
 int16_t ROSA_delayUntil(uint64_t* LastWakeTime, uint64_t ticks);
 
-/** @fn int16_t ROSA_taskDelete(ROSA_taskHandle_t ** th)
-	@brief 	Delay the calling task until the system reaches the given number of ticks.
+/**
+	Delay the calling task until the system reaches the given number of ticks.
 	@param ticks Number of ticks of the system to delay the task until.
 	@return Status code.
 */

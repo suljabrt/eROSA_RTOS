@@ -1,19 +1,150 @@
-\hypertarget{group__rosa__kernel}{}\section{R\+O\+SA kernel.}
+\hypertarget{group__rosa__kernel}{}\section{R\+O\+S\+A kernel.}
 \label{group__rosa__kernel}\index{R\+O\+S\+A kernel.@{R\+O\+S\+A kernel.}}
 
 
-This module contains kernel functions of R\+O\+SA.  
+This module contains kernel functions of R\+O\+S\+A.  
 
 
 \subsection*{Modules}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{group__rosa__kernel__sm}{Scheduler management.}}
-\begin{DoxyCompactList}\small\item\em Scheduler initializaion and start. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{group__rosa__kernel__tm}{Task management.}}
-\begin{DoxyCompactList}\small\item\em Task creation and deletion. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hyperlink{group__rosa__kernel__sm}{Scheduler management.}
+\begin{DoxyCompactList}\small\item\em Scheduler initialization and start. \end{DoxyCompactList}\item 
+\hyperlink{group__rosa__kernel__tm}{Task management.}
+\begin{DoxyCompactList}\small\item\em Task creation and deletion. \end{DoxyCompactList}\item 
+\hyperlink{group__rosa__kernel__dm}{Delays.}
+\begin{DoxyCompactList}\small\item\em Task delays. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__rosa__kernel_gaafc10ed8e6d779950f08c99bf73bd870}{timer\+Init} (unsigned int)
+\item 
+void \hyperlink{group__rosa__kernel_gaef18457fbdd2b6fd2a430989b250f08e}{timer\+Reset} (void)
+\item 
+void \hyperlink{group__rosa__kernel_ga460ea0ec0bdf63d412805f039f31422b}{timer\+Start} (void)
+\item 
+void \hyperlink{group__rosa__kernel_ga503b2997417efba54180da60b6103dc4}{timer\+Stop} (void)
+\item 
+void \hyperlink{group__rosa__kernel_ga652c85c18e3a82a8fdd9ccd5bc1abd47}{timer\+I\+S\+R} (void)
+\item 
+void \hyperlink{group__rosa__kernel_ga5815baba2cdc7d96779654ff22aea0e8}{timer\+Clear\+Interrupt} (void)
+\item 
+int \hyperlink{group__rosa__kernel_gae8725c012e37d97de42e87ba11dd78ea}{timer\+Period\+Set} (unsigned int ms)
+\item 
+\hypertarget{group__rosa__kernel_gadb107fcb9b0e723a7405f4b2cceca544}{}void {\bfseries timer\+Prescale\+Set} (int)\label{group__rosa__kernel_gadb107fcb9b0e723a7405f4b2cceca544}
+
+\item 
+\hypertarget{group__rosa__kernel_ga8e7b967b8a0d05b145f67755747cf96c}{}void {\bfseries timer\+R\+C\+Set} (int)\label{group__rosa__kernel_ga8e7b967b8a0d05b145f67755747cf96c}
+
+\item 
+uint64\+\_\+t \hyperlink{group__rosa__kernel_gab3203f81efe9789a5c105b4fccac00d6}{R\+O\+S\+A\+\_\+get\+Tick\+Count} ()
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{group__rosa__kernel_ga4aa1b2e5cc4802a60c03fc3ee4a9f82e}{}int {\bfseries timer\+Prescale}\label{group__rosa__kernel_ga4aa1b2e5cc4802a60c03fc3ee4a9f82e}
+
+\item 
+\hypertarget{group__rosa__kernel_ga96884f1b6909e157aa3e523d02e2fc86}{}int {\bfseries timer\+R\+C}\label{group__rosa__kernel_ga96884f1b6909e157aa3e523d02e2fc86}
+
+\item 
+uint64\+\_\+t \hyperlink{group__rosa__kernel_gaa30c6cd3ff8db15db9aba92ff0203e7b}{system\+Tick}
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-This module contains kernel functions of R\+O\+SA. 
+This module contains kernel functions of R\+O\+S\+A. 
+
+
+
+\subsection{Function Documentation}
+\hypertarget{group__rosa__kernel_gab3203f81efe9789a5c105b4fccac00d6}{}\index{R\+O\+S\+A kernel.@{R\+O\+S\+A kernel.}!R\+O\+S\+A\+\_\+get\+Tick\+Count@{R\+O\+S\+A\+\_\+get\+Tick\+Count}}
+\index{R\+O\+S\+A\+\_\+get\+Tick\+Count@{R\+O\+S\+A\+\_\+get\+Tick\+Count}!R\+O\+S\+A kernel.@{R\+O\+S\+A kernel.}}
+\subsubsection[{R\+O\+S\+A\+\_\+get\+Tick\+Count}]{\setlength{\rightskip}{0pt plus 5cm}uint64\+\_\+t R\+O\+S\+A\+\_\+get\+Tick\+Count (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\label{group__rosa__kernel_gab3203f81efe9789a5c105b4fccac00d6}
+Retrieve the current number of system ticks. \begin{DoxyReturn}{Returns}
+The current number of system ticks. 
+\end{DoxyReturn}
+
+
+Definition at line 75 of file rosa\+\_\+tim.\+c.
+
+\hypertarget{group__rosa__kernel_ga5815baba2cdc7d96779654ff22aea0e8}{}\index{R\+O\+S\+A kernel.@{R\+O\+S\+A kernel.}!timer\+Clear\+Interrupt@{timer\+Clear\+Interrupt}}
+\index{timer\+Clear\+Interrupt@{timer\+Clear\+Interrupt}!R\+O\+S\+A kernel.@{R\+O\+S\+A kernel.}}
+\subsubsection[{timer\+Clear\+Interrupt}]{\setlength{\rightskip}{0pt plus 5cm}void timer\+Clear\+Interrupt (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group__rosa__kernel_ga5815baba2cdc7d96779654ff22aea0e8}
+Set the flag for the interrupt of the first timer to false. \hypertarget{group__rosa__kernel_gaafc10ed8e6d779950f08c99bf73bd870}{}\index{R\+O\+S\+A kernel.@{R\+O\+S\+A kernel.}!timer\+Init@{timer\+Init}}
+\index{timer\+Init@{timer\+Init}!R\+O\+S\+A kernel.@{R\+O\+S\+A kernel.}}
+\subsubsection[{timer\+Init}]{\setlength{\rightskip}{0pt plus 5cm}void timer\+Init (
+\begin{DoxyParamCaption}
+\item[{unsigned}]{int}
+\end{DoxyParamCaption}
+)}\label{group__rosa__kernel_gaafc10ed8e6d779950f08c99bf73bd870}
+Initialize the first timer. 
+\begin{DoxyParams}{Parameters}
+{\em Number} & of milliseconds per system tick to be used \\
+\hline
+\end{DoxyParams}
+\hypertarget{group__rosa__kernel_ga652c85c18e3a82a8fdd9ccd5bc1abd47}{}\index{R\+O\+S\+A kernel.@{R\+O\+S\+A kernel.}!timer\+I\+S\+R@{timer\+I\+S\+R}}
+\index{timer\+I\+S\+R@{timer\+I\+S\+R}!R\+O\+S\+A kernel.@{R\+O\+S\+A kernel.}}
+\subsubsection[{timer\+I\+S\+R}]{\setlength{\rightskip}{0pt plus 5cm}void timer\+I\+S\+R (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group__rosa__kernel_ga652c85c18e3a82a8fdd9ccd5bc1abd47}
+The I\+S\+R for the first timer. \hypertarget{group__rosa__kernel_gae8725c012e37d97de42e87ba11dd78ea}{}\index{R\+O\+S\+A kernel.@{R\+O\+S\+A kernel.}!timer\+Period\+Set@{timer\+Period\+Set}}
+\index{timer\+Period\+Set@{timer\+Period\+Set}!R\+O\+S\+A kernel.@{R\+O\+S\+A kernel.}}
+\subsubsection[{timer\+Period\+Set}]{\setlength{\rightskip}{0pt plus 5cm}int timer\+Period\+Set (
+\begin{DoxyParamCaption}
+\item[{unsigned int}]{ms}
+\end{DoxyParamCaption}
+)}\label{group__rosa__kernel_gae8725c012e37d97de42e87ba11dd78ea}
+Set the period of the first timer. 
+\begin{DoxyParams}{Parameters}
+{\em ms} & Period in milliseconds. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Definition at line 87 of file rosa\+\_\+tim.\+c.
+
+\hypertarget{group__rosa__kernel_gaef18457fbdd2b6fd2a430989b250f08e}{}\index{R\+O\+S\+A kernel.@{R\+O\+S\+A kernel.}!timer\+Reset@{timer\+Reset}}
+\index{timer\+Reset@{timer\+Reset}!R\+O\+S\+A kernel.@{R\+O\+S\+A kernel.}}
+\subsubsection[{timer\+Reset}]{\setlength{\rightskip}{0pt plus 5cm}void timer\+Reset (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group__rosa__kernel_gaef18457fbdd2b6fd2a430989b250f08e}
+Reset the first timer. \hypertarget{group__rosa__kernel_ga460ea0ec0bdf63d412805f039f31422b}{}\index{R\+O\+S\+A kernel.@{R\+O\+S\+A kernel.}!timer\+Start@{timer\+Start}}
+\index{timer\+Start@{timer\+Start}!R\+O\+S\+A kernel.@{R\+O\+S\+A kernel.}}
+\subsubsection[{timer\+Start}]{\setlength{\rightskip}{0pt plus 5cm}void timer\+Start (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group__rosa__kernel_ga460ea0ec0bdf63d412805f039f31422b}
+Start the first timer. \hypertarget{group__rosa__kernel_ga503b2997417efba54180da60b6103dc4}{}\index{R\+O\+S\+A kernel.@{R\+O\+S\+A kernel.}!timer\+Stop@{timer\+Stop}}
+\index{timer\+Stop@{timer\+Stop}!R\+O\+S\+A kernel.@{R\+O\+S\+A kernel.}}
+\subsubsection[{timer\+Stop}]{\setlength{\rightskip}{0pt plus 5cm}void timer\+Stop (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{group__rosa__kernel_ga503b2997417efba54180da60b6103dc4}
+Stop the first timer. 
+
+\subsection{Variable Documentation}
+\hypertarget{group__rosa__kernel_gaa30c6cd3ff8db15db9aba92ff0203e7b}{}\index{R\+O\+S\+A kernel.@{R\+O\+S\+A kernel.}!system\+Tick@{system\+Tick}}
+\index{system\+Tick@{system\+Tick}!R\+O\+S\+A kernel.@{R\+O\+S\+A kernel.}}
+\subsubsection[{system\+Tick}]{\setlength{\rightskip}{0pt plus 5cm}uint64\+\_\+t system\+Tick}\label{group__rosa__kernel_gaa30c6cd3ff8db15db9aba92ff0203e7b}
+The number of ticks the system is currently on. 
+
+Definition at line 37 of file rosa\+\_\+tim.\+c.
 

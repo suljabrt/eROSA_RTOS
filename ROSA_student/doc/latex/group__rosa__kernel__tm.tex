@@ -8,14 +8,14 @@ Task creation and deletion.
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void \mbox{\hyperlink{group__rosa__kernel__tm_ga88a553c195e2f549835cbbf4e36a71ff}{R\+O\+S\+A\+\_\+tcb\+Create}} (\mbox{\hyperlink{structtcb__record__t}{tcb}} $\ast$tcb\+Task, char tcb\+Name\mbox{[}N\+A\+M\+E\+S\+I\+ZE\mbox{]}, void $\ast$tcb\+Function, int $\ast$tcb\+Stack, int tcb\+Stack\+Size)
-\begin{DoxyCompactList}\small\item\em Create the T\+CB with correct values. \end{DoxyCompactList}\item 
-int16\+\_\+t \mbox{\hyperlink{group__rosa__kernel__tm_ga7b9542dcdbdadbfc94f42f85536a83b0}{R\+O\+S\+A\+\_\+task\+Create}} (\mbox{\hyperlink{rosa__def_8h_a82d32f422c2987044e833843e7620aa6}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$$\ast$th, char $\ast$id, void $\ast$task\+Function, uint32\+\_\+t stack\+Size, uint8\+\_\+t priority)
-\begin{DoxyCompactList}\small\item\em Create the F\+P\+PS task with correct values. \end{DoxyCompactList}\item 
-int16\+\_\+t \mbox{\hyperlink{group__rosa__kernel__tm_gad0845723ed20c9e51a81a7b388dbc555}{R\+O\+S\+A\+\_\+task\+Delete}} (\mbox{\hyperlink{rosa__def_8h_a82d32f422c2987044e833843e7620aa6}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$$\ast$th)
-\begin{DoxyCompactList}\small\item\em Create the F\+P\+PS task with correct values. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{group__rosa__kernel__tm_ga9a7bde19bc8609de66353d1f51d09eda}{R\+O\+S\+A\+\_\+tcb\+Install}} (\mbox{\hyperlink{structtcb__record__t}{tcb}} $\ast$task)
-\begin{DoxyCompactList}\small\item\em Install a new task T\+CB into R\+O\+SA. \end{DoxyCompactList}\end{DoxyCompactItemize}
+void \hyperlink{group__rosa__kernel__tm_ga88a553c195e2f549835cbbf4e36a71ff}{R\+O\+S\+A\+\_\+tcb\+Create} (\hyperlink{structtcb__record__t}{tcb} $\ast$tcb\+Task, char tcb\+Name\mbox{[}N\+A\+M\+E\+S\+I\+Z\+E\mbox{]}, void $\ast$tcb\+Function, int $\ast$tcb\+Stack, int tcb\+Stack\+Size)
+\item 
+int16\+\_\+t \hyperlink{group__rosa__kernel__tm_gafb988fc32f38f2e72f01211772620b89}{R\+O\+S\+A\+\_\+task\+Create} (\hyperlink{rosa__def_8h_a99fb8cee8eedbe888bf5763d30c1d5c8}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t} $\ast$th, char $\ast$id, void $\ast$task\+Function, uint32\+\_\+t stack\+Size, uint8\+\_\+t priority)
+\item 
+int16\+\_\+t \hyperlink{group__rosa__kernel__tm_gae94345f223f72b5c735ae21fff3eec25}{R\+O\+S\+A\+\_\+task\+Delete} (\hyperlink{rosa__def_8h_a99fb8cee8eedbe888bf5763d30c1d5c8}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t} th)
+\item 
+void \hyperlink{group__rosa__kernel__tm_ga9a7bde19bc8609de66353d1f51d09eda}{R\+O\+S\+A\+\_\+tcb\+Install} (\hyperlink{structtcb__record__t}{tcb} $\ast$task)
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -24,17 +24,18 @@ Task creation and deletion.
 
 
 \subsection{Function Documentation}
-\mbox{\Hypertarget{group__rosa__kernel__tm_ga7b9542dcdbdadbfc94f42f85536a83b0}\label{group__rosa__kernel__tm_ga7b9542dcdbdadbfc94f42f85536a83b0}} 
-\index{Task management.@{Task management.}!R\+O\+S\+A\+\_\+task\+Create@{R\+O\+S\+A\+\_\+task\+Create}}
+\hypertarget{group__rosa__kernel__tm_gafb988fc32f38f2e72f01211772620b89}{}\index{Task management.@{Task management.}!R\+O\+S\+A\+\_\+task\+Create@{R\+O\+S\+A\+\_\+task\+Create}}
 \index{R\+O\+S\+A\+\_\+task\+Create@{R\+O\+S\+A\+\_\+task\+Create}!Task management.@{Task management.}}
-\subsubsection{\texorpdfstring{R\+O\+S\+A\+\_\+task\+Create()}{ROSA\_taskCreate()}}
-{\footnotesize\ttfamily int16\+\_\+t R\+O\+S\+A\+\_\+task\+Create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rosa__def_8h_a82d32f422c2987044e833843e7620aa6}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$$\ast$}]{th,  }\item[{char $\ast$}]{id,  }\item[{void $\ast$}]{task\+Function,  }\item[{uint32\+\_\+t}]{stack\+Size,  }\item[{uint8\+\_\+t}]{priority }\end{DoxyParamCaption})}
-
-
-
-Create the F\+P\+PS task with correct values. 
-
-
+\subsubsection[{R\+O\+S\+A\+\_\+task\+Create}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t R\+O\+S\+A\+\_\+task\+Create (
+\begin{DoxyParamCaption}
+\item[{{\bf R\+O\+S\+A\+\_\+task\+Handle\+\_\+t} $\ast$}]{th, }
+\item[{char $\ast$}]{id, }
+\item[{void $\ast$}]{task\+Function, }
+\item[{uint32\+\_\+t}]{stack\+Size, }
+\item[{uint8\+\_\+t}]{priority}
+\end{DoxyParamCaption}
+)}\label{group__rosa__kernel__tm_gafb988fc32f38f2e72f01211772620b89}
+Create the F\+P\+P\+S task with correct values. 
 \begin{DoxyParams}{Parameters}
 {\em th} & Pointer to the task. \\
 \hline
@@ -50,17 +51,18 @@ Create the F\+P\+PS task with correct values.
 \begin{DoxyReturn}{Returns}
 Status code. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{group__rosa__kernel__tm_gad0845723ed20c9e51a81a7b388dbc555}\label{group__rosa__kernel__tm_gad0845723ed20c9e51a81a7b388dbc555}} 
-\index{Task management.@{Task management.}!R\+O\+S\+A\+\_\+task\+Delete@{R\+O\+S\+A\+\_\+task\+Delete}}
+
+
+Definition at line 309 of file rosa\+\_\+ker.\+c.
+
+\hypertarget{group__rosa__kernel__tm_gae94345f223f72b5c735ae21fff3eec25}{}\index{Task management.@{Task management.}!R\+O\+S\+A\+\_\+task\+Delete@{R\+O\+S\+A\+\_\+task\+Delete}}
 \index{R\+O\+S\+A\+\_\+task\+Delete@{R\+O\+S\+A\+\_\+task\+Delete}!Task management.@{Task management.}}
-\subsubsection{\texorpdfstring{R\+O\+S\+A\+\_\+task\+Delete()}{ROSA\_taskDelete()}}
-{\footnotesize\ttfamily int16\+\_\+t R\+O\+S\+A\+\_\+task\+Delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rosa__def_8h_a82d32f422c2987044e833843e7620aa6}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$$\ast$}]{th }\end{DoxyParamCaption})}
-
-
-
-Create the F\+P\+PS task with correct values. 
-
-
+\subsubsection[{R\+O\+S\+A\+\_\+task\+Delete}]{\setlength{\rightskip}{0pt plus 5cm}int16\+\_\+t R\+O\+S\+A\+\_\+task\+Delete (
+\begin{DoxyParamCaption}
+\item[{{\bf R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}}]{th}
+\end{DoxyParamCaption}
+)}\label{group__rosa__kernel__tm_gae94345f223f72b5c735ae21fff3eec25}
+Create the F\+P\+P\+S task with correct values. 
 \begin{DoxyParams}{Parameters}
 {\em th} & Pointer to the task. \\
 \hline
@@ -68,41 +70,51 @@ Create the F\+P\+PS task with correct values.
 \begin{DoxyReturn}{Returns}
 Status code. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{group__rosa__kernel__tm_ga88a553c195e2f549835cbbf4e36a71ff}\label{group__rosa__kernel__tm_ga88a553c195e2f549835cbbf4e36a71ff}} 
-\index{Task management.@{Task management.}!R\+O\+S\+A\+\_\+tcb\+Create@{R\+O\+S\+A\+\_\+tcb\+Create}}
+
+
+Definition at line 356 of file rosa\+\_\+ker.\+c.
+
+\hypertarget{group__rosa__kernel__tm_ga88a553c195e2f549835cbbf4e36a71ff}{}\index{Task management.@{Task management.}!R\+O\+S\+A\+\_\+tcb\+Create@{R\+O\+S\+A\+\_\+tcb\+Create}}
 \index{R\+O\+S\+A\+\_\+tcb\+Create@{R\+O\+S\+A\+\_\+tcb\+Create}!Task management.@{Task management.}}
-\subsubsection{\texorpdfstring{R\+O\+S\+A\+\_\+tcb\+Create()}{ROSA\_tcbCreate()}}
-{\footnotesize\ttfamily void R\+O\+S\+A\+\_\+tcb\+Create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtcb__record__t}{tcb}} $\ast$}]{tcb\+Task,  }\item[{char}]{tcb\+Name\mbox{[}\+N\+A\+M\+E\+S\+I\+Z\+E\mbox{]},  }\item[{void $\ast$}]{tcb\+Function,  }\item[{int $\ast$}]{tcb\+Stack,  }\item[{int}]{tcb\+Stack\+Size }\end{DoxyParamCaption})}
-
-
-
-Create the T\+CB with correct values. 
-
-
+\subsubsection[{R\+O\+S\+A\+\_\+tcb\+Create}]{\setlength{\rightskip}{0pt plus 5cm}void R\+O\+S\+A\+\_\+tcb\+Create (
+\begin{DoxyParamCaption}
+\item[{{\bf tcb} $\ast$}]{tcb\+Task, }
+\item[{char}]{tcb\+Name\mbox{[}\+N\+A\+M\+E\+S\+I\+Z\+E\mbox{]}, }
+\item[{void $\ast$}]{tcb\+Function, }
+\item[{int $\ast$}]{tcb\+Stack, }
+\item[{int}]{tcb\+Stack\+Size}
+\end{DoxyParamCaption}
+)}\label{group__rosa__kernel__tm_ga88a553c195e2f549835cbbf4e36a71ff}
+Create the T\+C\+B with correct values. 
 \begin{DoxyParams}{Parameters}
 {\em tcb\+Task} & Pointer to the tcb. \\
 \hline
 {\em tcb\+Name} & Name of the task. \\
 \hline
-{\em tcb\+Function} & T\+CB function. \\
+{\em tcb\+Function} & T\+C\+B function. \\
 \hline
 {\em tcb\+Stack} & Pointer to the tcb stack. \\
 \hline
 {\em tcb\+Stack\+Size} & Stack size of the tcb stack. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{group__rosa__kernel__tm_ga9a7bde19bc8609de66353d1f51d09eda}\label{group__rosa__kernel__tm_ga9a7bde19bc8609de66353d1f51d09eda}} 
-\index{Task management.@{Task management.}!R\+O\+S\+A\+\_\+tcb\+Install@{R\+O\+S\+A\+\_\+tcb\+Install}}
+
+
+Definition at line 280 of file rosa\+\_\+ker.\+c.
+
+\hypertarget{group__rosa__kernel__tm_ga9a7bde19bc8609de66353d1f51d09eda}{}\index{Task management.@{Task management.}!R\+O\+S\+A\+\_\+tcb\+Install@{R\+O\+S\+A\+\_\+tcb\+Install}}
 \index{R\+O\+S\+A\+\_\+tcb\+Install@{R\+O\+S\+A\+\_\+tcb\+Install}!Task management.@{Task management.}}
-\subsubsection{\texorpdfstring{R\+O\+S\+A\+\_\+tcb\+Install()}{ROSA\_tcbInstall()}}
-{\footnotesize\ttfamily void R\+O\+S\+A\+\_\+tcb\+Install (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structtcb__record__t}{tcb}} $\ast$}]{task }\end{DoxyParamCaption})}
-
-
-
-Install a new task T\+CB into R\+O\+SA. 
-
-
+\subsubsection[{R\+O\+S\+A\+\_\+tcb\+Install}]{\setlength{\rightskip}{0pt plus 5cm}void R\+O\+S\+A\+\_\+tcb\+Install (
+\begin{DoxyParamCaption}
+\item[{{\bf tcb} $\ast$}]{task}
+\end{DoxyParamCaption}
+)}\label{group__rosa__kernel__tm_ga9a7bde19bc8609de66353d1f51d09eda}
+Install a new task T\+C\+B into R\+O\+S\+A. 
 \begin{DoxyParams}{Parameters}
 {\em task} & Pointer to the tcb. \\
 \hline
 \end{DoxyParams}
+
+
+Definition at line 135 of file rosa\+\_\+ker.\+c.
+

@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['task_20management_2e',['Task management.',['../group__rosa__kernel__tm.html',1,'']]]
+  ['scheduler_20management_2e',['Scheduler management.',['../group__rosa__kernel__sm.html',1,'']]],
+  ['semaphore_20management_2e',['Semaphore management.',['../group__semaphores.html',1,'']]]
 ];

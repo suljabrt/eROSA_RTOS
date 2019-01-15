@@ -1,54 +1,38 @@
-\hypertarget{rosa__def_8h}{}\section{C\+:/\+Users/ant/\+Documents/\+Git\+Hub/\+D\+V\+A438/\+R\+O\+S\+A\+\_\+student/src/include/kernel/rosa\+\_\+def.h File Reference}
-\label{rosa__def_8h}\index{C\+:/\+Users/ant/\+Documents/\+Git\+Hub/\+D\+V\+A438/\+R\+O\+S\+A\+\_\+student/src/include/kernel/rosa\+\_\+def.\+h@{C\+:/\+Users/ant/\+Documents/\+Git\+Hub/\+D\+V\+A438/\+R\+O\+S\+A\+\_\+student/src/include/kernel/rosa\+\_\+def.\+h}}
+\hypertarget{rosa__def_8h}{}\section{E\+:/\+User data/\+Documents/\+De School/\+Master/-\/ Sweden/\+D\+V\+A438/\+D\+V\+A438/\+R\+O\+S\+A\+\_\+student/src/include/kernel/rosa\+\_\+def.h File Reference}
+\label{rosa__def_8h}\index{E\+:/\+User data/\+Documents/\+De School/\+Master/-\/ Sweden/\+D\+V\+A438/\+D\+V\+A438/\+R\+O\+S\+A\+\_\+student/src/include/kernel/rosa\+\_\+def.\+h@{E\+:/\+User data/\+Documents/\+De School/\+Master/-\/ Sweden/\+D\+V\+A438/\+D\+V\+A438/\+R\+O\+S\+A\+\_\+student/src/include/kernel/rosa\+\_\+def.\+h}}
 
 
-Header file containing basic definitions for R\+O\+SA.  
+Header file containing basic definitions for R\+O\+S\+A.  
 
 
-{\ttfamily \#include \char`\"{}rosa\+\_\+config.\+h\char`\"{}}\newline
-{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}rosa\+\_\+config.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
 \subsection*{Data Structures}
 \begin{DoxyCompactItemize}
 \item 
-struct \mbox{\hyperlink{structtcb__record__t}{tcb\+\_\+record\+\_\+t}}
+struct \hyperlink{structtcb__record__t}{tcb\+\_\+record\+\_\+t}
 \end{DoxyCompactItemize}
 \subsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{rosa__def_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}\label{rosa__def_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}} 
-\#define {\bfseries N\+U\+LL}~0
+\hypertarget{rosa__def_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}{}\#define {\bfseries N\+U\+L\+L}~0\label{rosa__def_8h_a070d2ce7b6bb7e5c05602aa8c308d0c4}
+
 \end{DoxyCompactItemize}
 \subsection*{Typedefs}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{rosa__def_8h_ac3ccdd2ef51a7f0b944b7e92fbe3f2e6}\label{rosa__def_8h_ac3ccdd2ef51a7f0b944b7e92fbe3f2e6}} 
-typedef struct \mbox{\hyperlink{structtcb__record__t}{tcb\+\_\+record\+\_\+t}} {\bfseries tcb}
+\hypertarget{rosa__def_8h_ac3ccdd2ef51a7f0b944b7e92fbe3f2e6}{}typedef struct \hyperlink{structtcb__record__t}{tcb\+\_\+record\+\_\+t} {\bfseries tcb}\label{rosa__def_8h_ac3ccdd2ef51a7f0b944b7e92fbe3f2e6}
+
 \item 
-typedef \mbox{\hyperlink{structtcb__record__t}{tcb}} \mbox{\hyperlink{rosa__def_8h_a82d32f422c2987044e833843e7620aa6}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}}
+\hypertarget{rosa__def_8h_a99fb8cee8eedbe888bf5763d30c1d5c8}{}typedef \hyperlink{structtcb__record__t}{tcb} $\ast$ \hyperlink{rosa__def_8h_a99fb8cee8eedbe888bf5763d30c1d5c8}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}\label{rosa__def_8h_a99fb8cee8eedbe888bf5763d30c1d5c8}
+
 \begin{DoxyCompactList}\small\item\em This struct contains all the necessary information to do preemption. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Header file containing basic definitions for R\+O\+SA. 
-
-\begin{DoxyAuthor}{Author}
-
-\end{DoxyAuthor}
-\begin{DoxyDate}{Date}
-05.\+12.\+2018 
-\end{DoxyDate}
-
-
-\subsection{Typedef Documentation}
-\mbox{\Hypertarget{rosa__def_8h_a82d32f422c2987044e833843e7620aa6}\label{rosa__def_8h_a82d32f422c2987044e833843e7620aa6}} 
-\index{rosa\+\_\+def.\+h@{rosa\+\_\+def.\+h}!R\+O\+S\+A\+\_\+task\+Handle\+\_\+t@{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}}
-\index{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t@{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}!rosa\+\_\+def.\+h@{rosa\+\_\+def.\+h}}
-\subsubsection{\texorpdfstring{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}{ROSA\_taskHandle\_t}}
-{\footnotesize\ttfamily \mbox{\hyperlink{rosa__def_8h_a82d32f422c2987044e833843e7620aa6}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}}}
+Header file containing basic definitions for R\+O\+S\+A. 
 
 
 
-This struct contains all the necessary information to do preemption. 
+Definition in file \hyperlink{rosa__def_8h_source}{rosa\+\_\+def.\+h}.
 
-\begin{DoxyRefDesc}{Todo}
-\item[\mbox{\hyperlink{todo__todo000001}{Todo}}]R\+O\+S\+A\+\_\+task\+Handle\+\_\+t should be redefined as pointer to the tcb. \end{DoxyRefDesc}

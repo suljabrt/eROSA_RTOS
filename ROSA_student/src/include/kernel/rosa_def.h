@@ -25,8 +25,6 @@
 
 /**
  * @file rosa_def.h
- * @author 
- * @date 05.12.2018
  * @brief Header file containing basic definitions for ROSA.
  *
  */
@@ -94,7 +92,6 @@ typedef struct tcb_record_t {
 /** @typedef tcb ROSA_taskHandle_t 
     @brief 	This struct contains all the necessary information
 	to do preemption.
-	@todo ROSA_taskHandle_t should be redefined as pointer to the tcb.
 */
 typedef tcb * ROSA_taskHandle_t;
 //typedef tcb** ROSA_taskHandle_t; 

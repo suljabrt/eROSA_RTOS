@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.4.6)  15 JAN 2019 11:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (MiKTeX 2.9.6630 64-bit) (preloaded format=pdflatex 2018.4.6)  15 JAN 2019 14:56
 entering extended mode
 **./refman.tex
 (refman.tex
@@ -102,102 +102,46 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
-("D:\Program Files\MiKTeX 2.9\tex\latex\tools\longtable.sty"
-Package: longtable 2014/10/28 v4.11 Multi-page Table package (DPC)
-\LTleft=\skip49
-\LTright=\skip50
-\LTpre=\skip51
-\LTpost=\skip52
-\LTchunksize=\count93
-\LTcapwidth=\dimen107
-\LT@head=\box28
-\LT@firsthead=\box29
-\LT@foot=\box30
-\LT@lastfoot=\box31
-\LT@cols=\count94
-\LT@rows=\count95
-\c@LT@tables=\count96
-\c@LT@chunks=\count97
-\LT@p@ftn=\toks20
+("D:\Program Files\MiKTeX 2.9\tex\latex\xtab\xtab.sty"
+Package: xtab 2011/07/31 v2.3f Extended supertabular package
+\c@tracingst=\count93
+\PWSTcapht=\dimen107
+\ST@wd=\dimen108
+\ST@rightskip=\skip49
+\ST@leftskip=\skip50
+\ST@parfillskip=\skip51
+\c@PWSTtable=\count94
+\PWSTlastpage=\count95
+\PWSTpenultimate=\count96
+\PWSTcurpage=\count97
+\PWSTtempc=\count98
+\PWSTlines=\count99
+\PWST@lastht=\dimen109
+\PWST@generalht=\dimen110
+\PWST@ht=\dimen111
+\ST@pageleft=\dimen112
+\ST@headht=\dimen113
+\ST@tailht=\dimen114
+\ST@pagesofar=\dimen115
+\ST@pboxht=\dimen116
+\ST@lineht=\dimen117
+\ST@stretchht=\dimen118
+\ST@prevht=\dimen119
+\ST@toadd=\dimen120
+\ST@dimen=\dimen121
+\ST@pbox=\box28
 )
-("D:\Program Files\MiKTeX 2.9\tex\latex\tabu\tabu.sty"
-Package: tabu 2011/02/26 v2.8 - flexible LaTeX tabulars (FC)
-
-("D:\Program Files\MiKTeX 2.9\tex\latex\ltxmisc\varwidth.sty"
-Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
-\@vwid@box=\box32
-\sift@deathcycles=\count98
-\@vwid@loff=\dimen108
-\@vwid@roff=\dimen109
+\xrefbox=\box29
+\xreflength=\skip52
+\tmplength=\skip53
 )
-\c@taburow=\count99
-\tabu@nbcols=\count100
-\tabu@cnt=\count101
-\tabu@Xcol=\count102
-\tabu@alloc=\count103
-\tabu@nested=\count104
-\tabu@target=\dimen110
-\tabu@spreadtarget=\dimen111
-\tabu@naturalX=\dimen112
-\tabucolX=\dimen113
-\tabu@Xsum=\dimen114
-\extrarowdepth=\dimen115
-\abovetabulinesep=\dimen116
-\belowtabulinesep=\dimen117
-\tabustrutrule=\dimen118
-\tabu@thebody=\toks21
-\tabu@footnotes=\toks22
-\tabu@box=\box33
-\tabu@arstrutbox=\box34
-\tabu@hleads=\box35
-\tabu@vleads=\box36
-\tabu@cellskip=\skip53
-)
-("D:\Program Files\MiKTeX 2.9\tex\latex\tools\tabularx.sty"
-Package: tabularx 2016/02/03 v2.11 `tabularx' package (DPC)
-\TX@col@width=\dimen119
-\TX@old@table=\dimen120
-\TX@old@col=\dimen121
-\TX@target=\dimen122
-\TX@delta=\dimen123
-\TX@cols=\count105
-\TX@ftn=\toks23
-)
-("D:\Program Files\MiKTeX 2.9\tex\latex\multirow\multirow.sty"
-Package: multirow 2016/11/25 v2.2 Span multiple rows of a table
-\multirow@colwidth=\skip54
-\multirow@cntb=\count106
-\multirow@dima=\skip55
-\bigstrutjot=\dimen124
-)
-\xrefbox=\box37
-\xreflength=\skip56
-)
-("D:\Program Files\MiKTeX 2.9\tex\latex\adjustbox\adjustbox.sty"
-Package: adjustbox 2018/04/08 v1.1 Adjusting TeX boxes (trim, clip, ...)
-
-("D:\Program Files\MiKTeX 2.9\tex\latex\xkeyval\xkeyval.sty"
-Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
-
-("D:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\xkeyval.tex"
-("D:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\xkvutils.tex"
-\XKV@toks=\toks24
-\XKV@tempa@toks=\toks25
-
-("D:\Program Files\MiKTeX 2.9\tex\generic\xkeyval\keyval.tex"))
-\XKV@depth=\count107
-File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
-))
-("D:\Program Files\MiKTeX 2.9\tex\latex\adjustbox\adjcalc.sty"
-Package: adjcalc 2012/05/16 v1.1 Provides advanced setlength with multiple back
--ends (calc, etex, pgfmath)
-)
-("D:\Program Files\MiKTeX 2.9\tex\latex\adjustbox\trimclip.sty"
-Package: trimclip 2018/04/08 v1.1 Trim and clip general TeX material
-
 ("D:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
 Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
 
+("D:\Program Files\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks20
+)
 ("D:\Program Files\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
 Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
 
@@ -209,39 +153,13 @@ File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 99.
 )
-\Gin@req@height=\dimen125
-\Gin@req@width=\dimen126
+\Gin@req@height=\dimen122
+\Gin@req@width=\dimen123
 )
-("D:\Program Files\MiKTeX 2.9\tex\latex\collectbox\collectbox.sty"
-Package: collectbox 2012/05/17 v0.4b Collect macro arguments as boxes
-\collectedbox=\box38
-)
-\tc@llx=\dimen127
-\tc@lly=\dimen128
-\tc@urx=\dimen129
-\tc@ury=\dimen130
-Package trimclip Info: Using driver 'tc-pdftex.def'.
-
-("D:\Program Files\MiKTeX 2.9\tex\latex\adjustbox\tc-pdftex.def"
-File: tc-pdftex.def 2018/04/08 v2.1 Clipping driver for pdftex
-))
-\adjbox@Width=\dimen131
-\adjbox@Height=\dimen132
-\adjbox@Depth=\dimen133
-\adjbox@Totalheight=\dimen134
-\adjbox@pwidth=\dimen135
-\adjbox@pheight=\dimen136
-\adjbox@pdepth=\dimen137
-\adjbox@ptotalheight=\dimen138
-
-("D:\Program Files\MiKTeX 2.9\tex\latex\ifoddpage\ifoddpage.sty"
-Package: ifoddpage 2016/04/23 v1.1 Conditionals for odd/even page detection
-\c@checkoddpage=\count108
-))
 ("D:\Program Files\MiKTeX 2.9\tex\latex\base\inputenc.sty"
 Package: inputenc 2015/03/17 v1.2c Input encoding file
-\inpenc@prehook=\toks26
-\inpenc@posthook=\toks27
+\inpenc@prehook=\toks21
+\inpenc@posthook=\toks22
 
 ("D:\Program Files\MiKTeX 2.9\tex\latex\base\utf8.def"
 File: utf8.def 2017/01/28 v1.1t UTF-8 support for inputenc
@@ -561,27 +479,36 @@ Package: makeidx 2014/09/29 v1.0m Standard LaTeX package
 )
 ("D:\Program Files\MiKTeX 2.9\tex\latex\tools\multicol.sty"
 Package: multicol 2017/04/11 v1.8q multicolumn formatting (FMi)
-\c@tracingmulticols=\count109
-\mult@box=\box39
-\multicol@leftmargin=\dimen139
-\c@unbalance=\count110
-\c@collectmore=\count111
-\doublecol@number=\count112
-\multicoltolerance=\count113
-\multicolpretolerance=\count114
-\full@width=\dimen140
-\page@free=\dimen141
-\premulticols=\dimen142
-\postmulticols=\dimen143
-\multicolsep=\skip57
-\multicolbaselineskip=\skip58
-\partial@page=\box40
-\last@line=\box41
-\maxbalancingoverflow=\dimen144
-\mult@rightbox=\box42
-\mult@grightbox=\box43
-\mult@gfirstbox=\box44
-\mult@firstbox=\box45
+\c@tracingmulticols=\count100
+\mult@box=\box30
+\multicol@leftmargin=\dimen124
+\c@unbalance=\count101
+\c@collectmore=\count102
+\doublecol@number=\count103
+\multicoltolerance=\count104
+\multicolpretolerance=\count105
+\full@width=\dimen125
+\page@free=\dimen126
+\premulticols=\dimen127
+\postmulticols=\dimen128
+\multicolsep=\skip54
+\multicolbaselineskip=\skip55
+\partial@page=\box31
+\last@line=\box32
+\maxbalancingoverflow=\dimen129
+\mult@rightbox=\box33
+\mult@grightbox=\box34
+\mult@gfirstbox=\box35
+\mult@firstbox=\box36
+\@tempa=\box37
+\@tempa=\box38
+\@tempa=\box39
+\@tempa=\box40
+\@tempa=\box41
+\@tempa=\box42
+\@tempa=\box43
+\@tempa=\box44
+\@tempa=\box45
 \@tempa=\box46
 \@tempa=\box47
 \@tempa=\box48
@@ -590,23 +517,21 @@ Package: multicol 2017/04/11 v1.8q multicolumn formatting (FMi)
 \@tempa=\box51
 \@tempa=\box52
 \@tempa=\box53
-\@tempa=\box54
-\@tempa=\box55
-\@tempa=\box56
-\@tempa=\box57
-\@tempa=\box58
-\@tempa=\box59
-\@tempa=\box60
-\@tempa=\box61
-\@tempa=\box62
-\c@columnbadness=\count115
-\c@finalcolumnbadness=\count116
-\last@try=\dimen145
-\multicolovershoot=\dimen146
-\multicolundershoot=\dimen147
-\mult@nat@firstbox=\box63
-\colbreak@box=\box64
-\mc@col@check@num=\count117
+\c@columnbadness=\count106
+\c@finalcolumnbadness=\count107
+\last@try=\dimen130
+\multicolovershoot=\dimen131
+\multicolundershoot=\dimen132
+\mult@nat@firstbox=\box54
+\colbreak@box=\box55
+\mc@col@check@num=\count108
+)
+("D:\Program Files\MiKTeX 2.9\tex\latex\multirow\multirow.sty"
+Package: multirow 2016/11/25 v2.2 Span multiple rows of a table
+\multirow@colwidth=\skip56
+\multirow@cntb=\count109
+\multirow@dima=\skip57
+\bigstrutjot=\dimen133
 )
 ("D:\Program Files\MiKTeX 2.9\tex\latex\base\textcomp.sty"
 Package: textcomp 2017/04/05 v2.0i Standard LaTeX package
@@ -777,6 +702,42 @@ Package: fontenc 2017/04/05 v2.0i Standard LaTeX package
 File: t1enc.def 2017/04/05 v2.0i Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 ))
+("D:\Program Files\MiKTeX 2.9\tex\latex\psnfss\mathptmx.sty"
+Package: mathptmx 2005/04/12 PSNFSS-v9.2a Times w/ Math, improved (SPQR, WaS) 
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 28.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
+(Font)                  OT1/cmr/m/n --> OT1/ztmcm/m/n on input line 28.
+LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/ztmcm/m/n on input line 28.
+LaTeX Font Info:    Redeclaring symbol font `letters' on input line 29.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `normal'
+(Font)                  OML/cmm/m/it --> OML/ztmcm/m/it on input line 29.
+LaTeX Font Info:    Overwriting symbol font `letters' in version `bold'
+(Font)                  OML/cmm/b/it --> OML/ztmcm/m/it on input line 29.
+LaTeX Font Info:    Redeclaring symbol font `symbols' on input line 30.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
+(Font)                  OMS/cmsy/m/n --> OMS/ztmcm/m/n on input line 30.
+LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
+(Font)                  OMS/cmsy/b/n --> OMS/ztmcm/m/n on input line 30.
+LaTeX Font Info:    Redeclaring symbol font `largesymbols' on input line 31.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
+(Font)                  OMX/cmex/m/n --> OMX/ztmcm/m/n on input line 31.
+LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
+(Font)                  OMX/cmex/m/n --> OMX/ztmcm/m/n on input line 31.
+\symbold=\mathgroup5
+\symitalic=\mathgroup6
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
+(Font)                  OT1/cmr/bx/n --> OT1/ptm/bx/n on input line 34.
+LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
+(Font)                  OT1/cmr/bx/n --> OT1/ptm/bx/n on input line 34.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
+(Font)                  OT1/cmr/m/it --> OT1/ptm/m/it on input line 35.
+LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
+(Font)                  OT1/cmr/bx/it --> OT1/ptm/m/it on input line 35.
+LaTeX Info: Redefining \hbar on input line 50.
+)
 ("D:\Program Files\MiKTeX 2.9\tex\latex\psnfss\helvet.sty"
 Package: helvet 2005/04/12 PSNFSS-v9.2a (WaS) 
 )
@@ -788,9 +749,9 @@ Package: amssymb 2013/01/14 v3.01 AMS font symbols
 
 ("D:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\amsfonts.sty"
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\@emptytoks=\toks28
-\symAMSa=\mathgroup5
-\symAMSb=\mathgroup6
+\@emptytoks=\toks23
+\symAMSa=\mathgroup7
+\symAMSb=\mathgroup8
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
 ))
@@ -811,79 +772,79 @@ Package ifvtex Info: VTeX not detected.
 ("D:\Program Files\MiKTeX 2.9\tex\generic\ifxetex\ifxetex.sty"
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-\Gm@cnth=\count118
-\Gm@cntv=\count119
-\c@Gm@tempcnt=\count120
-\Gm@bindingoffset=\dimen148
-\Gm@wd@mp=\dimen149
-\Gm@odd@mp=\dimen150
-\Gm@even@mp=\dimen151
-\Gm@layoutwidth=\dimen152
-\Gm@layoutheight=\dimen153
-\Gm@layouthoffset=\dimen154
-\Gm@layoutvoffset=\dimen155
-\Gm@dimlist=\toks29
+\Gm@cnth=\count110
+\Gm@cntv=\count111
+\c@Gm@tempcnt=\count112
+\Gm@bindingoffset=\dimen134
+\Gm@wd@mp=\dimen135
+\Gm@odd@mp=\dimen136
+\Gm@even@mp=\dimen137
+\Gm@layoutwidth=\dimen138
+\Gm@layoutheight=\dimen139
+\Gm@layouthoffset=\dimen140
+\Gm@layoutvoffset=\dimen141
+\Gm@dimlist=\toks24
 
 ("D:\Program Files\MiKTeX 2.9\tex\latex\geometry\geometry.cfg"))
 ("D:\Program Files\MiKTeX 2.9\tex\latex\fancyhdr\fancyhdr.sty"
 Package: fancyhdr 2017/06/30 v3.9a Extensive control of page headers and footer
 s
-\f@nch@headwidth=\skip59
-\f@nch@O@elh=\skip60
-\f@nch@O@erh=\skip61
-\f@nch@O@olh=\skip62
-\f@nch@O@orh=\skip63
-\f@nch@O@elf=\skip64
-\f@nch@O@erf=\skip65
-\f@nch@O@olf=\skip66
-\f@nch@O@orf=\skip67
+\f@nch@headwidth=\skip58
+\f@nch@O@elh=\skip59
+\f@nch@O@erh=\skip60
+\f@nch@O@olh=\skip61
+\f@nch@O@orh=\skip62
+\f@nch@O@elf=\skip63
+\f@nch@O@erf=\skip64
+\f@nch@O@olf=\skip65
+\f@nch@O@orf=\skip66
 )
 ("D:\Program Files\MiKTeX 2.9\tex\latex\natbib\natbib.sty"
 Package: natbib 2010/09/13 8.31b (PWD, AO)
-\bibhang=\skip68
-\bibsep=\skip69
+\bibhang=\skip67
+\bibsep=\skip68
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count121
+\c@NAT@ctr=\count113
 )
 ("D:\Program Files\MiKTeX 2.9\tex\latex\tocloft\tocloft.sty"
 Package: tocloft 2017/08/31 v2.3i parameterised ToC, etc., typesetting
 Package tocloft Info: The document has chapter divisions on input line 51.
-\cftparskip=\skip70
-\cftbeforetoctitleskip=\skip71
-\cftaftertoctitleskip=\skip72
-\cftbeforepartskip=\skip73
-\cftpartnumwidth=\skip74
-\cftpartindent=\skip75
-\cftbeforechapskip=\skip76
-\cftchapindent=\skip77
-\cftchapnumwidth=\skip78
-\cftbeforesecskip=\skip79
-\cftsecindent=\skip80
-\cftsecnumwidth=\skip81
-\cftbeforesubsecskip=\skip82
-\cftsubsecindent=\skip83
-\cftsubsecnumwidth=\skip84
-\cftbeforesubsubsecskip=\skip85
-\cftsubsubsecindent=\skip86
-\cftsubsubsecnumwidth=\skip87
-\cftbeforeparaskip=\skip88
-\cftparaindent=\skip89
-\cftparanumwidth=\skip90
-\cftbeforesubparaskip=\skip91
-\cftsubparaindent=\skip92
-\cftsubparanumwidth=\skip93
-\cftbeforeloftitleskip=\skip94
-\cftafterloftitleskip=\skip95
-\cftbeforefigskip=\skip96
-\cftfigindent=\skip97
-\cftfignumwidth=\skip98
-\c@lofdepth=\count122
-\c@lotdepth=\count123
-\cftbeforelottitleskip=\skip99
-\cftafterlottitleskip=\skip100
-\cftbeforetabskip=\skip101
-\cfttabindent=\skip102
-\cfttabnumwidth=\skip103
+\cftparskip=\skip69
+\cftbeforetoctitleskip=\skip70
+\cftaftertoctitleskip=\skip71
+\cftbeforepartskip=\skip72
+\cftpartnumwidth=\skip73
+\cftpartindent=\skip74
+\cftbeforechapskip=\skip75
+\cftchapindent=\skip76
+\cftchapnumwidth=\skip77
+\cftbeforesecskip=\skip78
+\cftsecindent=\skip79
+\cftsecnumwidth=\skip80
+\cftbeforesubsecskip=\skip81
+\cftsubsecindent=\skip82
+\cftsubsecnumwidth=\skip83
+\cftbeforesubsubsecskip=\skip84
+\cftsubsubsecindent=\skip85
+\cftsubsubsecnumwidth=\skip86
+\cftbeforeparaskip=\skip87
+\cftparaindent=\skip88
+\cftparanumwidth=\skip89
+\cftbeforesubparaskip=\skip90
+\cftsubparaindent=\skip91
+\cftsubparanumwidth=\skip92
+\cftbeforeloftitleskip=\skip93
+\cftafterloftitleskip=\skip94
+\cftbeforefigskip=\skip95
+\cftfigindent=\skip96
+\cftfignumwidth=\skip97
+\c@lofdepth=\count114
+\c@lotdepth=\count115
+\cftbeforelottitleskip=\skip98
+\cftafterlottitleskip=\skip99
+\cftbeforetabskip=\skip100
+\cfttabindent=\skip101
+\cfttabnumwidth=\skip102
 )
 \@indexfile=\write3
 \openout3 = `refman.idx'.
@@ -942,16 +903,16 @@ Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 ("D:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\kvoptions.sty"
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 )
-\@linkdim=\dimen156
-\Hy@linkcounter=\count124
-\Hy@pagecounter=\count125
+\@linkdim=\dimen142
+\Hy@linkcounter=\count116
+\Hy@pagecounter=\count117
 
 ("D:\Program Files\MiKTeX 2.9\tex\latex\hyperref\pd1enc.def"
 File: pd1enc.def 2018/02/06 v6.86b Hyperref: PDFDocEncoding definition (HO)
 Now handling font encoding PD1 ...
 ... no UTF-8 mapping file for font encoding PD1
 )
-\Hy@SavedSpaceFactor=\count126
+\Hy@SavedSpaceFactor=\count118
 
 ("D:\Program Files\MiKTeX 2.9\tex\latex\00miktex\hyperref.cfg"
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
@@ -972,17 +933,17 @@ Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 ))
-\c@Hy@tempcnt=\count127
+\c@Hy@tempcnt=\count119
 
 ("D:\Program Files\MiKTeX 2.9\tex\latex\url\url.sty"
 \Urlmuskip=\muskip10
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5115.
-\XeTeXLinkMargin=\dimen157
-\Fld@menulength=\count128
-\Field@Width=\dimen158
-\Fld@charsize=\dimen159
+\XeTeXLinkMargin=\dimen143
+\Fld@menulength=\count120
+\Field@Width=\dimen144
+\Fld@charsize=\dimen145
 Package hyperref Info: Hyper figures OFF on input line 6369.
 Package hyperref Info: Link nesting OFF on input line 6374.
 Package hyperref Info: Hyper index ON on input line 6377.
@@ -992,17 +953,17 @@ Package hyperref Info: Link coloring with OCG OFF on input line 6394.
 Package hyperref Info: PDF/A mode OFF on input line 6399.
 LaTeX Info: Redefining \ref on input line 6439.
 LaTeX Info: Redefining \pageref on input line 6443.
-\Hy@abspage=\count129
-\c@Item=\count130
-\c@Hfootnote=\count131
+\Hy@abspage=\count121
+\c@Item=\count122
+\c@Hfootnote=\count123
 )
 Package hyperref Info: Driver: hpdftex.
 
 ("D:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hpdftex.def"
 File: hpdftex.def 2018/02/06 v6.86b Hyperref driver for pdfTeX
-\Fld@listcount=\count132
-\c@bookmark@seq@number=\count133
-\Hy@SectionHShift=\skip104
+\Fld@listcount=\count124
+\c@bookmark@seq@number=\count125
+\Hy@SectionHShift=\skip103
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 105.
 Package hyperref Info: Option `unicode' set `true' on input line 105.
@@ -1011,78 +972,76 @@ Package hyperref Info: Option `unicode' set `true' on input line 105.
 File: puenc.def 2018/02/06 v6.86b Hyperref: PDF Unicode definition (HO)
 Now handling font encoding PU ...
 ... no UTF-8 mapping file for font encoding PU
-)
-("D:\Program Files\MiKTeX 2.9\tex\latex\caption\caption.sty"
-Package: caption 2018/10/06 v3.3-154 Customizing captions (AR)
+) (refman.aux
+(group__rosa__kernel__sm.aux) (group__rosa__kernel__tm.aux)
+(group__rosa__kernel__dm.aux) (group__semaphores.aux)
 
-("D:\Program Files\MiKTeX 2.9\tex\latex\caption\caption3.sty"
-Package: caption3 2018/09/12 v1.8c caption3 kernel (AR)
-Package caption3 Info: TeX engine: e-TeX on input line 64.
-\captionmargin=\dimen160
-\captionmargin@=\dimen161
-\captionwidth=\dimen162
-\caption@tempdima=\dimen163
-\caption@indent=\dimen164
-\caption@parindent=\dimen165
-\caption@hangindent=\dimen166
-)
-\c@caption@flags=\count134
-\c@ContinuedFloat=\count135
-Package caption Info: float package is loaded.
-Package caption Info: hyperref package is loaded.
-Package caption Info: longtable package is loaded.
+LaTeX Warning: Label `group__rosa__kernel__sm_gaf4c28a200166f46384b123c7be151e7
+7' multiply defined.
 
-("D:\Program Files\MiKTeX 2.9\tex\latex\caption\ltcaption.sty"
-Package: ltcaption 2018/08/26 v1.4-95 longtable captions (AR)
-)) (refman.aux
-(group__rosa__kernel__sm.aux) (group__rosa__kernel__tm.aux))
+
+LaTeX Warning: Label `group__rosa__kernel_gadb107fcb9b0e723a7405f4b2cceca544' m
+ultiply defined.
+
+
+LaTeX Warning: Label `group__rosa__kernel_ga8e7b967b8a0d05b145f67755747cf96c' m
+ultiply defined.
+
+
+LaTeX Warning: Label `group__rosa__kernel_ga4aa1b2e5cc4802a60c03fc3ee4a9f82e' m
+ultiply defined.
+
+
+LaTeX Warning: Label `group__rosa__kernel_ga96884f1b6909e157aa3e523d02e2fc86' m
+ultiply defined.
+
+)
 \openout1 = `refman.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 117.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 117.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 115.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 115.
 
-
-("D:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
+ ("D:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmr.fd"
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 117.
-LaTeX Font Info:    ... okay on input line 117.
-LaTeX Font Info:    Try loading font information for T1+phv on input line 117.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 115.
+LaTeX Font Info:    ... okay on input line 115.
+LaTeX Font Info:    Try loading font information for T1+phv on input line 115.
 
 ("D:\Program Files\MiKTeX 2.9\tex\latex\psnfss\t1phv.fd"
 File: t1phv.fd 2001/06/04 scalable font definitions for T1/phv.
 )
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 8.99994pt on input line 117.
+(Font)              scaled to size 8.99994pt on input line 115.
 
 ("D:\Program Files\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count136
-\scratchdimen=\dimen167
-\scratchbox=\box65
-\nofMPsegments=\count137
-\nofMParguments=\count138
-\everyMPshowfont=\toks30
-\MPscratchCnt=\count139
-\MPscratchDim=\dimen168
-\MPnumerator=\count140
-\makeMPintoPDFobject=\count141
-\everyMPtoPDFconversion=\toks31
+\scratchcounter=\count126
+\scratchdimen=\dimen146
+\scratchbox=\box56
+\nofMPsegments=\count127
+\nofMParguments=\count128
+\everyMPshowfont=\toks25
+\MPscratchCnt=\count129
+\MPscratchDim=\dimen147
+\MPnumerator=\count130
+\makeMPintoPDFobject=\count131
+\everyMPtoPDFconversion=\toks26
 ) ("D:\Program Files\MiKTeX 2.9\tex\latex\oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -1096,6 +1055,8 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
+\big@size=\dimen148
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -1130,52 +1091,80 @@ G,.JBIG2,.JB2,.eps]
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-\AtBeginShipoutBox=\box66
-Package backref Info: ** backref set up for natbib ** on input line 117.
-Package hyperref Info: Link coloring ON on input line 117.
+\AtBeginShipoutBox=\box57
+Package backref Info: ** backref set up for natbib ** on input line 115.
+Package hyperref Info: Link coloring ON on input line 115.
 ("D:\Program Files\MiKTeX 2.9\tex\latex\hyperref\nameref.sty"
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
 ("D:\Program Files\MiKTeX 2.9\tex\generic\oberdiek\gettitlestring.sty"
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count142
+\c@section@level=\count132
 )
-LaTeX Info: Redefining \ref on input line 117.
-LaTeX Info: Redefining \pageref on input line 117.
-LaTeX Info: Redefining \nameref on input line 117.
+LaTeX Info: Redefining \ref on input line 115.
+LaTeX Info: Redefining \pageref on input line 115.
+LaTeX Info: Redefining \nameref on input line 115.
 
 (refman.out) (refman.out)
 \@outlinefile=\write4
 \openout4 = `refman.out'.
 
-Package caption Info: Begin \AtBeginDocument code.
-Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Option `pageanchor' set `false' on input line 123.
-Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 123.
+Package hyperref Info: Option `pageanchor' set `false' on input line 122.
 
-Package hyperref Info: Option `unicode' set `true' on input line 123.
+
+Package hyperref Warning: Option `bookmarks' has already been used,
+(hyperref)                setting the option has no effect on input line 122.
+
+Package hyperref Info: Option `bookmarksnumbered' set `true' on input line 122.
+
+Package hyperref Info: Option `unicode' set `true' on input line 122.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 12.9599pt on input line 128.
+(Font)              scaled to size 12.9599pt on input line 127.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 6.29996pt on input line 128.
-LaTeX Font Info:    Try loading font information for U+wasy on input line 128.
+(Font)              scaled to size 6.29996pt on input line 127.
+LaTeX Font Info:    Try loading font information for OT1+ztmcm on input line 12
+7.
+("D:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ztmcm.fd"
+File: ot1ztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OT1/ztmcm.
+)
+LaTeX Font Info:    Try loading font information for OML+ztmcm on input line 12
+7.
+
+("D:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omlztmcm.fd"
+File: omlztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OML/ztmcm.
+)
+LaTeX Font Info:    Try loading font information for OMS+ztmcm on input line 12
+7.
+
+("D:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omsztmcm.fd"
+File: omsztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMS/ztmcm.
+)
+LaTeX Font Info:    Try loading font information for OMX+ztmcm on input line 12
+7.
+
+("D:\Program Files\MiKTeX 2.9\tex\latex\psnfss\omxztmcm.fd"
+File: omxztmcm.fd 2000/01/03 Fontinst v1.801 font definitions for OMX/ztmcm.
+)
+LaTeX Font Info:    Try loading font information for U+wasy on input line 127.
 
 ("D:\Program Files\MiKTeX 2.9\tex\latex\wasysym\uwasy.fd"
 File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
 )
-LaTeX Font Info:    Try loading font information for U+msa on input line 128.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 127.
 
-("D:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsa.fd"
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 128.
 
-("D:\Program Files\MiKTeX 2.9\tex\latex\amsfonts\umsb.fd"
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+("D:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ot1ptm.fd"
+File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 )
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 127.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <5> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 127.
 LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 10.79993pt on input line 130.
+(Font)              scaled to size 10.79993pt on input line 129.
+LaTeX Font Info:    Font shape `T1/phv/m/n' will be
+(Font)              scaled to size 8.09995pt on input line 131.
  [1
 
 
@@ -1195,23 +1184,61 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <10> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 1.
 LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 8.99994pt on input line 1.
- [1
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <7.4> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <6> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 1.
+ [3
 
 ]
-Underfull \hbox (badness 820) in paragraph at lines 32--32
- [][] [][][]\T1/phv/m/n/10 C[]:/[]Users/ant/[]Documents/[]Git[]Hub/[]D[]V[]A438
-/[]R[]O[]S[]A[]_[]student/src/include/kernel/rosa[]_[]ker.h File Ref-er- 
+LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <7> not available
+(Font)              Font shape `T1/phv/b/n' tried instead on input line 70.
+LaTeX Font Info:    Font shape `T1/phv/b/n' will be
+(Font)              scaled to size 6.29996pt on input line 70.
+
+[4]
+Overfull \hbox (51.31038pt too wide) in paragraph at lines 80--80
+ [][] [][][]\T1/phv/m/n/10 E[]:/[]User data/[]Documents/[]De School/[]Master/- 
+Sweden/[]D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/include/kernel/ro
+sa[] 
+ []
+
+
+Overfull \hbox (51.31038pt too wide) in paragraph at lines 82--82
+ [][] [][][]\T1/phv/m/n/10 E[]:/[]User data/[]Documents/[]De School/[]Master/- 
+Sweden/[]D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/include/kernel/ro
+sa[] 
+ []
+
+
+Overfull \hbox (51.31038pt too wide) in paragraph at lines 86--86
+ [][] [][][]\T1/phv/m/n/10 E[]:/[]User data/[]Documents/[]De School/[]Master/- 
+Sweden/[]D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/include/kernel/ro
+sa[] 
+ []
+
+
+Overfull \hbox (51.31038pt too wide) in paragraph at lines 90--90
+ [][] [][][]\T1/phv/m/n/10 E[]:/[]User data/[]Documents/[]De School/[]Master/- 
+Sweden/[]D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/include/kernel/ro
+sa[] 
+ []
+
+
+Overfull \hbox (20.29698pt too wide) in paragraph at lines 92--92
+ [][] [][][]\T1/phv/m/n/10 E[]:/[]User data/[]Documents/[]De School/[]Master/- 
+Sweden/[]D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/kernel/rosa[] 
  []
 
 )
 \tf@toc=\write5
 \openout5 = `refman.toc'.
 
-LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <7> not available
-(Font)              Font shape `T1/phv/b/n' tried instead on input line 136.
-LaTeX Font Info:    Font shape `T1/phv/b/n' will be
-(Font)              scaled to size 6.29996pt on input line 136.
- [2]
+ [5] [6
+
+]
 Package hyperref Info: Option `pageanchor' set `true' on input line 138.
 
 Chapter 1.
@@ -1223,13 +1250,6 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 18.66588pt on input line 141.
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
 (Font)              scaled to size 18.66588pt on input line 141.
-(todo.tex) [1
-
-
-] [2
-
-]
-Chapter 2.
 (modules.tex
 LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
 (Font)              Font shape `T1/phv/b/n' tried instead on input line 1.
@@ -1237,68 +1257,180 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 12.9599pt on input line 1.
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
 (Font)              scaled to size 12.9599pt on input line 1.
-) [3] [4
+) [1
+
+] [2
+
+]
+Chapter 2.
+(annotated.tex) [3] [4
 
 ]
 Chapter 3.
-(annotated.tex) [5] [6
-
-]
-Chapter 4.
 (files.tex
 
-LaTeX Warning: Reference `rosa__config_8h' on page 7 undefined on input line 3.
+LaTeX Warning: Reference `main_8c' on page 5 undefined on input line 3.
+
+
+LaTeX Warning: Reference `rosa__config_8h' on page 5 undefined on input line 4.
 
 
 
-LaTeX Warning: Reference `button_8h' on page 7 undefined on input line 4.
+Underfull \hbox (badness 10000) in paragraph at lines 4--4
+ [][] \T1/phv/m/n/10 E[]:/[]User data/[]Documents/[]De School/[]Master/- Sweden
+/[]D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/\T1/phv/b/n/10 rosa[]_[
+] 
+ []
 
 
-LaTeX Warning: Reference `debug_8h' on page 7 undefined on input line 5.
+LaTeX Warning: Reference `button_8h' on page 5 undefined on input line 5.
 
 
-LaTeX Warning: Reference `delay_8h' on page 7 undefined on input line 6.
+Overfull \hbox (42.71074pt too wide) in paragraph at lines 5--5
+ [][] \T1/phv/m/n/10 E[]:/[]User data/[]Documents/[]De School/[]Master/- Sweden
+/[]D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/include/drivers/\T1/phv
+/b/n/10 button.[] 
+ []
 
 
-LaTeX Warning: Reference `gpio_8h' on page 7 undefined on input line 7.
+LaTeX Warning: Reference `debug_8h' on page 5 undefined on input line 6.
 
 
-LaTeX Warning: Reference `led_8h' on page 7 undefined on input line 8.
+Overfull \hbox (41.72078pt too wide) in paragraph at lines 6--6
+ [][] \T1/phv/m/n/10 E[]:/[]User data/[]Documents/[]De School/[]Master/- Sweden
+/[]D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/include/drivers/\T1/phv
+/b/n/10 debug.[] 
+ []
 
 
-LaTeX Warning: Reference `pot_8h' on page 7 undefined on input line 9.
+LaTeX Warning: Reference `delay_8h' on page 5 undefined on input line 7.
 
 
-LaTeX Warning: Reference `usart_8h' on page 7 undefined on input line 10.
+Overfull \hbox (37.0137pt too wide) in paragraph at lines 7--7
+ [][] \T1/phv/m/n/10 E[]:/[]User data/[]Documents/[]De School/[]Master/- Sweden
+/[]D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/include/drivers/\T1/phv
+/b/n/10 delay.[] 
+ []
 
 
-LaTeX Warning: Reference `rosa__ext_8h' on page 7 undefined on input line 12.
+LaTeX Warning: Reference `gpio_8h' on page 5 undefined on input line 8.
 
 
-LaTeX Warning: Reference `rosa__int_8h' on page 7 undefined on input line 13.
-
-LaTeX Font Info:    Try loading font information for TS1+phv on input line 14.
-("D:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ts1phv.fd"
-File: ts1phv.fd 2001/06/04 scalable font definitions for TS1/phv.
-)
-LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
-(Font)              scaled to size 8.99994pt on input line 14.
+Overfull \hbox (33.89978pt too wide) in paragraph at lines 8--8
+ [][] \T1/phv/m/n/10 E[]:/[]User data/[]Documents/[]De School/[]Master/- Sweden
+/[]D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/include/drivers/\T1/phv
+/b/n/10 gpio.[] 
+ []
 
 
-LaTeX Warning: Reference `rosa__scheduler_8h' on page 7 undefined on input line
- 15.
+LaTeX Warning: Reference `led_8h' on page 5 undefined on input line 9.
 
 
-LaTeX Warning: Reference `rosa__semaphore_8h' on page 7 undefined on input line
+Overfull \hbox (27.90579pt too wide) in paragraph at lines 9--9
+ [][] \T1/phv/m/n/10 E[]:/[]User data/[]Documents/[]De School/[]Master/- Sweden
+/[]D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/include/drivers/\T1/phv
+/b/n/10 led.[] 
+ []
+
+
+LaTeX Warning: Reference `pot_8h' on page 5 undefined on input line 10.
+
+
+Overfull \hbox (28.89587pt too wide) in paragraph at lines 10--10
+ [][] \T1/phv/m/n/10 E[]:/[]User data/[]Documents/[]De School/[]Master/- Sweden
+/[]D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/include/drivers/\T1/phv
+/b/n/10 pot.[] 
+ []
+
+
+LaTeX Warning: Reference `usart_8h' on page 5 undefined on input line 11.
+
+
+Overfull \hbox (37.08557pt too wide) in paragraph at lines 11--11
+ [][] \T1/phv/m/n/10 E[]:/[]User data/[]Documents/[]De School/[]Master/- Sweden
+/[]D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/include/drivers/\T1/phv
+/b/n/10 usart.[] 
+ []
+
+
+Overfull \hbox (27.546pt too wide) in paragraph at lines 12--12
+ [][] \T1/phv/m/n/10 E[]:/[]User data/[]Documents/[]De School/[]Master/- Sweden
+/[]D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/include/kernel/[][]rosa
+[] 
+ []
+
+
+LaTeX Warning: Reference `rosa__ext_8h' on page 5 undefined on input line 13.
+
+
+Overfull \hbox (28.86897pt too wide) in paragraph at lines 13--13
+ [][] \T1/phv/m/n/10 E[]:/[]User data/[]Documents/[]De School/[]Master/- Sweden
+/[]D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/include/kernel/\T1/phv/
+b/n/10 rosa[] 
+ []
+
+
+LaTeX Warning: Reference `rosa__int_8h' on page 5 undefined on input line 14.
+
+
+Overfull \hbox (28.86897pt too wide) in paragraph at lines 14--14
+ [][] \T1/phv/m/n/10 E[]:/[]User data/[]Documents/[]De School/[]Master/- Sweden
+/[]D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/include/kernel/\T1/phv/
+b/n/10 rosa[] 
+ []
+
+
+Overfull \hbox (27.546pt too wide) in paragraph at lines 15--15
+ [][] \T1/phv/m/n/10 E[]:/[]User data/[]Documents/[]De School/[]Master/- Sweden
+/[]D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/include/kernel/[][]rosa
+[] 
+ []
+
+
+LaTeX Warning: Reference `rosa__scheduler_8h' on page 5 undefined on input line
  16.
 
 
-LaTeX Warning: Reference `rosa__tim_8h' on page 7 undefined on input line 17.
+Overfull \hbox (28.86897pt too wide) in paragraph at lines 16--16
+ [][] \T1/phv/m/n/10 E[]:/[]User data/[]Documents/[]De School/[]Master/- Sweden
+/[]D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/include/kernel/\T1/phv/
+b/n/10 rosa[] 
+ []
 
-) [7] [8
 
-]
-Chapter 5.
+Overfull \hbox (27.546pt too wide) in paragraph at lines 17--17
+ [][] \T1/phv/m/n/10 E[]:/[]User data/[]Documents/[]De School/[]Master/- Sweden
+/[]D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/include/kernel/[][]rosa
+[] 
+ []
+
+
+Overfull \hbox (27.546pt too wide) in paragraph at lines 18--18
+ [][] \T1/phv/m/n/10 E[]:/[]User data/[]Documents/[]De School/[]Master/- Sweden
+/[]D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/include/kernel/[][]rosa
+[] 
+ []
+
+
+LaTeX Warning: Reference `rosa__int_8c' on page 5 undefined on input line 19.
+
+
+Underfull \vbox (badness 3724) has occurred while \output is active []
+
+ [5]
+
+LaTeX Warning: Reference `rosa__scheduler_8c' on page 6 undefined on input line
+ 21.
+
+
+LaTeX Warning: Reference `rosa__semaphore_8c' on page 6 undefined on input line
+ 22.
+
+
+LaTeX Warning: Reference `rosa__tim_8c' on page 6 undefined on input line 23.
+
+) [6]
+Chapter 4.
 (group__rosa__kernel.tex
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
 (Font)              scaled to size 6.29996pt on input line 1.
@@ -1308,88 +1440,170 @@ LaTeX Font Info:    Font shape `T1/phv/b/n' will be
 (Font)              scaled to size 10.79993pt on input line 8.
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
 (Font)              scaled to size 10.79993pt on input line 8.
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 8.09995pt on input line 12.
+LaTeX Font Info:    Try loading font information for TS1+phv on input line 11.
+
+("D:\Program Files\MiKTeX 2.9\tex\latex\psnfss\ts1phv.fd"
+File: ts1phv.fd 2001/06/04 scalable font definitions for TS1/phv.
+)
+LaTeX Font Info:    Font shape `TS1/phv/m/n' will be
+(Font)              scaled to size 8.99994pt on input line 11.
 LaTeX Font Info:    Font shape `T1/phv/m/it' in size <9> not available
 (Font)              Font shape `T1/phv/m/sl' tried instead on input line 12.
 LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
 (Font)              scaled to size 8.09995pt on input line 12.
-) [9]
-\openout2 = `group__rosa__kernel__sm.aux'.
-
- (group__rosa__kernel__sm.tex
-LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
-(Font)              Font shape `T1/phv/m/sl' tried instead on input line 19.
-LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
-(Font)              scaled to size 6.29996pt on input line 19.
-) [10
-
-]
-\openout2 = `group__rosa__kernel__tm.aux'.
-
-
-(group__rosa__kernel__tm.tex
 LaTeX Font Info:    Font shape `T1/phv/bc/n' will be
-(Font)              scaled to size 8.99994pt on input line 30.
-LaTeX Font Info:    Font shape `T1/phv/m/n' will be
-(Font)              scaled to size 7.19995pt on input line 31.
-LaTeX Font Info:    Try loading font information for T1+pcr on input line 31.
-
-("D:\Program Files\MiKTeX 2.9\tex\latex\psnfss\t1pcr.fd"
-File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
-)
-LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <8> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 31.
-LaTeX Font Info:    Font shape `T1/pcr/m/it' in size <7> not available
-(Font)              Font shape `T1/pcr/m/sl' tried instead on input line 31.
-
-Underfull \hbox (badness 10000) detected at line 50
-[][][]
- []
-
-[11
-
+(Font)              scaled to size 8.99994pt on input line 67.
+ [7
 
 ]
 Underfull \hbox (badness 10000) detected at line 68
 [][][]
  []
 
-[12]) [13] [14
+LaTeX Font Info:    Font shape `T1/phv/bc/it' in size <10> not available
+(Font)              Font shape `T1/phv/bc/sl' tried instead on input line 81.
+LaTeX Font Info:    Font shape `T1/phv/bc/sl' will be
+(Font)              scaled to size 8.99994pt on input line 81.
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <10> not available
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 91.
+LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
+(Font)              scaled to size 8.99994pt on input line 91.
 
+Underfull \hbox (badness 10000) detected at line 113
+[][][]
+ []
+
+[8]) [9]
+\openout2 = `group__rosa__kernel__sm.aux'.
+
+ (group__rosa__kernel__sm.tex) [10
 
 ]
-Chapter 6.
-(struct_r_o_s_a__semaphore_handle__record__t.tex) (structtcb__record__t.tex
-[15]) (structusart__options__t.tex) [16]
-Chapter 7.
-(rosa__def_8h.tex
-Underfull \hbox (badness 10000) in paragraph at lines 1--1
-[]\T1/phv/bc/n/14.4 C[]:/[]Users/ant/[]Documents/[]Git[]Hub/[]D[]V[]A438/[]R[]O
-[]S[]A[]_[]student/src/include/kernel/rosa[]_[]
- []
+\openout2 = `group__rosa__kernel__tm.aux'.
 
+ (group__rosa__kernel__tm.tex
+LaTeX Font Info:    Font shape `T1/phv/bc/it' in size <7> not available
+(Font)              Font shape `T1/phv/bc/sl' tried instead on input line 37.
+LaTeX Font Info:    Font shape `T1/phv/bc/sl' will be
+(Font)              scaled to size 6.29996pt on input line 37.
+LaTeX Font Info:    Font shape `T1/phv/m/it' in size <7> not available
+(Font)              Font shape `T1/phv/m/sl' tried instead on input line 44.
+LaTeX Font Info:    Font shape `T1/phv/m/sl' will be
+(Font)              scaled to size 6.29996pt on input line 44.
 
-Underfull \hbox (badness 10000) in paragraph at lines 8--10
-
- []
-
-
-Underfull \hbox (badness 10000) detected at line 34
+Underfull \hbox (badness 10000) detected at line 51
 [][][]
  []
 
 
+Underfull \hbox (badness 10000) detected at line 70
+[][][]
+ []
+
+[11
+
+
+]) [12]
+\openout2 = `group__rosa__kernel__dm.aux'.
+
+ (group__rosa__kernel__dm.tex
 Underfull \hbox (badness 10000) detected at line 37
 [][][]
  []
 
-[17
 
-]) (rosa__ker_8h.tex
+Underfull \hbox (badness 10000) detected at line 56
+[][][]
+ []
+
+[13
+
+
+]
+Underfull \hbox (badness 10000) detected at line 78
+[][][]
+ []
+
+) [14]
+\openout2 = `group__semaphores.aux'.
+
+ (group__semaphores.tex
+Underfull \hbox (badness 10000) detected at line 44
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 63
+[][][]
+ []
+
+[15
+
+
+]
+Underfull \hbox (badness 10000) detected at line 82
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 101
+[][][]
+ []
+
+
+Underfull \hbox (badness 10000) detected at line 120
+[][][]
+ []
+
+) [16]
+Chapter 5.
+(struct_max_sem.tex
+Overfull \hbox (15.36981pt too wide) in paragraph at lines 38--38
+[]\T1/phv/m/n/10 E[]:/[]User data/[]Documents/[]De School/[]Master/- Sweden/[]D
+[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/include/kernel/[][]rosa[]
+ []
+
+) (struct_r_o_s_a__semaphore_handle__record__t.tex [17
+
+
+]
+Overfull \hbox (15.36981pt too wide) in paragraph at lines 47--47
+[]\T1/phv/m/n/10 E[]:/[]User data/[]Documents/[]De School/[]Master/- Sweden/[]D
+[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/include/kernel/[][]rosa[]
+ []
+
+) (structtcb__record__t.tex [18] [19]
+Overfull \hbox (15.36981pt too wide) in paragraph at lines 152--152
+[]\T1/phv/m/n/10 E[]:/[]User data/[]Documents/[]De School/[]Master/- Sweden/[]D
+[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/include/kernel/[][]rosa[]
+ []
+
+) (structusart__options__t.tex
+Overfull \hbox (23.09137pt too wide) in paragraph at lines 32--32
+[]\T1/phv/m/n/10 E[]:/[]User data/[]Documents/[]De School/[]Master/- Sweden/[]D
+[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/include/drivers/usart.[]
+ []
+
+) [20]
+Chapter 6.
+(rosa__def_8h.tex
 Underfull \hbox (badness 10000) in paragraph at lines 1--1
-[]\T1/phv/bc/n/14.4 C[]:/[]Users/ant/[]Documents/[]Git[]Hub/[]D[]V[]A438/[]R[]O
-[]S[]A[]_[]student/src/include/kernel/rosa[]_[]
+[]\T1/phv/bc/n/14.4 E[]:/[]User data/[]Documents/[]De School/[]Master/- Sweden/
+[]D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]
+ []
+
+LaTeX Font Info:    Try loading font information for T1+pcr on input line 8.
+("D:\Program Files\MiKTeX 2.9\tex\latex\psnfss\t1pcr.fd"
+File: t1pcr.fd 2001/06/04 font definitions for T1/pcr.
+)
+Underfull \hbox (badness 10000) in paragraph at lines 8--10
+
+ []
+
+) (rosa__ker_8h.tex
+Underfull \hbox (badness 10000) in paragraph at lines 1--1
+[]\T1/phv/bc/n/14.4 E[]:/[]User data/[]Documents/[]De School/[]Master/- Sweden/
+[]D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]
  []
 
 
@@ -1397,115 +1611,181 @@ Underfull \hbox (badness 10000) in paragraph at lines 8--9
 
  []
 
-LaTeX Font Info:    Font shape `TS1/phv/m/it' in size <9> not available
-(Font)              Font shape `TS1/phv/m/sl' tried instead on input line 42.
-LaTeX Font Info:    Font shape `TS1/phv/m/sl' will be
-(Font)              scaled to size 8.09995pt on input line 42.
-[18]
-Underfull \hbox (badness 10000) detected at line 56
-[][][]
+pdfTeX warning (ext4): destination with the same identifier (name{group__rosa__
+kernel__sm_gaf4c28a200166f46384b123c7be151e77}) has been already used, duplicat
+e ignored
+<to be read again> 
+                   \relax 
+l.12 ...__sm_gaf4c28a200166f46384b123c7be151e77}{}
+                                                  \#define \hyperlink{group_...
+[21
+
+]) (rosa__semaphore_8h.tex
+Underfull \hbox (badness 10000) in paragraph at lines 1--1
+[]\T1/phv/bc/n/14.4 E[]:/[]User data/[]Documents/[]De School/[]Master/- Sweden/
+[]D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 59
-[][][]
+Underfull \hbox (badness 10000) in paragraph at lines 8--9
+
  []
 
+[22]) (rosa__tim_8h.tex
+Underfull \hbox (badness 10000) in paragraph at lines 1--1
+[]\T1/phv/bc/n/14.4 E[]:/[]User data/[]Documents/[]De School/[]Master/- Sweden/
+[]D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 8--11
+
+ []
+
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 22.16548pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[23]pdfTeX warning (ext4): destination with the same identifier (name{group__ro
+sa__kernel_gadb107fcb9b0e723a7405f4b2cceca544}) has been already used, duplicat
+e ignored
+<to be read again> 
+                   \relax 
+l.28 ...rnel_gadb107fcb9b0e723a7405f4b2cceca544}{}
+                                                  void {\bfseries timer\+Pre...
+pdfTeX warning (ext4): destination with the same identifier (name{group__rosa__
+kernel_ga8e7b967b8a0d05b145f67755747cf96c}) has been already used, duplicate ig
+nored
+<to be read again> 
+                   \relax 
+l.31 ...rnel_ga8e7b967b8a0d05b145f67755747cf96c}{}
+                                                  void {\bfseries timer\+R\+...
+pdfTeX warning (ext4): destination with the same identifier (name{group__rosa__
+kernel_ga4aa1b2e5cc4802a60c03fc3ee4a9f82e}) has been already used, duplicate ig
+nored
+<to be read again> 
+                   \relax 
+l.39 ...rnel_ga4aa1b2e5cc4802a60c03fc3ee4a9f82e}{}
+                                                  int {\bfseries timer\+Pres...
+pdfTeX warning (ext4): destination with the same identifier (name{group__rosa__
+kernel_ga96884f1b6909e157aa3e523d02e2fc86}) has been already used, duplicate ig
+nored
+<to be read again> 
+                   \relax 
+l.42 ...rnel_ga96884f1b6909e157aa3e523d02e2fc86}{}
+                                                  int {\bfseries timer\+R\+C...
 ) (rosa__ker_8c.tex
 Underfull \hbox (badness 10000) in paragraph at lines 1--1
-[]\T1/phv/bc/n/14.4 C[]:/[]Users/ant/[]Documents/[]Git[]Hub/[]D[]V[]A438/[]R[]O
-[]S[]A[]_[]student/src/kernel/rosa[]_[]ker.c File
+[]\T1/phv/bc/n/14.4 E[]:/[]User data/[]Documents/[]De School/[]Master/- Sweden/
+[]D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 8--19
+Underfull \hbox (badness 10000) in paragraph at lines 8--20
 
  []
 
-[19]
-Underfull \hbox (badness 10000) detected at line 57
+[24]
+
+Package Fancyhdr Warning: \headheight is too small (12.0pt): 
+ Make it at least 22.16548pt.
+ We now make it that large for the rest of the document.
+ This may cause the page layout to be inconsistent, however.
+
+[25]
+Underfull \hbox (badness 10000) detected at line 143
 [][][]
  []
 
-
-Underfull \hbox (badness 10000) detected at line 60
-[][][]
- []
-
-[20]
-Underfull \hbox (badness 10000) detected at line 81
-[][][]
+) [26] (refman.ind
+Overfull \hbox (49.78592pt too wide) in paragraph at lines 26--28
+\T1/phv/m/n/10 D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/include/ker
+nel/rosa[]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 99
-[][][]
+Overfull \hbox (49.78592pt too wide) in paragraph at lines 28--30
+\T1/phv/m/n/10 D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/include/ker
+nel/rosa[]
  []
 
 
-Underfull \hbox (badness 10000) detected at line 112
-[][][]
- []
-
-) [21] [22
-
-] (refman.ind
-Underfull \hbox (badness 10000) in paragraph at lines 3--5
-[]\T1/phv/m/n/10 C[]:/[]Users/ant/[]Documents/[]Git[]Hub/[]D[]V[]A438/[]R[]O[]S
-[]A[]_[]
+Overfull \hbox (49.78592pt too wide) in paragraph at lines 30--32
+\T1/phv/m/n/10 D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/include/ker
+nel/rosa[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 5--7
-[]\T1/phv/m/n/10 C[]:/[]Users/ant/[]Documents/[]Git[]Hub/[]D[]V[]A438/[]R[]O[]S
-[]A[]_[]
+Overfull \hbox (49.78592pt too wide) in paragraph at lines 32--34
+\T1/phv/m/n/10 D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/include/ker
+nel/rosa[]
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 7--9
-[]\T1/phv/m/n/10 C[]:/[]Users/ant/[]Documents/[]Git[]Hub/[]D[]V[]A438/[]R[]O[]S
-[]A[]_[]
+Overfull \hbox (18.77252pt too wide) in paragraph at lines 34--36
+\T1/phv/m/n/10 D[]V[]A438/[]D[]V[]A438/[]R[]O[]S[]A[]_[]student/src/kernel/rosa
+[]
  []
 
-[23
+[27
 
 
-])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 173.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 173.
- (refman.aux (group__rosa__kernel__sm.aux) (group__rosa__kernel__tm.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 173.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 173.
+
+] [28])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 174.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 174.
+ (refman.aux (group__rosa__kernel__sm.aux)
+(group__rosa__kernel__tm.aux) (group__rosa__kernel__dm.aux)
+(group__semaphores.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 174.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 174.
 Package rerunfilecheck Info: File `refman.out' has not changed.
-(rerunfilecheck)             Checksum: 74F641686EA77E3AA3E129E16B0736CA;8949.
+(rerunfilecheck)             Checksum: 56ECC0408608D3996AD1ACC2B20DDB74;20719.
 
 
 LaTeX Warning: There were undefined references.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 173.
+
+LaTeX Warning: There were multiply-defined labels.
+
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 174.
  ) 
 Here is how much of TeX's memory you used:
- 15355 strings out of 493305
- 223045 string characters out of 3138869
- 319759 words of memory out of 3000000
- 18474 multiletter control sequences out of 15000+200000
- 66073 words of font info for 85 fonts, out of 3000000 for 9000
+ 13010 strings out of 493305
+ 188464 string characters out of 3138869
+ 279811 words of memory out of 3000000
+ 16029 multiletter control sequences out of 15000+200000
+ 85610 words of font info for 114 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 53i,15n,92p,2018b,627s stack positions out of 5000i,500n,10000p,200000b,50000s
-{D:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<D:/Program Files/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><D:/Program Files/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmmi7.pfb><D:/Program Files/MiKTeX 2.9/fonts/ty
-pe1/public/amsfonts/cm/cmsy10.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/publ
-ic/amsfonts/cm/cmsy7.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
-ts/cm/cmsy8.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrr8a.pfb
-><D:/Program Files/MiKTeX 2.9/fonts/type1/urw/courier/ucrro8a.pfb><D:/Program F
-iles/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8a.pfb><D:/Program Files/MiKTeX 2.
-9/fonts/type1/urw/helvetic/uhvb8ac.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1
-/urw/helvetic/uhvr8a.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/
-uhvro8a.pfb>
-Output written on refman.pdf (27 pages, 211621 bytes).
+ 40i,17n,43p,2391b,514s stack positions out of 5000i,500n,10000p,200000b,50000s
+pdfTeX warning (dest): name{rosa__ker_8c_source} has been referenced but does
+ not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{rosa__tim_8h_source} has been referenced but does n
+ot exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{rosa__semaphore_8h_source} has been referenced but 
+does not exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{rosa__ker_8h_source} has been referenced but does n
+ot exist, replaced by a fixed one
+
+pdfTeX warning (dest): name{rosa__def_8h_source} has been referenced but does n
+ot exist, replaced by a fixed one
+
+{D:/Program Files/MiKTeX 2.9/fonts/enc/dvips/base/8r.enc}<D:/Program Files/MiKT
+eX 2.9/fonts/type1/public/amsfonts/cm/cmmi10.pfb><D:/Program Files/MiKTeX 2.9/f
+onts/type1/public/amsfonts/cm/cmsy10.pfb><D:/Program Files/MiKTeX 2.9/fonts/typ
+e1/urw/courier/ucrr8a.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic
+/uhvb8a.pfb><D:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvb8ac.pfb><
+D:/Program Files/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvbo8ac.pfb><D:/Program F
+iles/MiKTeX 2.9/fonts/type1/urw/helvetic/uhvr8a.pfb><D:/Program Files/MiKTeX 2.
+9/fonts/type1/urw/helvetic/uhvro8a.pfb>
+Output written on refman.pdf (34 pages, 289032 bytes).
 PDF statistics:
- 622 PDF objects out of 1000 (max. 8388607)
- 147 named destinations out of 1000 (max. 500000)
- 353 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1168 PDF objects out of 1200 (max. 8388607)
+ 262 named destinations out of 1000 (max. 500000)
+ 801 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,130 +1,163 @@
-\hypertarget{rosa__ker_8c}{}\section{C\+:/\+Users/ant/\+Documents/\+Git\+Hub/\+D\+V\+A438/\+R\+O\+S\+A\+\_\+student/src/kernel/rosa\+\_\+ker.c File Reference}
-\label{rosa__ker_8c}\index{C\+:/\+Users/ant/\+Documents/\+Git\+Hub/\+D\+V\+A438/\+R\+O\+S\+A\+\_\+student/src/kernel/rosa\+\_\+ker.\+c@{C\+:/\+Users/ant/\+Documents/\+Git\+Hub/\+D\+V\+A438/\+R\+O\+S\+A\+\_\+student/src/kernel/rosa\+\_\+ker.\+c}}
+\hypertarget{rosa__ker_8c}{}\section{E\+:/\+User data/\+Documents/\+De School/\+Master/-\/ Sweden/\+D\+V\+A438/\+D\+V\+A438/\+R\+O\+S\+A\+\_\+student/src/kernel/rosa\+\_\+ker.c File Reference}
+\label{rosa__ker_8c}\index{E\+:/\+User data/\+Documents/\+De School/\+Master/-\/ Sweden/\+D\+V\+A438/\+D\+V\+A438/\+R\+O\+S\+A\+\_\+student/src/kernel/rosa\+\_\+ker.\+c@{E\+:/\+User data/\+Documents/\+De School/\+Master/-\/ Sweden/\+D\+V\+A438/\+D\+V\+A438/\+R\+O\+S\+A\+\_\+student/src/kernel/rosa\+\_\+ker.\+c}}
 
 
-File containing definitions of R\+O\+SA kernel\textquotesingle{}s functions.  
+File containing definitions of R\+O\+S\+A kernel's functions.  
 
 
-{\ttfamily \#include $<$stdint.\+h$>$}\newline
-{\ttfamily \#include $<$stdlib.\+h$>$}\newline
-{\ttfamily \#include \char`\"{}kernel/rosa\+\_\+def.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}kernel/rosa\+\_\+ext.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}kernel/rosa\+\_\+ker.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}kernel/rosa\+\_\+tim.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}kernel/rosa\+\_\+scheduler.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}drivers/button.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}drivers/led.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}drivers/pot.\+h\char`\"{}}\newline
-{\ttfamily \#include \char`\"{}drivers/usart.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}kernel/rosa\+\_\+def.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}kernel/rosa\+\_\+ext.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}kernel/rosa\+\_\+ker.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}kernel/rosa\+\_\+tim.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}kernel/rosa\+\_\+scheduler.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}kernel/rosa\+\_\+semaphore.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}drivers/button.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}drivers/led.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}drivers/pot.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}drivers/usart.\+h\char`\"{}}\\*
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define {\bfseries R\+O\+S\+A\+\_\+\+T\+M\+\_\+\+A\+C\+T\+I\+O\+N}(queue,  task,  action)
+\item 
+\hypertarget{rosa__ker_8c_ab83d912e6b28aeeea636387bfa9d83b7}{}\#define {\bfseries S\+Y\+S\+\_\+\+T\+A\+S\+K\+\_\+\+S\+T\+A\+C\+K\+\_\+\+S\+I\+Z\+E}~32\label{rosa__ker_8c_ab83d912e6b28aeeea636387bfa9d83b7}
+
+\item 
+\hypertarget{rosa__ker_8c_a06f0ab90192573cfef32aad1b0cafb0c}{}\#define {\bfseries M\+E\+M\+\_\+\+C\+H\+E\+C\+K}(expr)~if (expr == N\+U\+L\+L) return -\/1;\label{rosa__ker_8c_a06f0ab90192573cfef32aad1b0cafb0c}
+
+\end{DoxyCompactItemize}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{rosa__ker_8c_a1d1898485c035f3c4dde89392165bbfd}{rqi}} (\mbox{\hyperlink{rosa__def_8h_a82d32f422c2987044e833843e7620aa6}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$$\ast$pth)
-\begin{DoxyCompactList}\small\item\em Inserts the given task into the ready queue by its priority. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{rosa__ker_8c_a9d8846b5ff035009d87aa66f9029d14e}{rqe}} (\mbox{\hyperlink{rosa__def_8h_a82d32f422c2987044e833843e7620aa6}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$$\ast$pth)
-\begin{DoxyCompactList}\small\item\em Extracts the given task from the ready queue by its priority. \end{DoxyCompactList}\item 
-int \mbox{\hyperlink{rosa__ker_8c_aac2dedb3e92a3b1f65054634b3a383ab}{rqsearch}} (void)
+\hypertarget{rosa__ker_8c_a01131b63acf241e9db91704d89ce15d2}{}void \hyperlink{rosa__ker_8c_a01131b63acf241e9db91704d89ce15d2}{idle} (void)\label{rosa__ker_8c_a01131b63acf241e9db91704d89ce15d2}
+
+\begin{DoxyCompactList}\small\item\em Idle task body. \end{DoxyCompactList}\item 
+void \hyperlink{group__rosa__kernel__tm_ga9a7bde19bc8609de66353d1f51d09eda}{R\+O\+S\+A\+\_\+tcb\+Install} (\hyperlink{structtcb__record__t}{tcb} $\ast$tcb\+Task)
+\item 
+\hypertarget{rosa__ker_8c_aa4a625dca00fd0cf68c7be829af3f578}{}void {\bfseries R\+O\+S\+A\+\_\+tcb\+Uninstall} (\hyperlink{structtcb__record__t}{tcb} $\ast$tcb\+Task)\label{rosa__ker_8c_aa4a625dca00fd0cf68c7be829af3f578}
+
+\item 
+\hyperlink{structtcb__record__t}{tcb} $\ast$ \hyperlink{rosa__ker_8c_aaa2ca4451750e74432a26439293054b9}{ready\+Queue\+Search} (void)
 \begin{DoxyCompactList}\small\item\em Search for the first non-\/empty highest priority queue. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{group__rosa__kernel__sm_ga83eda3bb4fb3a94dea3894a596a662e6}{R\+O\+S\+A\+\_\+init}} (void)
-\begin{DoxyCompactList}\small\item\em Initialize the R\+O\+SA system. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{group__rosa__kernel__tm_ga88a553c195e2f549835cbbf4e36a71ff}{R\+O\+S\+A\+\_\+tcb\+Create}} (\mbox{\hyperlink{structtcb__record__t}{tcb}} $\ast$tcb\+Task, char tcb\+Name\mbox{[}N\+A\+M\+E\+S\+I\+ZE\mbox{]}, void $\ast$tcb\+Function, int $\ast$tcb\+Stack, int tcb\+Stack\+Size)
-\begin{DoxyCompactList}\small\item\em Create the T\+CB with correct values. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{group__rosa__kernel__tm_ga9a7bde19bc8609de66353d1f51d09eda}{R\+O\+S\+A\+\_\+tcb\+Install}} (\mbox{\hyperlink{structtcb__record__t}{tcb}} $\ast$tcb\+Task)
-\begin{DoxyCompactList}\small\item\em Install a new task T\+CB into R\+O\+SA. \end{DoxyCompactList}\item 
-int16\+\_\+t \mbox{\hyperlink{group__rosa__kernel__tm_ga7b9542dcdbdadbfc94f42f85536a83b0}{R\+O\+S\+A\+\_\+task\+Create}} (\mbox{\hyperlink{rosa__def_8h_a82d32f422c2987044e833843e7620aa6}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$$\ast$pth, char $\ast$id, void $\ast$task\+Function, uint32\+\_\+t stack\+Size, uint8\+\_\+t priority)
-\begin{DoxyCompactList}\small\item\em Create the F\+P\+PS task with correct values. \end{DoxyCompactList}\item 
-int16\+\_\+t \mbox{\hyperlink{group__rosa__kernel__tm_gad0845723ed20c9e51a81a7b388dbc555}{R\+O\+S\+A\+\_\+task\+Delete}} (\mbox{\hyperlink{rosa__def_8h_a82d32f422c2987044e833843e7620aa6}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$$\ast$pth)
-\begin{DoxyCompactList}\small\item\em Create the F\+P\+PS task with correct values. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hypertarget{rosa__ker_8c_af3c6e90089394475f2cf9e20e66e8b49}{}void {\bfseries dlay} ()\label{rosa__ker_8c_af3c6e90089394475f2cf9e20e66e8b49}
+
+\item 
+\hypertarget{rosa__ker_8c_aaf868597a492c87c3850021e14bcd392}{}void \hyperlink{rosa__ker_8c_aaf868597a492c87c3850021e14bcd392}{sys\+Tasks\+Create} (void)\label{rosa__ker_8c_aaf868597a492c87c3850021e14bcd392}
+
+\begin{DoxyCompactList}\small\item\em Creation of the idle and dlay tasks. \end{DoxyCompactList}\item 
+void \hyperlink{group__rosa__kernel__sm_ga83eda3bb4fb3a94dea3894a596a662e6}{R\+O\+S\+A\+\_\+init} (void)
+\item 
+void \hyperlink{group__rosa__kernel__tm_ga88a553c195e2f549835cbbf4e36a71ff}{R\+O\+S\+A\+\_\+tcb\+Create} (\hyperlink{structtcb__record__t}{tcb} $\ast$tcb\+Task, char tcb\+Name\mbox{[}N\+A\+M\+E\+S\+I\+Z\+E\mbox{]}, void $\ast$tcb\+Function, int $\ast$tcb\+Stack, int tcb\+Stack\+Size)
+\item 
+int16\+\_\+t \hyperlink{group__rosa__kernel__tm_gafb988fc32f38f2e72f01211772620b89}{R\+O\+S\+A\+\_\+task\+Create} (\hyperlink{rosa__def_8h_a99fb8cee8eedbe888bf5763d30c1d5c8}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t} $\ast$pth, char $\ast$id, void $\ast$task\+Function, uint32\+\_\+t stack\+Size, uint8\+\_\+t prio)
+\item 
+int16\+\_\+t \hyperlink{group__rosa__kernel__tm_gae94345f223f72b5c735ae21fff3eec25}{R\+O\+S\+A\+\_\+task\+Delete} (\hyperlink{rosa__def_8h_a99fb8cee8eedbe888bf5763d30c1d5c8}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t} pth)
+\item 
+int16\+\_\+t \hyperlink{group__rosa__kernel__dm_ga5e38ae8d8d6ce674382e84af347e6137}{R\+O\+S\+A\+\_\+delay} (uint64\+\_\+t ticks)
+\item 
+int16\+\_\+t \hyperlink{group__rosa__kernel__dm_ga1dde30761b935997283a0ecc0105ee96}{R\+O\+S\+A\+\_\+delay\+Until} (uint64\+\_\+t $\ast$Last\+Wake\+Time, uint64\+\_\+t ticks)
+\item 
+int16\+\_\+t \hyperlink{group__rosa__kernel__dm_ga7f83bbf28d1b2c45f35cd083348ccb7d}{R\+O\+S\+A\+\_\+delay\+Absolute} (uint64\+\_\+t ticks)
+\end{DoxyCompactItemize}
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{rosa__ker_8c_a2165a74377266ca9f61687b56f495676}\label{rosa__ker_8c_a2165a74377266ca9f61687b56f495676}} 
-\mbox{\hyperlink{structtcb__record__t}{tcb}} $\ast$ \mbox{\hyperlink{rosa__ker_8c_a2165a74377266ca9f61687b56f495676}{T\+C\+B\+L\+I\+ST}}
-\begin{DoxyCompactList}\small\item\em Global variable that contains the list of T\+CB\textquotesingle{}s that have been installed into the kernel with \mbox{\hyperlink{group__rosa__kernel__tm_ga9a7bde19bc8609de66353d1f51d09eda}{R\+O\+S\+A\+\_\+tcb\+Install()}}. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{structtcb__record__t}{tcb}} $\ast$ \mbox{\hyperlink{rosa__ker_8c_a847f813cb72736b933312a088e0d4b9a}{E\+X\+E\+C\+T\+A\+SK}}
-\begin{DoxyCompactList}\small\item\em Global variable that contains the current running T\+CB. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{rosa__ker_8c_aee8b75e7f3f23e1bc176ee7a9d41fcf8}\label{rosa__ker_8c_aee8b75e7f3f23e1bc176ee7a9d41fcf8}} 
-\mbox{\hyperlink{structtcb__record__t}{tcb}} $\ast$ {\bfseries P\+R\+E\+E\+M\+P\+T\+A\+SK}
+\hypertarget{rosa__ker_8c_a2165a74377266ca9f61687b56f495676}{}\hyperlink{structtcb__record__t}{tcb} $\ast$ \hyperlink{rosa__ker_8c_a2165a74377266ca9f61687b56f495676}{T\+C\+B\+L\+I\+S\+T}\label{rosa__ker_8c_a2165a74377266ca9f61687b56f495676}
+
+\begin{DoxyCompactList}\small\item\em Global variable that contains the list of T\+C\+B's that have been installed into the kernel with \hyperlink{group__rosa__kernel__tm_ga9a7bde19bc8609de66353d1f51d09eda}{R\+O\+S\+A\+\_\+tcb\+Install()}. \end{DoxyCompactList}\item 
+\hyperlink{structtcb__record__t}{tcb} $\ast$ \hyperlink{rosa__ker_8c_a847f813cb72736b933312a088e0d4b9a}{E\+X\+E\+C\+T\+A\+S\+K}
+\begin{DoxyCompactList}\small\item\em Global variable that contains the current running T\+C\+B. \end{DoxyCompactList}\item 
+\hypertarget{rosa__ker_8c_aee8b75e7f3f23e1bc176ee7a9d41fcf8}{}\hyperlink{structtcb__record__t}{tcb} $\ast$ {\bfseries P\+R\+E\+E\+M\+P\+T\+A\+S\+K}\label{rosa__ker_8c_aee8b75e7f3f23e1bc176ee7a9d41fcf8}
+
 \item 
-\mbox{\Hypertarget{rosa__ker_8c_a069757787daf74781a859e9025d71ce1}\label{rosa__ker_8c_a069757787daf74781a859e9025d71ce1}} 
-\mbox{\hyperlink{rosa__def_8h_a82d32f422c2987044e833843e7620aa6}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$ \mbox{\hyperlink{rosa__ker_8c_a069757787daf74781a859e9025d71ce1}{PA}} \mbox{[}M\+A\+X\+N\+P\+R\+IO\mbox{]}
-\begin{DoxyCompactList}\small\item\em Global array of pointers to the priority queue of the running tasks. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\hypertarget{rosa__ker_8c_afff94d04552ac26930182cf7a9a7f71c}{}\hyperlink{structtcb__record__t}{tcb} \hyperlink{rosa__ker_8c_afff94d04552ac26930182cf7a9a7f71c}{I\+D\+L\+E\+T\+A\+S\+K\+\_\+\+T\+C\+B}\label{rosa__ker_8c_afff94d04552ac26930182cf7a9a7f71c}
+
+\begin{DoxyCompactList}\small\item\em Idle task's tcb. \end{DoxyCompactList}\item 
+\hypertarget{rosa__ker_8c_abcc38b0cbab1cfefd260c9a683430202}{}\hyperlink{structtcb__record__t}{tcb} {\bfseries D\+E\+L\+H\+A\+N\+D\+L\+\_\+\+T\+C\+B}\label{rosa__ker_8c_abcc38b0cbab1cfefd260c9a683430202}
+
+\item 
+\hypertarget{rosa__ker_8c_a129fe22874e775d680101729a2ec2b78}{}\hyperlink{structtcb__record__t}{tcb} $\ast$ \hyperlink{rosa__ker_8c_a129fe22874e775d680101729a2ec2b78}{I\+D\+L\+E\+T\+A\+S\+K}\label{rosa__ker_8c_a129fe22874e775d680101729a2ec2b78}
+
+\begin{DoxyCompactList}\small\item\em Global variable that contains the idle task's T\+C\+B, which preempts the current running task. \end{DoxyCompactList}\item 
+\hypertarget{rosa__ker_8c_a83bf589920ba6aa8e0e6e2ce54251204}{}\hyperlink{structtcb__record__t}{tcb} $\ast$ \hyperlink{rosa__ker_8c_a83bf589920ba6aa8e0e6e2ce54251204}{D\+E\+L\+H\+A\+N\+D\+L}\label{rosa__ker_8c_a83bf589920ba6aa8e0e6e2ce54251204}
+
+\begin{DoxyCompactList}\small\item\em Global variable that contains the delay handler task's T\+C\+B. \end{DoxyCompactList}\item 
+\hypertarget{rosa__ker_8c_a2f9f734493f75d280333752c160d793b}{}\hyperlink{structtcb__record__t}{tcb} $\ast$ \hyperlink{rosa__ker_8c_a2f9f734493f75d280333752c160d793b}{P\+A} \mbox{[}M\+A\+X\+N\+P\+R\+I\+O\mbox{]}\label{rosa__ker_8c_a2f9f734493f75d280333752c160d793b}
+
+\begin{DoxyCompactList}\small\item\em Global array of pointers to the priority queue of the running tasks. \end{DoxyCompactList}\item 
+\hypertarget{rosa__ker_8c_a76e8307f54507bdb77ca9ce17f6b9ed9}{}\hyperlink{structtcb__record__t}{tcb} $\ast$ {\bfseries D\+Q}\label{rosa__ker_8c_a76e8307f54507bdb77ca9ce17f6b9ed9}
+
+\item 
+\hypertarget{rosa__ker_8c_aa13de373623c363773c5f75c2872fea6}{}int {\bfseries R\+O\+S\+A\+\_\+init\+\_\+\+G\+U\+A\+R\+D} = 0\label{rosa__ker_8c_aa13de373623c363773c5f75c2872fea6}
+
+\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-File containing definitions of R\+O\+SA kernel\textquotesingle{}s functions. 
+File containing definitions of R\+O\+S\+A kernel's functions. 
 
-\begin{DoxyAuthor}{Author}
-Anton (?) 
-\end{DoxyAuthor}
-\begin{DoxyDate}{Date}
-05.\+12.\+2018 In this file we define data structure for tasks, functions to create and delete tasks, global tasks to control this tasks data structure. 
-\end{DoxyDate}
+In this file we define data structure for tasks, functions to create and delete tasks, global tasks to control this tasks data structure. 
+
+Definition in file \hyperlink{rosa__ker_8c_source}{rosa\+\_\+ker.\+c}.
+
+
+
+\subsection{Macro Definition Documentation}
+\hypertarget{rosa__ker_8c_ad9a3867ffaa2f2b9de38d9379abd2a78}{}\index{rosa\+\_\+ker.\+c@{rosa\+\_\+ker.\+c}!R\+O\+S\+A\+\_\+\+T\+M\+\_\+\+A\+C\+T\+I\+O\+N@{R\+O\+S\+A\+\_\+\+T\+M\+\_\+\+A\+C\+T\+I\+O\+N}}
+\index{R\+O\+S\+A\+\_\+\+T\+M\+\_\+\+A\+C\+T\+I\+O\+N@{R\+O\+S\+A\+\_\+\+T\+M\+\_\+\+A\+C\+T\+I\+O\+N}!rosa\+\_\+ker.\+c@{rosa\+\_\+ker.\+c}}
+\subsubsection[{R\+O\+S\+A\+\_\+\+T\+M\+\_\+\+A\+C\+T\+I\+O\+N}]{\setlength{\rightskip}{0pt plus 5cm}\#define R\+O\+S\+A\+\_\+\+T\+M\+\_\+\+A\+C\+T\+I\+O\+N(
+\begin{DoxyParamCaption}
+\item[{}]{queue, }
+\item[{}]{task, }
+\item[{}]{action}
+\end{DoxyParamCaption}
+)}\label{rosa__ker_8c_ad9a3867ffaa2f2b9de38d9379abd2a78}
+{\bfseries Value\+:}
+\begin{DoxyCode}
+\{                                   \hyperlink{rosa__ker_8c_a2165a74377266ca9f61687b56f495676}{\(\backslash\)}
+\hyperlink{rosa__ker_8c_a2165a74377266ca9f61687b56f495676}{            TCBLIST} = queue;              \(\backslash\)
+            ROSA\_tcb##action(task);         \(\backslash\)
+            queue = \hyperlink{rosa__ker_8c_a2165a74377266ca9f61687b56f495676}{TCBLIST};             \(\backslash\)
+        \}
+\end{DoxyCode}
+
+
+Definition at line 54 of file rosa\+\_\+ker.\+c.
+
 
 
 \subsection{Function Documentation}
-\mbox{\Hypertarget{rosa__ker_8c_a9d8846b5ff035009d87aa66f9029d14e}\label{rosa__ker_8c_a9d8846b5ff035009d87aa66f9029d14e}} 
-\index{rosa\+\_\+ker.\+c@{rosa\+\_\+ker.\+c}!rqe@{rqe}}
-\index{rqe@{rqe}!rosa\+\_\+ker.\+c@{rosa\+\_\+ker.\+c}}
-\subsubsection{\texorpdfstring{rqe()}{rqe()}}
-{\footnotesize\ttfamily int rqe (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rosa__def_8h_a82d32f422c2987044e833843e7620aa6}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$$\ast$}]{th }\end{DoxyParamCaption})}
-
-
-
-Extracts the given task from the ready queue by its priority. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em th} & Task structure (tcb structure). \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-A status code (1 -\/ queue is empty after extraction, 0 -\/ otherwise). 
-\end{DoxyReturn}
-\mbox{\Hypertarget{rosa__ker_8c_a1d1898485c035f3c4dde89392165bbfd}\label{rosa__ker_8c_a1d1898485c035f3c4dde89392165bbfd}} 
-\index{rosa\+\_\+ker.\+c@{rosa\+\_\+ker.\+c}!rqi@{rqi}}
-\index{rqi@{rqi}!rosa\+\_\+ker.\+c@{rosa\+\_\+ker.\+c}}
-\subsubsection{\texorpdfstring{rqi()}{rqi()}}
-{\footnotesize\ttfamily int rqi (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{rosa__def_8h_a82d32f422c2987044e833843e7620aa6}{R\+O\+S\+A\+\_\+task\+Handle\+\_\+t}} $\ast$$\ast$}]{th }\end{DoxyParamCaption})}
-
-
-
-Inserts the given task into the ready queue by its priority. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em th} & Task structure (tcb structure). \\
-\hline
-\end{DoxyParams}
-\begin{DoxyReturn}{Returns}
-A status code (1 -\/ item has been added to the empty queue, 0 -\/ otherwise). 
-\end{DoxyReturn}
-\mbox{\Hypertarget{rosa__ker_8c_aac2dedb3e92a3b1f65054634b3a383ab}\label{rosa__ker_8c_aac2dedb3e92a3b1f65054634b3a383ab}} 
-\index{rosa\+\_\+ker.\+c@{rosa\+\_\+ker.\+c}!rqsearch@{rqsearch}}
-\index{rqsearch@{rqsearch}!rosa\+\_\+ker.\+c@{rosa\+\_\+ker.\+c}}
-\subsubsection{\texorpdfstring{rqsearch()}{rqsearch()}}
-{\footnotesize\ttfamily int rqsearch (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
-
+\hypertarget{rosa__ker_8c_aaa2ca4451750e74432a26439293054b9}{}\index{rosa\+\_\+ker.\+c@{rosa\+\_\+ker.\+c}!ready\+Queue\+Search@{ready\+Queue\+Search}}
+\index{ready\+Queue\+Search@{ready\+Queue\+Search}!rosa\+\_\+ker.\+c@{rosa\+\_\+ker.\+c}}
+\subsubsection[{ready\+Queue\+Search}]{\setlength{\rightskip}{0pt plus 5cm}int ready\+Queue\+Search (
+\begin{DoxyParamCaption}
+\item[{void}]{}
+\end{DoxyParamCaption}
+)}\label{rosa__ker_8c_aaa2ca4451750e74432a26439293054b9}
 
 
 Search for the first non-\/empty highest priority queue. 
 
 \begin{DoxyReturn}{Returns}
-A status code (reserved). 
+Pointer to the last tcb in the queue (in other words -\/ P\+A\mbox{[}i\mbox{]}). 
 \end{DoxyReturn}
-\begin{DoxyRefDesc}{Todo}
-\item[\mbox{\hyperlink{todo__todo000002}{Todo}}]Check for empty PA. \end{DoxyRefDesc}
+
+
+Definition at line 181 of file rosa\+\_\+ker.\+c.
+
 
 
 \subsection{Variable Documentation}
-\mbox{\Hypertarget{rosa__ker_8c_a847f813cb72736b933312a088e0d4b9a}\label{rosa__ker_8c_a847f813cb72736b933312a088e0d4b9a}} 
-\index{rosa\+\_\+ker.\+c@{rosa\+\_\+ker.\+c}!E\+X\+E\+C\+T\+A\+SK@{E\+X\+E\+C\+T\+A\+SK}}
-\index{E\+X\+E\+C\+T\+A\+SK@{E\+X\+E\+C\+T\+A\+SK}!rosa\+\_\+ker.\+c@{rosa\+\_\+ker.\+c}}
-\subsubsection{\texorpdfstring{E\+X\+E\+C\+T\+A\+SK}{EXECTASK}}
-{\footnotesize\ttfamily \mbox{\hyperlink{structtcb__record__t}{tcb}}$\ast$ E\+X\+E\+C\+T\+A\+SK}
+\hypertarget{rosa__ker_8c_a847f813cb72736b933312a088e0d4b9a}{}\index{rosa\+\_\+ker.\+c@{rosa\+\_\+ker.\+c}!E\+X\+E\+C\+T\+A\+S\+K@{E\+X\+E\+C\+T\+A\+S\+K}}
+\index{E\+X\+E\+C\+T\+A\+S\+K@{E\+X\+E\+C\+T\+A\+S\+K}!rosa\+\_\+ker.\+c@{rosa\+\_\+ker.\+c}}
+\subsubsection[{E\+X\+E\+C\+T\+A\+S\+K}]{\setlength{\rightskip}{0pt plus 5cm}{\bf tcb}$\ast$ E\+X\+E\+C\+T\+A\+S\+K}\label{rosa__ker_8c_a847f813cb72736b933312a088e0d4b9a}
 
 
+Global variable that contains the current running T\+C\+B. 
 
-Global variable that contains the current running T\+CB. 
+Global variable that contains the T\+C\+B, which preempts the current running task. 
 
-Global variable that contains the T\+CB, which preempts the current running task. 
+Definition at line 77 of file rosa\+\_\+ker.\+c.
+

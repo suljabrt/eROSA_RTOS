@@ -24,6 +24,15 @@
 *****************************************************************************/
 /* Tab size: 4 */
 
+/**
+ * @file rosa_tim.h
+ * @brief Header file containing declarations for ROSA timer functions.
+ *
+ * Header file containing declarations of ROSA timer functions.
+ */
+
+/* Tab size: 4 */
+
 #ifndef _ROSA_TIMER_H_
 #define _ROSA_TIMER_H_
 
@@ -40,40 +49,40 @@
   */
   ///@{
 
-/** @fn extern void timerInit(unsigned int)
+/**
+	Initialize the first timer.
 	@param Number of milliseconds per system tick to be used
-	@brief Initialize the first timer.
 */
 extern void timerInit(unsigned int);
 
-/** @fn extern void timerReset(void)
-	@brief Reset the first timer.
+/**
+	Reset the first timer.
 */
 extern void timerReset(void);
 
-/** @fn extern void timerStart(void)
-	@brief Start the first timer.
+/**
+	Start the first timer.
 */
 extern void timerStart(void);
 
-/** @fn extern void timerStop(void)
-	@brief Stop the first timer.
+/**
+	Stop the first timer.
 */
 extern void timerStop(void);
 
-/** @fn void timerISR(void)
-	@brief The ISR for the first timer.
+/**
+	The ISR for the first timer.
 */
 void timerISR(void);
 
-/** @fn extern void timerClearInterrupt(void)
-	@brief Set the flag for the interrupt of the first timer to false.
+/**
+	Set the flag for the interrupt of the first timer to false.
 */
 extern void timerClearInterrupt(void);
 
-/** @fn int timerPeriodSet(unsigned int ms)
+/**
+	Set the period of the first timer.
 	@param ms Period in milliseconds.
-	@brief Set the period of the first timer.
 	@return 
 */
 int timerPeriodSet(unsigned int ms);
@@ -81,8 +90,8 @@ int timerPeriodSet(unsigned int ms);
 extern void timerPrescaleSet(int);
 extern void timerRCSet(int);
 
-/** @fn uint64_t ROSA_getTickCount()
-	@brief Retrieve the current number of system ticks.
+/**
+	Retrieve the current number of system ticks.
 	@return The current number of system ticks.
 */
 uint64_t ROSA_getTickCount();
@@ -91,8 +100,8 @@ uint64_t ROSA_getTickCount();
 extern int timerPrescale;
 extern int timerRC;
 
-/** @def systemTick
- *	@brief The number of ticks the system is currently on.
+/**
+	The number of ticks the system is currently on.
  */
 extern uint64_t systemTick;
 ///@}
