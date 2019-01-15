@@ -34,27 +34,67 @@
 /***********************************************************
  * Kernel timer functions
  ***********************************************************/
+
+/** @defgroup rosa_kernel ROSA kernel.
+	@brief This module contains kernel functions of ROSA.
+  */
+  ///@{
+
+/** @fn extern void timerInit(unsigned int)
+	@param Number of milliseconds per system tick to be used
+	@brief Initialize the first timer.
+*/
 extern void timerInit(unsigned int);
+
+/** @fn extern void timerReset(void)
+	@brief Reset the first timer.
+*/
 extern void timerReset(void);
+
+/** @fn extern void timerStart(void)
+	@brief Start the first timer.
+*/
 extern void timerStart(void);
+
+/** @fn extern void timerStop(void)
+	@brief Stop the first timer.
+*/
 extern void timerStop(void);
 
-//The timer interrupt service routine
+/** @fn void timerISR(void)
+	@brief The ISR for the first timer.
+*/
 void timerISR(void);
+
+/** @fn extern void timerClearInterrupt(void)
+	@brief Set the flag for the interrupt of the first timer to false.
+*/
 extern void timerClearInterrupt(void);
 
-//Timer period functions
+/** @fn int timerPeriodSet(unsigned int ms)
+	@param ms Period in milliseconds.
+	@brief Set the period of the first timer.
+	@return 
+*/
 int timerPeriodSet(unsigned int ms);
+
 extern void timerPrescaleSet(int);
 extern void timerRCSet(int);
 
-//Functionality added by ROSA's extension
+/** @fn uint64_t ROSA_getTickCount()
+	@brief Retrieve the current number of system ticks.
+	@return The current number of system ticks.
+*/
 uint64_t ROSA_getTickCount();
 
-//Timer period variables
+
 extern int timerPrescale;
 extern int timerRC;
 
+/** @def systemTick
+ *	@brief The number of ticks the system is currently on.
+ */
 extern uint64_t systemTick;
+///@}
 
 #endif /* _ROSA_TIMER_H_ */

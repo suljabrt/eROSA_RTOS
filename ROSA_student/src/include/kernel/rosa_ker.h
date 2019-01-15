@@ -52,7 +52,7 @@ extern void ROSA_yield(void);
 
 	/** @defgroup rosa_kernel_sm Scheduler management.
 		@ingroup rosa_kernel
-		@brief Scheduler initializaion and start.
+		@brief Scheduler initialization and start.
 	  */
 	///@{
 /** @def ROSA_INITIALSR
@@ -115,9 +115,34 @@ int16_t ROSA_taskDelete(ROSA_taskHandle_t th);
 */
 extern void ROSA_tcbInstall(tcb *task);
 	///@}
+	
+/** @defgroup rosa_kernel_dm Delay management.
+		@ingroup rosa_kernel
+		@brief Task delays.
+	  */
+	///@{	
 
+/** @fn int16_t ROSA_delay(uint64_t ticks)
+	@brief 	Delay the calling task for the given number of ticks.
+	@param ticks Number of ticks to delay the task for.
+	@return Status code.
+*/
 int16_t ROSA_delay(uint64_t ticks);
+
+/** @fn int16_t ROSA_delayUntil(ROSA_taskHandle_t ** th)
+	@brief 	Delay the calling task until the system reaches *LastWakeTime + ticks.
+	@param LastWakeTime Pointer to the time the calling task was last started.
+	@param ticks Number of ticks relative to LastWakeTime.
+	@return Status code.
+*/
 int16_t ROSA_delayUntil(uint64_t* LastWakeTime, uint64_t ticks);
+
+/** @fn int16_t ROSA_taskDelete(ROSA_taskHandle_t ** th)
+	@brief 	Delay the calling task until the system reaches the given number of ticks.
+	@param ticks Number of ticks of the system to delay the task until.
+	@return Status code.
+*/
 int16_t ROSA_delayAbsolute(uint64_t ticks);
+///@}
 
 #endif /* _ROSA_KER_H_ */
