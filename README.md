@@ -1,1 +1,2 @@
-# DVA438
+# RTOS with following features:
+Fixed priority scheduler, necessary to be able to realize periodic activation and preemptive scheduling of tasks. System clock ticks and delay functionality have to be added, Dynamic creation and termination of tasks, Binary semaphore handling, Synchronization protocol. It is required to implement the Fixed Priority Preemptive Scheduling algorithm (FPPS), both relative and absolute delay functionality should be provided, with semaphores we can foresee some problems with deadlocks and unbounded priority inversion. To solve those problems we use the immediate inheritance protocol IPCP.
